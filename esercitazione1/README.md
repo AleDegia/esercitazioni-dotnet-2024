@@ -83,5 +83,19 @@ class Program
     }
 }
 
-```
+```c#
 
+
+### 07 - Contenazione e operatore +
+
+```c#
+class Program{
+    static void Main(string[] args)
+    {
+        int a = 10;
+        int b = 20;
+        int c = a + b;
+        System.Console.WriteLine($"la somma di {a} e {b} è {c}");
+    }
+}
+```
