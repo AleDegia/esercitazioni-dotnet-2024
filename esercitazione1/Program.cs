@@ -3,7 +3,8 @@
     {
         int a = 10;
         int b = 20;
-        int c = a + b;
-        System.Console.WriteLine($"la somma di {a} e {b} è {c}");
+        decimal c = 1.5m;
+        decimal d = a + b + c;
+        System.Console.WriteLine($"la somma di {a}, {b} e {c} è {d}");
     }
 }

@@ -86,7 +86,7 @@ class Program
 ```c#
 
 
-### 07 - Contenazione e operatore +
+### 07 - Interpolazione e operatore +
 
 ```c#
 class Program{
@@ -96,6 +96,21 @@ class Program{
         int b = 20;
         int c = a + b;
         System.Console.WriteLine($"la somma di {a} e {b} è {c}");
+    }
+}
+```
+
+### 08 - Somma con decimali
+
+```c#
+class Program{
+    static void Main(string[] args)
+    {
+        int a = 10;
+        int b = 20;
+        decimal c = 1.5m;
+        decimal d = a + b + c;
+        System.Console.WriteLine($"la somma di {a}, {b} e {c} è {d}");
     }
 }
 ```
