@@ -115,7 +115,7 @@ class Program{
 }
 ```
 
-### 09 - Confronto booleano con 2 stringhe
+### 09 - Confronto booleano tra 2 stringhe
 
 ```c#
 class Program{
@@ -125,6 +125,22 @@ class Program{
         string cognome = "Rossi";
         bool uguali = nome == cognome;
         Console.WriteLine($"I due nomi sono uguali? {uguali}");
+    }
+}
+```
+
+### 09.2 - Confronto booleano tra 2 stringhe con !=
+
+```c#
+class Program{
+    static void Main(string[] args)
+    {
+        string nome = "Mario";
+        string cognome = "Rossi";
+        bool uguali = nome == cognome;
+        bool diversi = nome != cognome;
+        Console.WriteLine($"I due nomi sono uguali? {uguali}");
+        Console.WriteLine($"I due nomi sono diversi? {diversi}");
     }
 }
 ```
