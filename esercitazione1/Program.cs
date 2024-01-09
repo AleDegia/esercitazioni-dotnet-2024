@@ -1,7 +1,7 @@
 ﻿class Program{
     static void Main(string[] args)
     {
-        bool maggiorenne = true; 
-        Console.WriteLine($"Sei maggiorenne? {maggiorenne}");
+        DateTime dataDiNAscita = new DateTime(1980, 1, 1) ;
+        Console.WriteLine($"Sei ìnato il {dataDiNAscita}");
     }
 }
