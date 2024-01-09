@@ -12,19 +12,18 @@ Ecco alcune esercitazioni base su C# .NET Core senza l'utilizzo di namespaces
 
 ## 01 - Esercitazioni su tipi di dato e variabili
 
-### 01 - Dichiarare una variabile di tipo stringa:
+### 02 - Dichiarare una variabile di tipo intero:
 
 
 
 ```c#
 
 
-class Program
-{
+class Program{
     static void Main(string[] args)
     {
-        string nome = "Alessandro";
-        Console.WriteLine($"Ciao{nome}");
+        int eta = 20; ////gli interni non necessitano di apici doppi, evitare caratteri accentati nel nome delle variabili
+        Console.WriteLine($"Hai {eta} anni");
     }
 }
  
