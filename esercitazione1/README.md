@@ -108,7 +108,7 @@ class Program{
     {
         int a = 10;
         int b = 20;
-        decimal c = 1.5m;
+        decimal c = 1.5m; // il carattere "m" alla fine di un valore numerico letterale indica che il numero è di tipo decimal. La presenza della "m" è una convenzione sintattica specifica per i decimali in C# per evitare ambiguità tra i letterali di diversi tipi numerici. Se ometti la "m", il compilatore potrebbe interpretare il valore come un double e generare un errore di compilazione. In questo caso, il valore dell'int viene automaticamente convertito in un decimal prima della somma. anche per i double avviene.
         decimal d = a + b + c;
         System.Console.WriteLine($"la somma di {a}, {b} e {c} è {d}");
     }
