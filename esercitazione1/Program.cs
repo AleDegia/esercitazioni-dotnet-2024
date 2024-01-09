@@ -1,7 +1,7 @@
 ﻿class Program{
     static void Main(string[] args)
     {
-        DateTime dataDiNAscita = new DateTime(1980, 1, 1) ;
-        Console.WriteLine($"Sei ìnato il {dataDiNAscita}");
+        DateTime dataDiNascita = new DateTime(1980, 1, 1) ;
+        Console.WriteLine($"Sei nato il {dataDiNascita.ToShortDateString()}"); // rappresentazione breve della data senza includere l'orario con la funz ToShortDateString()
     }
 }

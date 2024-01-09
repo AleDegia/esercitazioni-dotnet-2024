@@ -44,6 +44,19 @@ class Program{
 }
 ```
 
+### 04 - Decimal
+
+
+```c#
+class Program{
+    static void Main(string[] args)
+    {
+        decimal numeroDecimal = 123.45m;
+        Console.WriteLine($"il numero decimale è {numeroDecimal}");
+    }
+}
+
+```
 
 ### 05 - Dichiarare una variabile di tipo data:
 
@@ -52,8 +65,23 @@ class Program{
     static void Main(string[] args)
     {
         DateTime dataDiNascita = new DateTime(1980, 1, 1) ;
-        Console.WriteLine($"Sei ìnato il {dataDiNascita}");
+        Console.WriteLine($"Sei ìnato il {dataDiNascita}"); 
     }
 }
 
 ```
+
+### 06 - Stampare un'istanza di tipo data che non includa l'orario
+
+```c#
+class Program
+{
+    static void Main(string[] args)
+    {
+        DateTime dataDiNascita = new DateTime(1980, 1, 1) ;
+        Console.WriteLine($"Sei nato il {dataDiNascita.ToShortDateString()}"); // rappresentazione breve della data senza includere l'orario con la funz ToShortDateString()
+    }
+}
+
+```
+
