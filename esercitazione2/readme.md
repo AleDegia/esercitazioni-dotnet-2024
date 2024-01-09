@@ -29,3 +29,17 @@ class Program{
  
 
 ```
+
+
+### 03 - Dichiarare una variabile di tipo booleano:
+
+```c#
+
+class Program{
+    static void Main(string[] args)
+    {
+        bool maggiorenne = true; 
+        Console.WriteLine($"Sei maggiorenne? {maggiorenne}");
+    }
+}
+```
