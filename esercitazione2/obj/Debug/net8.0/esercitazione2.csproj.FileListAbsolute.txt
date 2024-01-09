@@ -1,0 +1,15 @@
+C:\Users\DOTNET\Documents\Corso-Dotnet-2024\CORSO-DOTNET-2024\esercitazioni-dotnet-2024\esercitazione2\bin\Debug\net8.0\esercitazione2.exe
+C:\Users\DOTNET\Documents\Corso-Dotnet-2024\CORSO-DOTNET-2024\esercitazioni-dotnet-2024\esercitazione2\bin\Debug\net8.0\esercitazione2.deps.json
+C:\Users\DOTNET\Documents\Corso-Dotnet-2024\CORSO-DOTNET-2024\esercitazioni-dotnet-2024\esercitazione2\bin\Debug\net8.0\esercitazione2.runtimeconfig.json
+C:\Users\DOTNET\Documents\Corso-Dotnet-2024\CORSO-DOTNET-2024\esercitazioni-dotnet-2024\esercitazione2\bin\Debug\net8.0\esercitazione2.dll
+C:\Users\DOTNET\Documents\Corso-Dotnet-2024\CORSO-DOTNET-2024\esercitazioni-dotnet-2024\esercitazione2\bin\Debug\net8.0\esercitazione2.pdb
+C:\Users\DOTNET\Documents\Corso-Dotnet-2024\CORSO-DOTNET-2024\esercitazioni-dotnet-2024\esercitazione2\obj\Debug\net8.0\esercitazione2.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\DOTNET\Documents\Corso-Dotnet-2024\CORSO-DOTNET-2024\esercitazioni-dotnet-2024\esercitazione2\obj\Debug\net8.0\esercitazione2.AssemblyInfoInputs.cache
+C:\Users\DOTNET\Documents\Corso-Dotnet-2024\CORSO-DOTNET-2024\esercitazioni-dotnet-2024\esercitazione2\obj\Debug\net8.0\esercitazione2.AssemblyInfo.cs
+C:\Users\DOTNET\Documents\Corso-Dotnet-2024\CORSO-DOTNET-2024\esercitazioni-dotnet-2024\esercitazione2\obj\Debug\net8.0\esercitazione2.csproj.CoreCompileInputs.cache
+C:\Users\DOTNET\Documents\Corso-Dotnet-2024\CORSO-DOTNET-2024\esercitazioni-dotnet-2024\esercitazione2\obj\Debug\net8.0\esercitazione2.sourcelink.json
+C:\Users\DOTNET\Documents\Corso-Dotnet-2024\CORSO-DOTNET-2024\esercitazioni-dotnet-2024\esercitazione2\obj\Debug\net8.0\esercitazione2.dll
+C:\Users\DOTNET\Documents\Corso-Dotnet-2024\CORSO-DOTNET-2024\esercitazioni-dotnet-2024\esercitazione2\obj\Debug\net8.0\refint\esercitazione2.dll
+C:\Users\DOTNET\Documents\Corso-Dotnet-2024\CORSO-DOTNET-2024\esercitazioni-dotnet-2024\esercitazione2\obj\Debug\net8.0\esercitazione2.pdb
+C:\Users\DOTNET\Documents\Corso-Dotnet-2024\CORSO-DOTNET-2024\esercitazioni-dotnet-2024\esercitazione2\obj\Debug\net8.0\esercitazione2.genruntimeconfig.cache
+C:\Users\DOTNET\Documents\Corso-Dotnet-2024\CORSO-DOTNET-2024\esercitazioni-dotnet-2024\esercitazione2\obj\Debug\net8.0\ref\esercitazione2.dll
