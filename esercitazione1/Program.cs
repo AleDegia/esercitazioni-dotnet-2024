@@ -1,11 +1,12 @@
 ﻿class Program{
     static void Main(string[] args)
     {
-        string[] nomi = new string[3]; //l'array deve essere predeterminato, va assegnato perciò subito il numero degli elementi
-        nomi[0] = "Mario";
-        nomi[1] = "Luigi"; 
-        nomi[2] = "Giovanni"; 
+        int[] numeri = new int[3];
+        numeri[0] = 10;
+        numeri[1] = 20; 
+        numeri[2] = Int32.Parse("30"); //conversione da string a int
         
-        Console.WriteLine($"Ciao {nomi[0]}, {nomi[1]} e {nomi[2]}");
+        Console.WriteLine($"Ciao {numeri[0]}, {numeri[1]} e {numeri[2]}");
     }
 }
+

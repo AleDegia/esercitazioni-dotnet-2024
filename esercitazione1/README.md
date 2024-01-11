@@ -160,7 +160,7 @@ class Program{
         Console.WriteLine($"Il primo numero è minore o uguale rispetto al secondo? {minoreOuguale}");  
     }
 }
-```c#
+```
 
 
 ### 10 - Array
@@ -175,6 +175,22 @@ class Program{
         nomi[2] = "Giovanni"; 
         
         Console.WriteLine($"Ciao {nomi[0]}, {nomi[1]} e {nomi[2]}");
+    }
+}
+```
+
+### 10.1 - Array con interi
+
+```c#
+class Program{
+    static void Main(string[] args)
+    {
+        int[] numeri = new int[3];
+        numeri[0] = 10;
+        numeri[1] = 20; 
+        numeri[2] = Int32.Parse("30"); //conversione da string a intumeri[2] = 30; 
+        
+        Console.WriteLine($"Ciao {numeri[0]}, {numeri[1]} e {numeri[2]}");
     }
 }
 ```
