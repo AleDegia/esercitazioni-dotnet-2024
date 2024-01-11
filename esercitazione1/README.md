@@ -224,7 +224,41 @@ class Program{
         numeri.Add(30); 
         
         Console.WriteLine($" {numeri[0]}, {numeri[1]} e {numeri[2]}");
+        Console.WriteLine($" {numeri.Count()}");
         Console.WriteLine($" {numeri}"); //da la posizione dove ha locato in memoria l'oggetto
     }
 }
+```
+
+### 12 - Stack (pile)
+
+```c#
+class Program{
+    static void Main(string[] args)
+    {
+        Stack<string> nomi = new Stack<string>(); //the last element added to the stack is the first one to be removed. 
+        nomi.Push("Mario");//The code then pushes three strings onto the stack using the Push() method: "Mario", "Luigi", and "Giovanni". 
+        nomi.Push("Luigi");//This means that "Giovanni" is now at the top of the stack, followed by "Luigi", and then "Mario".
+        nomi.Push("Giovanni");//la stampa avviene prima della rimozione dell'elemento.
+        System.Console.WriteLine($"Ciao {nomi.Pop()}, {nomi.Pop()}, {nomi.Pop()}"); //viene rimosso perciò sempre dall'ultimo aggiunto in giu
+    }
+}
+//Ciao Giovanni, Luigi, Mario
+```
+
+### 13 - Code 
+
+```c#
+class Program{
+    static void Main(string[] args)
+    {
+        Queue<string> nomi = new Queue<string>();  //the first element added to the queue is the first one to be removed. 
+        nomi.Enqueue("Mario"); //la stampa avviene prima della rimozione dell'elemento.
+        nomi.Count();
+        nomi.Enqueue("Luigi");
+        nomi.Enqueue("Giovanni");
+        System.Console.WriteLine($"Ciao {nomi.Dequeue()}, {nomi.Count()}, {nomi.Dequeue()}, {nomi.Dequeue()}"); 
+    }
+} 
+//Ciao Mario, 2, Luigi, Giovanni
 ```
