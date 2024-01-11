@@ -1,12 +1,12 @@
 ﻿class Program{
     static void Main(string[] args)
     {
-        int[] numeri = new int[3];
-        numeri[0] = 10;
-        numeri[1] = 20; 
-        numeri[2] = Int32.Parse("30"); //conversione da string a int
+        List <string> nomi = new List<string>(); 
+        nomi.Add("Mario");
+        nomi.Add("Luigi"); 
+        nomi.Add("Giovanni"); 
         
-        Console.WriteLine($"Ciao {numeri[0]}, {numeri[1]} e {numeri[2]}");
+        Console.WriteLine($"Ciao {nomi[0]}, {nomi[1]} e {nomi[2]}");
     }
 }
 

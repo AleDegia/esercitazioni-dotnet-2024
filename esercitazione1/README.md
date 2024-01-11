@@ -175,6 +175,7 @@ class Program{
         nomi[2] = "Giovanni"; 
         
         Console.WriteLine($"Ciao {nomi[0]}, {nomi[1]} e {nomi[2]}");
+        Console.WriteLine($"Il numero di elementi è {nomi.Length}"); 
     }
 }
 ```
@@ -191,6 +192,22 @@ class Program{
         numeri[2] = Int32.Parse("30"); //conversione da string a intumeri[2] = 30; 
         
         Console.WriteLine($"Ciao {numeri[0]}, {numeri[1]} e {numeri[2]}");
+    }
+}
+```
+
+### 11 - Liste
+
+```c#
+class Program{
+    static void Main(string[] args)
+    {
+        List <string> nomi = new List<string>();  //utilizziamo il diamond invece delle parentesi quadre
+        nomi.Add("Mario"); // l'aggiunta di un elemento avviene tramite il metodo Add()
+        nomi.Add("Luigi"); // gli elementi vengono inseriti nell'ordine in cui li mettiamo
+        nomi.Add("Giovanni"); 
+        
+        Console.WriteLine($"Ciao {nomi[0]}, {nomi[1]} e {nomi[2]}");
     }
 }
 ```
