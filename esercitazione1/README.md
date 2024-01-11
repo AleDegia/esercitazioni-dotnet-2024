@@ -180,20 +180,72 @@ class Program{
 }
 ```
 
-### 10.1 - Array con interi
+### 10.1 - Rimozione elemento da array con interi e dichiarazione su una linea
 
 ```c#
-class Program{
+class Program
+{
     static void Main(string[] args)
     {
-        int[] numeri = new int[3];
-        numeri[0] = 10;
-        numeri[1] = 20; 
-        numeri[2] = Int32.Parse("30"); //conversione da string a intumeri[2] = 30; 
-        
-        Console.WriteLine($"Ciao {numeri[0]}, {numeri[1]} e {numeri[2]}");
+        int[] numbers = { 1, 2, 3, 4, 5 };
+        List<int> numberList = numbers.ToList();
+        numberList.RemoveAt(2);
+        numbers = numberList.ToArray();
+
+        foreach (int number in numbers)
+        {
+            Console.WriteLine($"Ciao {number}");
+        }
     }
 }
+//[1, 2, 4, 5]
+```
+
+### 10.2 - Sort per array
+
+```c#
+class Program
+{
+    static void Main(string[] args)
+    {
+        // Sort an int array
+        int[] myNumbers = {5, 1, 8, 9};
+        Array.Sort(myNumbers);
+        foreach (int i in myNumbers)
+        {
+        Console.Writeline(i);
+        }
+        Console.WriteLine(myNumbers.Max());  // returns the largest value (9)
+        Console.WriteLine(myNumbers.Min());  // returns the smallest value (1)
+        Console.WriteLine(myNumbers.Sum());  // returns the sum of elements (23)
+    }
+}
+//1
+//5
+//8
+//9
+//9 
+//1 
+//23
+```
+
+### Convertire l'array in un'unica stringa
+
+```c#
+class Program
+{
+    static void Main()
+    {
+        //Esempio di array join
+        string[] nomi = new string[]{"Alice", "Bob", "Charlie"};
+
+        //unisce tutti gli elementi dell'array nomi in una singola stringa
+        string nomiConcatenati = String.Join(",", nomi);
+
+        System.Console.WriteLine($"Ciao {nomiConcatenati}");
+    }
+}
+// Ciao Alice,Bob,Charlie
 ```
 
 ### 11 - Liste
@@ -212,7 +264,7 @@ class Program{
 }
 ```
 
-### 11.1 - Liste con numeri
+### 11.1 - Liste con numeri e rimozione elemento
 
 ```c#
 class Program{
@@ -226,8 +278,194 @@ class Program{
         Console.WriteLine($" {numeri[0]}, {numeri[1]} e {numeri[2]}");
         Console.WriteLine($" {numeri.Count()}");
         Console.WriteLine($" {numeri}"); //da la posizione dove ha locato in memoria l'oggetto
+        numeri.RemoveAt(2);
+        Console.WriteLine($" {numeri[0]}, {numeri[1]} e {numeri[2]}"); // qua darà eccezione Index was out of range perchè l'elemento ad indice 2 è stato rimosso
     }
 }
+```
+
+### 11.2 - Sort delle List
+
+```c#
+using System;
+using System.Collections.Generic;
+
+class Program
+{
+    static void Main()
+    {
+        // Create a list of integers
+        List<int> numbers = new List<int> { 5, 2, 8, 1, 3 };
+
+        // Use the Sort method to sort the list
+        numbers.Sort();
+
+        // Display the sorted list
+        Console.WriteLine("Sorted List:");
+        foreach (int number in numbers)
+        {
+            Console.Write(number + " ");
+        }
+    }
+}
+//1 2 3 5 8
+```
+
+### 11.3 - Sort delle liste personalizzato 
+
+```c#
+using System;
+using System.Collections.Generic;
+
+// Custom comparer class for sorting strings by length (Qui definiamo una classe chiamata StringLengthComparer che implementa l'interfaccia IComparer<string>. Questa interfaccia richiede l'implementazione del metodo Compare, che utilizzeremo per specificare la logica di confronto personalizzata.)
+public class StringLengthComparer : IComparer<string> // l'interfaccia IComparer<T> è parte del framework .NET,
+{
+    public int Compare(string x, string y) //L'interfaccia IComparer<T> richiede l'implementazione del metodo Compare, che accetta due oggetti del tipo specificato (T) e restituisce un intero che indica l'ordine relativo degli oggetti.
+    {
+        // Compare strings based on their lengths
+        return x.Length.CompareTo(y.Length);
+    }
+}
+
+class Program
+{
+    static void Main()
+    {
+        // Create a list of strings
+        List<string> words = new List<string> { "apple", "banana", "orange", "grape", "kiwi" };
+
+        // Use the Sort method with the custom comparer (istanzio la classe StringLenghtComparer per usarne i metodi e dico al sort di usare il metodo dentro quella classe)
+        words.Sort(new StringLengthComparer());
+
+        // Display the sorted list
+        Console.WriteLine("Sorted List by Length:");
+        foreach (string word in words)
+        {
+            Console.WriteLine(word);
+        }
+    }
+}
+```
+
+```c#
+### 11.4 - Sort senza l'interfaccia 
+
+using System;
+using System.Collections.Generic;
+
+class Program
+{
+    static void Main()
+    {
+        // Create a list of strings
+        List<string> words = new List<string> { "apple", "banana", "orange", "grape", "kiwi" };
+
+        // Use Sort method with a custom comparison logic using a separate method
+        words.Sort(CompareByLength);
+
+        // Display the sorted list
+        Console.WriteLine("Sorted List by Length:");
+        foreach (string word in words)
+        {
+            Console.WriteLine(word);
+        }
+    }
+
+    // Custom method for comparing strings by length
+    static int CompareByLength(string x, string y)
+    {
+        return x.Length.CompareTo(y.Length);
+    }
+}
+
+```
+
+### 11.5 - Stessa cosa con lambda
+
+```c#
+using System;
+using System.Collections.Generic;
+
+class Program
+{
+    static void Main()
+    {
+        // Create a list of strings
+        List<string> words = new List<string> { "apple", "banana", "orange", "grape", "kiwi" };
+
+        // Use Sort method with a custom comparison logic
+        words.Sort((x, y) => x.Length.CompareTo(y.Length));
+
+        // Display the sorted list
+        Console.WriteLine("Sorted List by Length:");
+        foreach (string word in words)
+        {
+            Console.WriteLine(word);
+        }
+    }
+}
+```
+
+### 11.6 - Ordinamento complesso con liste
+
+```c#
+using System;
+using System.Collections.Generic;
+using System.Linq;
+
+class Program
+{
+    static void Main()
+    {
+        // Create a list of numbers
+        List<int> numbers = new List<int> { 15, 8, 25, 12, 7, 30, 18, 3, 10 };
+
+        // Use Sort method with a custom comparison logic using a separate method
+        numbers.Sort(CompareNumbers);
+
+        // Display the sorted list
+        Console.WriteLine("Sorted List (Multiples of 5 first, then others in descending order):");
+        foreach (int number in numbers)
+        {
+            Console.Write(number + " ");
+        }
+    }
+
+    // Custom method for comparing numbers
+    static int CompareNumbers(int x, int y)
+    {
+        // Multipli di 5 vengono posizionati prima
+        if (x % 5 == 0 && y % 5 != 0)
+            return -1; //nel metodo CompareTo, ciò che è -1 viene messo prima di ciò che è 1
+        if (x % 5 != 0 && y % 5 == 0)
+            return 1;
+
+        // Ordine decrescente per gli altri numeri
+        return y.CompareTo(x);
+    }
+}
+```
+
+### 11.7 - Convertire la lista in un'unica stringa
+
+
+```c#
+using System;
+using System.Collections.Generic;
+
+class Program
+{
+    static void Main()
+    {
+        // Esempio con string.Join
+        List<string> lista = new List<string> { "a", "b", "c" };
+        string stringa = string.Join("", lista);
+
+        Console.WriteLine(stringa);
+    }
+}
+
+// a,b,c
 ```
 
 ### 12 - Stack (pile)
@@ -244,6 +482,24 @@ class Program{
     }
 }
 //Ciao Giovanni, Luigi, Mario
+```
+### 12.1 - Stack dichiarato in 1 riga
+
+```c#
+class Program
+{
+    static void Main(string[] args)
+    {
+        Stack<string> nomi = new Stack<string>(new string[] { "Mario", "Luigi", "Giovanni" });
+        foreach (string nome in nomi)
+        {
+            Console.WriteLine($"Ciao {nome}");
+        }
+    }
+}
+//Ciao Giovanni
+//Ciao Luigi
+//Ciao Mario
 ```
 
 ### 13 - Code 
