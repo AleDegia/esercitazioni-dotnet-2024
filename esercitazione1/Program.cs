@@ -1,20 +1,17 @@
-﻿class Program
-{
+﻿class Program{
     static void Main(string[] args)
     {
-        int a = 10;
-        int b = 20;
-        if(a > b) //tra le parentesi tonde dell'if c'è la condizione da verificare. se risulta vera, il codice tra le graffe verrà eseguito, altrimenti no
-        {
-            Console.WriteLine($"{a} è maggiore di {b}");
-        } 
-        else 
-        {
-            Console.WriteLine($"{a} è uguale a {b}");
-        }
-        if (a < b)
-        {
-            Console.WriteLine($"{a} è minore di {b}");
+        string[] nomi = new string[3]; //l'array deve essere predeterminato, va assegnato perciò subito il numero degli elementi
+        nomi[0] = "Mario";
+        nomi[1] = "Luigi"; 
+        nomi[2] = "Giovanni"; 
+        
+        foreach (string nome in nomi){
+            Console.WriteLine($"Ciao {nome}"); 
         }
     }
-} 
+}
+
+
+
+//per ogni nome su una lista, se inizia con la m aggiungimelo ad un altra lista

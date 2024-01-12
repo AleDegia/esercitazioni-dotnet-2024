@@ -521,7 +521,86 @@ class Program
 //Ciao Mario, 2, Luigi, Giovanni
 ```
 
-### 14 - Condizione if
+### 14 - Dictionary 
+
+```c#
+class Program
+{
+    static void Main(string[] args)
+    {
+       Dictionary<string, string> nomi = new Dictionary<string, string>(); 
+       nomi.Add("Mario", "Rossi");  //aggiungo coppie di valori
+       nomi.Add("Luigi", "Verdi");
+       nomi.Add("Giovanni", "Bianchi");
+       System.Console.WriteLine($"Ciao {nomi["Mario"]} {nomi["Luigi"]} {nomi["Giovanni"]}"); //restituisco i valori
+    }
+} 
+//Ciao Rossi Verdi Bianchi
+```
+
+### 14.1 - Dictionary aggiunta senza add
+
+```c#
+using System;
+using System.Collections.Generic;
+
+class Program
+{
+    static void Main(string[] args)
+    {
+        Dictionary<string, int> eta = new Dictionary<string, int>()
+        {
+            {"Mario", 25},
+            {"Luigi", 30},
+            {"Giovanni", 35}
+        };
+
+        Console.WriteLine($"Mario ha {eta["Mario"]} anni, Luigi {eta["Luigi"]}, Giovanni {eta["Giovanni"]}");
+    }
+}
+//Mario ha 25 anni, Luigi 30, Giovanni 35
+```
+
+
+### 14.2 - Dictionary stampare chiavi
+
+```c#
+using System;
+using System.Collections.Generic;
+
+class Program
+{
+    static void Main()
+    {
+        // Creazione e inizializzazione del dizionario
+        Dictionary<string, int> mioDizionario = new Dictionary<string, int>();
+
+        mioDizionario.Add("Chiave1", 10);
+        mioDizionario.Add("Chiave2", 20);
+        mioDizionario.Add("Chiave3", 30);
+
+        // Stampare i valori delle chiavi
+        foreach (var coppia in mioDizionario)
+        {
+            Console.WriteLine($"Chiave: {coppia.Key}, Valore: {coppia.Value}");
+        }
+
+        // Esempio di restituzione del valore dato una chiave specifica
+        string chiaveDaCercare = "Chiave2";
+        if (mioDizionario.ContainsKey(chiaveDaCercare))
+        {
+            int valoreAssociato = mioDizionario[chiaveDaCercare];
+            Console.WriteLine($"Il valore associato alla chiave '{chiaveDaCercare}' è: {valoreAssociato}");
+        }
+        else
+        {
+            Console.WriteLine($"La chiave '{chiaveDaCercare}' non è presente nel dizionario.");
+        }
+    }
+}
+```
+
+### 15 - Condizione if
 
 ```c#
 class Program
@@ -544,7 +623,7 @@ class Program
 ```
 
 
-### 15 - Condizione if parte 2
+### 16 - Condizione if parte 2
 
 ```c#
 class Program
@@ -568,5 +647,67 @@ class Program
     }
 } 
 //10 è minore di 20
+```
+
+### 17 - Switch 
+
+```c#
+class Program
+{
+    static void Main(string[] args)
+    {
+        int a = 10;
+        switch(a)
+        {
+            case 10: //se il valore della variabile dentro le parentesi tonde dello switch è quello scritto dopo il case, esegue, altrimenti passa al prossimo case
+                System.Console.WriteLine($"{a} è uguale a 10");
+                break;
+            case 20:
+                System.Console.WriteLine($"{a} è uguale a 20");
+                break;
+            default:
+                System.Console.WriteLine($"{a} non è uguale a 10 o 20");
+                break;
+        }
+    }
+} 
+//10 è uguale a 10
+```
+
+### 18 - Ciclo For 
+
+```c#
+class Program
+{
+    static void Main(string[] args)
+    {
+        for(int i = 0; i < 10; i++)
+        {
+            System.Console.WriteLine($"Il vlaore di i è {i}");
+        }
+    }
+} 
+//Da 0 a 9
+```
+### 19 - Ciclo Foreach
+
+```c#
+class Program
+{
+    static void Main(string[] args)
+    {
+        string[] nomi = new string[3]; //l'array deve essere predeterminato, va assegnato perciò subito il numero degli elementi
+        nomi[0] = "Mario";
+        nomi[1] = "Luigi"; 
+        nomi[2] = "Giovanni"; 
+        
+        foreach (string nome in nomi){
+            Console.WriteLine($"Ciao {nome}"); 
+        }
+    }
+}
+//Ciao Mario
+//Ciao Luigi
+//Ciao Giovanni
 ```
 
