@@ -471,7 +471,8 @@ class Program
 ### 12 - Stack (pile)
 
 ```c#
-class Program{
+class Program
+{
     static void Main(string[] args)
     {
         Stack<string> nomi = new Stack<string>(); //the last element added to the stack is the first one to be removed. 
@@ -505,7 +506,8 @@ class Program
 ### 13 - Code 
 
 ```c#
-class Program{
+class Program
+{
     static void Main(string[] args)
     {
         Queue<string> nomi = new Queue<string>();  //the first element added to the queue is the first one to be removed. 
@@ -518,3 +520,53 @@ class Program{
 } 
 //Ciao Mario, 2, Luigi, Giovanni
 ```
+
+### 14 - Condizione if
+
+```c#
+class Program
+{
+    static void Main(string[] args)
+    {
+        int a = 10;
+        int b = 20;
+        if(a>b) //tra le parentesi tonde dell'if c'è la condizione da verificare. se risulta vera, il codice tra le graffe verrà eseguito, altrimenti no
+        {
+            Console.WriteLine($"{a} è maggiore di {b}");
+        }
+        else 
+        {
+            Console.WriteLine($"{a} è minore di {b}");
+        }
+    }
+} 
+//10 è minore di 20
+```
+
+
+### 15 - Condizione if parte 2
+
+```c#
+class Program
+{
+    static void Main(string[] args)
+    {
+        int a = 10;
+        int b = 20;
+        if(a > b) //tra le parentesi tonde dell'if c'è la condizione da verificare. se risulta vera, il codice tra le graffe verrà eseguito, altrimenti no
+        {
+            Console.WriteLine($"{a} è maggiore di {b}");
+        } 
+        else if (a < b)
+        {
+            Console.WriteLine($"{a} è minore di {b}");
+        }
+        else //l'else deve sempre essere messo come ultima istruzione rispetto a if ed else if
+        {
+            Console.WriteLine($"{a} è uguale a {b}");
+        }
+    }
+} 
+//10 è minore di 20
+```
+
