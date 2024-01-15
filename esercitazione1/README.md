@@ -735,7 +735,7 @@ class Program
 //Ciao Giovanni
 ```
 
-### 20 - Esercizio Riassuntivo
+### 20 - Esercizio Riassuntivo 
 
 ```c#
 class Program
@@ -761,6 +761,40 @@ class Program
         foreach (string nomeSingolo in nomiConM)
         {
             System.Console.WriteLine(nomeSingolo);
+        }
+    }
+}
+```
+
+### 21 - Input utente con ReadLine
+
+```c#
+class Program
+{
+   static void Main(string[] args)
+    { 
+        Console.WriteLine("scrivi il tuo nome");
+        string? nome = Console.ReadLine(); //col punto di domanda anche se dichiaro una variabile che potrebbe essere null non me lo da come warning
+        Console.WriteLine($"il nome inserito è {nome}, premi un tasto per terminare");
+        Console.ReadKey(); //se premo un tasto mi termina il programma
+    }
+}
+```
+
+### 23 - Ciclo while
+
+```c#
+class Program
+{
+    static void Main(string[] args)
+    {
+        string[] nomi = { "Mario", "Luigi", "Giovanni" };
+
+        int i = 0; //variabile contatore inizializzato a zero
+        while(i < nomi.Length) //il ciclo continua finchè l'indice p minore della lunghezza dell'array
+        {
+            System.Console.WriteLine($"Ciao {nomi[i]}");
+            i++; //incremento del contatore
         }
     }
 }
