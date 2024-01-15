@@ -2,16 +2,42 @@
 {
     static void Main(string[] args)
     {
-        System.Console.WriteLine("Premi 'N' per terminare");
-
-        //ciclo che continua fino a quando non viene prenmuto il tasto N 
-        while(true)
+        while (true)
         {
-            ConsoleKeyInfo keyInfo = Console.ReadKey(); //Questa riga legge il tasto premuto dall'utente e salva le informazioni su di esso in una variabile keyInfo di tipo ConsoleKeyInfo.
-            if (keyInfo.Key == ConsoleKey.N) //Qui viene verificato se il tasto premuto è 'N'. Se sì, il ciclo while viene interrotto usando l'istruzione break, portando alla fine del programma.
+            Console.Clear(); // Pulisce la console ad ogni iterazione
+            Console.WriteLine("Menu di Selezione");
+            Console.WriteLine("1. Opzione Uno");
+            Console.WriteLine("2. Opzione Due");
+            Console.WriteLine("3. Opzione Tre");
+            Console.WriteLine("4. Esci");
+
+            Console.Write("Inserisci il numero dell'opzione desiderata: ");
+            string input = Console.ReadLine();
+
+            switch (input) 
             {
-                break;
+                case "1": //se il valore della variabile dentro le parentesi tonde dello switch è quello scritto dopo il case, esegue, altrimenti passa al prossimo case
+                    Console.WriteLine("Hai selezionato l'Opzione Uno");
+                    // Aggiungi qui la logica per l'Opzione Uno
+                    break;
+                case "2":
+                    Console.WriteLine("Hai selezionato l'Opzione Due");
+                    // Aggiungi qui la logica per l'Opzione Due
+                    break;
+                case "3":
+                    Console.WriteLine("Hai selezionato l'Opzione Tre");
+                    // Aggiungi qui la logica per l'Opzione Tre
+                    break;
+                case "4":
+                    Console.WriteLine("Uscita in corso...");
+                    return; // Esce dal programma
+                default:
+                    Console.WriteLine("Selezione non valida. Riprova.");
+                    break;
             }
+
+            Console.WriteLine("Premi un tasto per continuare...");
+            Console.ReadKey(); // Aspetta che l'utente prema un tasto prima di continuare
         }
     }
 }

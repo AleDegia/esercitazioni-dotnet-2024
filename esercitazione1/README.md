@@ -833,10 +833,124 @@ class Program
         while(true)
         {
             ConsoleKeyInfo keyInfo = Console.ReadKey(); //Questa riga legge il tasto premuto dall'utente e salva le informazioni su di esso in una variabile keyInfo di tipo ConsoleKeyInfo.
-            if (keyInfo.Key == ConsoleKey.N) //Qui viene verificato se il tasto premuto è 'N'. Se sì, il ciclo while viene interrotto usando l'istruzione break, portando alla fine del programma.
+            if (keyInfo.Key == ConsoleKey.N) //Qui viene verificato se il tasto premuto è 'N'.  non lo faccio con == "N" per non usare stringhe ma un comando apposito
             {
                 break;
             }
+        }
+    }
+}
+```
+
+
+### 24 - Modifiers
+
+```c#
+class Program
+{
+    static void Main(string[] args)
+    {
+        System.Console.WriteLine("Premi 'Ctrl' + 'N' per terminare...");
+
+        while(true)
+        {
+            //Aspetta finchè non viene premuto un tasto e memorizza il tasto premuto in keyInfo. Con true resta in attesa del secondo tasto senza displayarlo a tastiera
+            ConsoleKeyInfo keyInfo = Console.ReadKey(true);
+
+            //Verifica se il tasto 'Ctrl' è tenuto premuto, matchando i valori binari dei tasti 
+            if((keyInfo.Modifiers & ConsoleModifiers.Control) != 0)
+            {
+                //Controlla se il tasato premuto è 'Q'
+                if(keyInfo.Key == ConsoleKey.N)
+                {
+                    System.Console.WriteLine("Combinazione 'Ctrl' + 'N' rilevata, uscita in corso...");
+                    break;
+                }
+            }
+        }
+    }
+}
+
+/*
+Il parametro booleano true nel metodo Console.ReadKey(true) indica che l'input della tastiera deve essere nascosto durante la lettura. 
+Quando questo parametro è impostato su true, il carattere immesso non viene visualizzato sulla console mentre si aspetta che l'utente prema un tasto.
+Se il parametro è impostato su false o non viene specificato (usando Console.ReadKey() senza argomenti), il carattere immesso sarà visibile sulla console.
+
+
+I "tasti di modifica" si riferiscono ai tasti sulla tastiera che vengono premuti contemporaneamente a un tasto principale per modificare o estendere la sua funzione. 
+
+La proprietà keyInfo.Modifiers Rappresenta i tasti di modifica associati ad un altro tasto premuto sulla tastiera e restituisce true o false se lo sto premendo
+Questo valore rappresenta i tasti di controllo aggiuntivi che sono stati premuti contemporaneamente al tasto 'principale', tipo CTRL, ALT, il tasto WINDOWS. e ESC.
+ConsoleModifiers.Control Indica il tasto 'Ctrl' tra i tasti di modifica possibili.
+L'operatore & (AND bit a bit) combina i valori binari di keyInfo.Modifiers e ConsoleModifiers.Control
+Bitwise AND operator is represented by &. It performs bitwise AND operation on the corresponding bits of two operands. If either of the bits is 0, the result is 0. Otherwise the result is 1.
+L'espressione keyInfo.Modifiers & ConsoleModifiers.Control combina i tasti di modifica associati al tasto premuto con il tasto 'Ctrl'. 
+Se il tasto 'Ctrl' è stato premuto, il risultato avrà almeno un bit impostato (vale a dire, sarà diverso da zero). Altrimenti, se il tasto 'Ctrl' non è stato premuto,
+il risultato sarà zero. 
+
+(Quando si preme un tasto sulla tastiera, l'informazione su quali tasti di modifica sono stati premuti viene spesso rappresentata internamente con un sistema binario, dove ciascun bit corrisponde a un tasto specifico. In questo caso, ConsoleModifiers.Control rappresenta il tasto 'Ctrl', e l'operatore & (AND bit a bit) viene utilizzato per combinare i bit associati ai tasti di modifica premuti.
+
+Se il tasto 'Ctrl' è stato premuto, il bit corrispondente a ConsoleModifiers.Control sarà impostato a 1. Se il tasto 'Ctrl' non è stato premuto, il bit sarà a 0. Quando combiniamo questi bit con altri tasti di modifica utilizzando l'operatore &, otteniamo un risultato che conterrà 1 nei bit corrispondenti ai tasti di modifica premuti.
+quando esegui (keyInfo.Modifiers & ConsoleModifiers.Control), stai facendo un'operazione di AND bit a bit tra la rappresentazione binaria dei tasti di modifica (keyInfo.Modifiers) e il valore binario rappresentante solo il tasto 'Ctrl' (ConsoleModifiers.Control).
+Quindi, se il tasto 'Ctrl' è stato premuto, il risultato conterrà almeno un bit impostato (uguale a 1); se il tasto 'Ctrl' non è stato premuto, tutti i bit saranno a 0. La condizione != 0 verifica semplicemente se almeno uno di questi bit è diverso da zero, indicando che almeno un tasto di modifica è stato premuto.)
+
+
+Se il tasto 'Ctrl' è stato premuto, il bit corrispondente a ConsoleModifiers.Control sarà impostato a 1, perchè?
+
+La rappresentazione binaria di un valore di enumerazione è determinata dal modo in cui vengono assegnati i valori numerici ai membri dell'enumerazione. In C#, gli enumeratori sono rappresentati come valori integrali e, di default, il primo membro di un'enumerazione ha un valore numerico di 0, il secondo 1, il terzo 2 e così via.
+
+Nel caso di ConsoleModifiers, che è un'enumerazione in C#, i valori numerici associati ai membri sono assegnati seguendo questa convenzione predefinita. Quindi, il primo membro (None) ha un valore di 0, il secondo membro (Alt) ha un valore di 1, il terzo membro (Control) ha un valore di 2, e così via.
+
+Quando diciamo che "il bit corrispondente a ConsoleModifiers.Control sarà impostato a 1", significa che il valore numerico associato a ConsoleModifiers.Control è 2 (perché è il terzo membro dell'enumerazione secondo la convenzione di default). In binario, 2 si rappresenta come "10".
+
+Quindi, se keyInfo.Modifiers rappresenta la combinazione dei tasti di modifica e ConsoleModifiers.Control è presente in questa combinazione, il bit corrispondente a ConsoleModifiers.Control sarà impostato a 1 nella rappresentazione binaria di keyInfo.Modifiers. Questo indica che il tasto 'Ctrl' è stato premuto.
+*/
+```
+
+
+### 25 - esercizio menu con switch
+
+```c#
+class Program
+{
+    static void Main(string[] args)
+    {
+        while (true)
+        {
+            Console.Clear(); // Pulisce la console ad ogni iterazione
+            Console.WriteLine("Menu di Selezione");
+            Console.WriteLine("1. Opzione Uno");
+            Console.WriteLine("2. Opzione Due");
+            Console.WriteLine("3. Opzione Tre");
+            Console.WriteLine("4. Esci");
+
+            Console.Write("Inserisci il numero dell'opzione desiderata: ");
+            string input = Console.ReadLine();
+
+            switch (input) 
+            {
+                case "1": //se il valore della variabile dentro le parentesi tonde dello switch è quello scritto dopo il case, esegue, altrimenti passa al prossimo case
+                    Console.WriteLine("Hai selezionato l'Opzione Uno");
+                    // Aggiungi qui la logica per l'Opzione Uno
+                    break;
+                case "2":
+                    Console.WriteLine("Hai selezionato l'Opzione Due");
+                    // Aggiungi qui la logica per l'Opzione Due
+                    break;
+                case "3":
+                    Console.WriteLine("Hai selezionato l'Opzione Tre");
+                    // Aggiungi qui la logica per l'Opzione Tre
+                    break;
+                case "4":
+                    Console.WriteLine("Uscita in corso...");
+                    return; // Esce dal programma
+                default:
+                    Console.WriteLine("Selezione non valida. Riprova.");
+                    break;
+            }
+
+            Console.WriteLine("Premi un tasto per continuare...");
+            Console.ReadKey(); // Aspetta che l'utente prema un tasto prima di continuare
         }
     }
 }
