@@ -1003,6 +1003,23 @@ class Program //aggiungere case name con variabile con nostro nome, quando facci
 }
 ```
 
+### 26.1 - clear con input
+
+```c#
+class Program 
+{
+    static void Main(string[] args)
+    {
+        string? input = Console.ReadLine();
+        if(input.StartsWith("clr"))
+        {
+            Console.Clear(); //pulizia console
+            System.Console.WriteLine("pulizia riuscita");
+        }
+    }
+}
+```
+
 ### 26.2 - esercizio 
 
 ```c#
@@ -1122,3 +1139,98 @@ Le virgolette intorno al percorso del file vengono considerate quando si trascin
  Questo comportamento può variare a seconda del sistema operativo e del modo in cui la console gestisce gli spazi nei percorsi dei file.
  */
  ```
+
+ ### 28 - roba in +
+
+```c#
+ class Program 
+{
+    static void Main(string[] args)
+    {
+        //nasconde il cursore della console
+        Console.CursorVisible = false; 
+
+        //mostra il cursore
+        Console.CursorVisible = true;
+
+        //emette un beep
+       //Console.Beep();
+       
+       //emette un beep con frequenza e durata specificate
+       //Console.Beep(750, 300); //frequenza 750hz, durata 3000ms
+       
+
+        Console.Title = "La mia applicazione console";
+
+        Console.Clear(); //pulizia console
+    }
+}
+```
+
+### 29 - Esercizio completo
+
+```c#
+class Program
+{
+    static void Main(string[] args)
+    {
+        Console.Clear();
+        System.Console.WriteLine("Seleziona l'opzione:");
+        System.Console.WriteLine("1 - Nascondi il cursore");
+        System.Console.WriteLine("2 - Mostra il cursore");
+        System.Console.WriteLine("3 - Pulisci console");
+        System.Console.WriteLine("4 - Emetti beep");
+        System.Console.WriteLine("5 - Emetti beep prolungato");
+        System.Console.WriteLine("6 - Imposta il titolo");
+        System.Console.WriteLine("e - exit\n");
+
+        while (true)
+        {
+            System.Console.WriteLine("Digita...");
+            string? input = Console.ReadLine();
+
+            switch (input)
+            {
+                case "1":
+                    Console.CursorVisible = false;
+                    break;
+
+                case "2":
+                    Console.CursorVisible = true;
+                    break;
+
+                case "3":
+                    Console.Clear();
+                    break;
+
+                case "4":
+                    Console.Beep();
+                    break;
+
+                case "5":
+                    System.Console.WriteLine("Inserisci la frequenza");
+                    int freq = Int32.Parse(Console.ReadLine());
+
+                    System.Console.WriteLine("Inserisci durata in ms");
+                    int ms = Int32.Parse(Console.ReadLine());
+
+                    Console.Beep(freq, ms);
+                    break;
+
+                case "6":
+                    break;
+
+                case "e":
+                    return;
+
+                default:
+                    System.Console.WriteLine("Opzione errata:");
+                    break;
+
+            }
+
+        }
+
+    }
+}
+```
