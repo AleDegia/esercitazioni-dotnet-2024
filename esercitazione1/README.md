@@ -1002,3 +1002,123 @@ class Program //aggiungere case name con variabile con nostro nome, quando facci
     }
 }
 ```
+
+### 26.2 - esercizio 
+
+```c#
+//fare vedere le info solo se si inserisce la password corretta come se fossero dei dati sensibili
+
+class Program //aggiungere case name con variabile con nostro nome, quando facciamo case name stampi il nostro nome
+{
+    static void Main(string[] args)
+    {
+        System.Console.WriteLine("Inserisci un comando speciale (esempio: 'cmd:info', 'cmd:exit', cmd:login):");
+
+        while(true)
+        {
+            string? input = Console.ReadLine();
+
+            //analizza l'input per vedere se segue un formato specifico
+            if(input.StartsWith("cmd:"))
+            {
+                string comando = input.Substring(4); //estrae la parte del comando dopo cmd
+                string nome = "Alessandro";
+                string password = "123";
+
+               if(comando.ToLower() == "login")
+               {
+                        System.Console.WriteLine("Inserisci la password");
+                        string inputPassword = Console.ReadLine();
+                        string comando2 = input.Substring(4);
+
+                         switch(comando2.ToLower())
+                            {
+                                case "123":
+                                    System.Console.WriteLine("Comando 'info' riconosciuto. Mostrando le informazioni...");
+                                    //aggiungi qui la logica
+                                    break;
+                            }
+
+                switch(comando.ToLower())
+                {
+                    
+                    case "exit":
+                        System.Console.WriteLine("Comando 'exit' riconosciuto. Uscita in corso...");
+                        return;
+                    case "name":
+                        System.Console.WriteLine($"Ecco il tuo nome: {nome}");
+                        break;
+                    default:
+                        System.Console.WriteLine($"Comando  '{comando}' non riconosciuto");
+                        break;
+                }
+            }
+            else 
+            {
+                System.Console.WriteLine("Input non valido. Inserisci un comando");
+            }
+
+            System.Console.WriteLine("\nInserisci un altro comando:");
+        }
+    }
+}}
+```
+
+### 27 - fileRead + Try-Catch
+
+```c#
+class Program //aggiungere case name con variabile con nostro nome, quando facciamo case name stampi il nostro nome
+{
+    static void Main(string[] args)
+    {
+        System.Console.WriteLine("Trascina un file qui e premi invio");
+        string filePath = Console.ReadLine().Trim('"'); //creo il percorso per aprire il file, rimuovendo le virgolette che possono apparire nel percorso
+         
+        try
+        {
+            string content = File.ReadAllText(filePath); //legge tutte le righe del file e le memorizza nella stringa content
+            System.Console.WriteLine("Contenuto del file:");
+            System.Console.WriteLine(content);
+        }
+        catch(Exception ex)
+        {
+            System.Console.WriteLine($"Si è verificato un errore: {ex.Message}");
+        }
+    }
+}
+
+/*
+Le virgolette intorno al percorso del file vengono considerate quando si trascina un file in una console su alcuni sistemi operativi.
+ Questo comportamento può variare a seconda del sistema operativo e del modo in cui la console gestisce gli spazi nei percorsi dei file.
+ */
+ ```
+
+ ### 27.1 - fileRead + Try-Catch con percorso fatto manualmente
+
+```c#
+ class Program //aggiungere case name con variabile con nostro nome, quando facciamo case name stampi il nostro nome
+{
+    static void Main(string[] args)
+    {
+        //System.Console.WriteLine("Trascina un file qui e premi invio");
+        //string filePath = Console.ReadLine().Trim('"'); //creo il percorso per aprire il file, rimuovendo le virgolette che possono apparire nel percorso
+        string filePath = "C:/Users/DOTNET/Documents/Corso-Dotnet-2024/CORSO-DOTNET-2024/esercitazioni-dotnet-2024/esercitazione1/prova.txt"; //percorso manualmente
+        
+        try
+        {
+            string content = File.ReadAllText(filePath); //legge tutte le righe del file e le memorizza nella stringa content
+            System.Console.WriteLine("Contenuto del file:");
+            System.Console.WriteLine(content);
+        }
+        catch(Exception ex)
+        {
+            System.Console.WriteLine($"Si è verificato un errore: {ex.Message}");
+        }
+    }
+}
+
+/*
+Le virgolette intorno al percorso del file vengono considerate quando si trascina un file in una console su alcuni sistemi operativi.
+ Questo comportamento può variare a seconda del sistema operativo e del modo in cui la console gestisce gli spazi nei percorsi dei file.
+ */
+ ```

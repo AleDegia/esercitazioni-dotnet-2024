@@ -2,43 +2,24 @@
 {
     static void Main(string[] args)
     {
-        System.Console.WriteLine("Inserisci un comando speciale (esempio: 'cmd:info', 'cmd:exit'):");
-
-        while(true)
+        //System.Console.WriteLine("Trascina un file qui e premi invio");
+        //string filePath = Console.ReadLine().Trim('"'); //creo il percorso per aprire il file, rimuovendo le virgolette che possono apparire nel percorso
+        string filePath = "C:/Users/DOTNET/Documents/Corso-Dotnet-2024/CORSO-DOTNET-2024/esercitazioni-dotnet-2024/esercitazione1/prova.txt";
+        
+        try
         {
-            string? input = Console.ReadLine();
-
-            //analizza l'input per vedere se segue un formato specifico
-            if(input.StartsWith("cmd:"))
-            {
-                string comando = input.Substring(4); //estrae la parte del comando dopo cmd
-                string nome = "Alessandro";
-
-                switch(comando.ToLower())
-                {
-                    case "info":
-                        System.Console.WriteLine("Comando 'info' riconosciuto. Mostrando le informazioni...");
-                        //aggiungi qui la logica
-                        break;
-                    case "exit":
-                        System.Console.WriteLine("Comando 'exit' riconosciuto. Uscita in corso...");
-                        return;
-                    case "name":
-                        System.Console.WriteLine($"Ecco il tuo nome: {nome}");
-                        break;
-                    default:
-                        System.Console.WriteLine($"Comando  '{comando}' non riconosciuto");
-                        break;
-                }
-            }
-            else 
-            {
-                System.Console.WriteLine("Input non valido. Inserisci un comando");
-            }
-
-            System.Console.WriteLine("\nInserisci un altro comando:");
+            string content = File.ReadAllText(filePath); //legge tutte le righe del file e le memorizza nella stringa content
+            System.Console.WriteLine("Contenuto del file:");
+            System.Console.WriteLine(content);
+        }
+        catch(Exception ex)
+        {
+            System.Console.WriteLine($"Si è verificato un errore: {ex.Message}");
         }
     }
 }
 
-
+/*
+Le virgolette intorno al percorso del file vengono considerate quando si trascina un file in una console su alcuni sistemi operativi.
+ Questo comportamento può variare a seconda del sistema operativo e del modo in cui la console gestisce gli spazi nei percorsi dei file.
+ */
