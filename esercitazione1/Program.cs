@@ -1,43 +1,44 @@
-﻿class Program
+﻿class Program //aggiungere case name con variabile con nostro nome, quando facciamo case name stampi il nostro nome
 {
     static void Main(string[] args)
     {
-        while (true)
+        System.Console.WriteLine("Inserisci un comando speciale (esempio: 'cmd:info', 'cmd:exit'):");
+
+        while(true)
         {
-            Console.Clear(); // Pulisce la console ad ogni iterazione
-            Console.WriteLine("Menu di Selezione");
-            Console.WriteLine("1. Opzione Uno");
-            Console.WriteLine("2. Opzione Due");
-            Console.WriteLine("3. Opzione Tre");
-            Console.WriteLine("4. Esci");
+            string? input = Console.ReadLine();
 
-            Console.Write("Inserisci il numero dell'opzione desiderata: ");
-            string input = Console.ReadLine();
-
-            switch (input) 
+            //analizza l'input per vedere se segue un formato specifico
+            if(input.StartsWith("cmd:"))
             {
-                case "1": //se il valore della variabile dentro le parentesi tonde dello switch è quello scritto dopo il case, esegue, altrimenti passa al prossimo case
-                    Console.WriteLine("Hai selezionato l'Opzione Uno");
-                    // Aggiungi qui la logica per l'Opzione Uno
-                    break;
-                case "2":
-                    Console.WriteLine("Hai selezionato l'Opzione Due");
-                    // Aggiungi qui la logica per l'Opzione Due
-                    break;
-                case "3":
-                    Console.WriteLine("Hai selezionato l'Opzione Tre");
-                    // Aggiungi qui la logica per l'Opzione Tre
-                    break;
-                case "4":
-                    Console.WriteLine("Uscita in corso...");
-                    return; // Esce dal programma
-                default:
-                    Console.WriteLine("Selezione non valida. Riprova.");
-                    break;
+                string comando = input.Substring(4); //estrae la parte del comando dopo cmd
+                string nome = "Alessandro";
+
+                switch(comando.ToLower())
+                {
+                    case "info":
+                        System.Console.WriteLine("Comando 'info' riconosciuto. Mostrando le informazioni...");
+                        //aggiungi qui la logica
+                        break;
+                    case "exit":
+                        System.Console.WriteLine("Comando 'exit' riconosciuto. Uscita in corso...");
+                        return;
+                    case "name":
+                        System.Console.WriteLine($"Ecco il tuo nome: {nome}");
+                        break;
+                    default:
+                        System.Console.WriteLine($"Comando  '{comando}' non riconosciuto");
+                        break;
+                }
+            }
+            else 
+            {
+                System.Console.WriteLine("Input non valido. Inserisci un comando");
             }
 
-            Console.WriteLine("Premi un tasto per continuare...");
-            Console.ReadKey(); // Aspetta che l'utente prema un tasto prima di continuare
+            System.Console.WriteLine("\nInserisci un altro comando:");
         }
     }
 }
+
+
