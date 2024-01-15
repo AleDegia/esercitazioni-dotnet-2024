@@ -781,7 +781,7 @@ class Program
 }
 ```
 
-### 23 - Ciclo while
+### 22 - Ciclo while
 
 ```c#
 class Program
@@ -795,6 +795,48 @@ class Program
         {
             System.Console.WriteLine($"Ciao {nomi[i]}");
             i++; //incremento del contatore
+        }
+    }
+}
+```
+
+
+### 22.1 - Ciclo while su lista
+
+```c#
+class Program
+{
+    static void Main(string[] args)
+    {
+        List<string> nomi = new List<string>{ "Mario", "Luigi", "Giovanni" };
+
+        int i = 0; //variabile contatore inizializzato a zero
+        while(i < nomi.Count) //il ciclo continua finchè l'indice p minore della lunghezza dell'array
+        {
+            System.Console.WriteLine($"Ciao {nomi[i]}");
+            i++; //incremento del contatore
+        }
+    }
+}
+```
+
+### 23 - ReadKey e ConsoleKeyInfo
+
+```c#
+class Program
+{
+    static void Main(string[] args)
+    {
+        System.Console.WriteLine("Premi 'N' per terminare");
+
+        //ciclo che continua fino a quando non viene prenmuto il tasto N 
+        while(true)
+        {
+            ConsoleKeyInfo keyInfo = Console.ReadKey(); //Questa riga legge il tasto premuto dall'utente e salva le informazioni su di esso in una variabile keyInfo di tipo ConsoleKeyInfo.
+            if (keyInfo.Key == ConsoleKey.N) //Qui viene verificato se il tasto premuto è 'N'. Se sì, il ciclo while viene interrotto usando l'istruzione break, portando alla fine del programma.
+            {
+                break;
+            }
         }
     }
 }
