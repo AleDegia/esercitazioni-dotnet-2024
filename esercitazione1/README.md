@@ -1234,3 +1234,517 @@ class Program
     }
 }
 ```
+
+### 29.1 - Esercizio completo migliorato
+
+```c#
+class Program
+{
+    static void Main(string[] args)
+    {   
+        bool continua = true;
+
+        do
+        {
+        // Console.Clear();
+        System.Console.WriteLine("Seleziona l'opzione:");
+        System.Console.WriteLine("1 - Nascondi il cursore");
+        System.Console.WriteLine("2 - Mostra il cursore");
+        System.Console.WriteLine("3 - Pulisci console");
+        System.Console.WriteLine("4 - Emetti beep");
+        System.Console.WriteLine("5 - Emetti beep prolungato");
+        System.Console.WriteLine("6 - Imposta il titolo");
+        System.Console.WriteLine("e - exit\n");
+
+        
+            System.Console.WriteLine("Digita...");
+            string? input = Console.ReadLine();
+
+            switch (input)
+            {
+                case "1":
+                    Console.CursorVisible = false;
+                    break; //break all'interno di uno statement switch interrompe l'esecuzione del blocco switch e esce dallo switch. 
+
+                case "2":
+                    Console.CursorVisible = true;
+                    break;
+
+                case "3":
+                    Console.Clear();
+                    break;
+
+                case "4":
+                    Console.Beep();
+                    break;
+
+                case "5":
+                    try
+                    {
+                    System.Console.WriteLine("Inserisci la frequenza");
+                    int freq = Int32.Parse(Console.ReadLine());
+
+                    System.Console.WriteLine("Inserisci durata in ms");
+                    int ms = Int32.Parse(Console.ReadLine());
+                    Console.Beep(freq, ms);
+                    }
+                    catch(Exception ex)
+                    {
+                        System.Console.WriteLine("input non valido");
+                    }
+                    break;
+
+                case "6":
+                    System.Console.WriteLine("Trascina un file qui e premi invio");
+                    string filePath = Console.ReadLine().Trim('"'); //creo il percorso per aprire il file, rimuovendo le virgolette che possono apparire nel percorso
+                    
+                    try
+                    {
+                        string content = File.ReadAllText(filePath); //legge tutte le righe del file e le memorizza nella stringa content
+                        System.Console.WriteLine("Contenuto del file:");
+                        System.Console.WriteLine(content);
+                    }
+                    catch(Exception ex)
+                    {
+                        System.Console.WriteLine($"Si è verificato un errore: {ex.Message}");
+                    }
+                    break;
+
+                case "e":
+                    continua=false;//return; 
+                    break;
+
+                default:
+                    System.Console.WriteLine("Opzione errata:");
+                    break;
+
+            }
+
+            if(continua){
+                System.Console.WriteLine("Premi un tasto per contiuare...");
+                Console.ReadKey();
+            }
+
+        } while(continua);
+
+    }
+}
+```
+
+### 29.2 - Esercizio completo switch dentro switch
+
+```c#
+class Program
+{
+    static void Main(string[] args)
+    {
+        bool continua = true;
+
+        do
+        {
+            // Console.Clear();
+            System.Console.WriteLine("Seleziona l'opzione:");
+            System.Console.WriteLine("1 - Comandi personalizzati");
+            System.Console.WriteLine("2 - menu di selezione");
+            System.Console.WriteLine("3 - Pulisci console");
+            System.Console.WriteLine("4 - Emetti beep");
+            System.Console.WriteLine("5 - Emetti beep prolungato");
+            System.Console.WriteLine("6 - Imposta il titolo");
+            System.Console.WriteLine("e - exit\n");
+
+
+            System.Console.WriteLine("Digita...");
+            string? input = Console.ReadLine();
+
+            switch (input)
+            {
+                case "1":
+                    System.Console.WriteLine("Inserisci un comando speciale (esempio: 'cmd:info', 'cmd:exit', 'cmd:name'):");
+
+                    while (true)
+                    {
+                        string? input2 = Console.ReadLine();
+
+                        //analizza l'input per vedere se segue un formato specifico
+                        if (input2.StartsWith("cmd:"))
+                        {
+                            string comando = input2.Substring(4); //estrae la parte del comando dopo cmd
+                            string nome = "Alessandro";
+
+                            switch (comando.ToLower())
+                            {
+                                case "info":
+                                    System.Console.WriteLine("Comando 'info' riconosciuto. Mostrando le informazioni...");
+                                    //aggiungi qui la logica
+                                    break;
+                                case "exit":
+                                    System.Console.WriteLine("Comando 'exit' riconosciuto. Uscita in corso...");
+                                    return;
+                                case "name":
+                                    System.Console.WriteLine($"Ecco il tuo nome: {nome}");
+                                    break;
+                                default:
+                                    System.Console.WriteLine($"Comando  '{comando}' non riconosciuto");
+                                    break;
+                            }
+                        }
+                        else
+                        {
+                            System.Console.WriteLine("Input non valido. Inserisci un comando");
+                        }
+
+                        System.Console.WriteLine("\nInserisci un altro comando:");
+                    }
+                    break; //break all'interno di uno statement switch interrompe l'esecuzione del blocco switch e esce dallo switch. 
+
+                case "2":
+                    bool condizione = true;
+                    while (condizione)
+                    {
+                    //Console.Clear(); // Pulisce la console ad ogni iterazione
+                    Console.WriteLine("Menu di Selezione");
+                    Console.WriteLine("1. Opzione Uno");
+                    Console.WriteLine("2. Opzione Due");
+                    Console.WriteLine("3. Opzione Tre");
+                    Console.WriteLine("4. Torna al menu principale");
+
+                    Console.Write("Inserisci il numero dell'opzione desiderata: ");
+                    string input2 = Console.ReadLine();
+
+                    switch (input2) 
+                    {
+                        case "1": //se il valore della variabile dentro le parentesi tonde dello switch è quello scritto dopo il case, esegue, altrimenti passa al prossimo case
+                            Console.WriteLine("Hai selezionato l'Opzione Uno");
+                            // Aggiungi qui la logica per l'Opzione Uno
+                            break;
+                        case "2":
+                            Console.WriteLine("Hai selezionato l'Opzione Due");
+                            // Aggiungi qui la logica per l'Opzione Due
+                            break;
+                        case "3":
+                            Console.WriteLine("Hai selezionato l'Opzione Tre");
+                            // Aggiungi qui la logica per l'Opzione Tre
+                            break;
+                        case "4":
+                            Console.WriteLine("Torna al menu principale...");
+                            condizione=false;
+                            break; // Esce dal programma
+                        default:
+                            Console.WriteLine("Selezione non valida. Riprova.");
+                            break;
+                    }
+                    if(condizione) //cosi se premo il 4 mi evita ciò che lo fa già lo switch principale
+                    {
+                    Console.WriteLine("Premi un tasto per continuare");
+                    Console.ReadKey(); // Aspetta che l'utente prema un tasto prima di continuare
+                    }
+                }
+                break;
+
+                case "3":
+                    Console.Clear();
+                    break;
+
+                case "4":
+                    Console.Beep();
+                    break;
+
+                case "5":
+                    try
+                    {
+                        System.Console.WriteLine("Inserisci la frequenza");
+                        int freq = Int32.Parse(Console.ReadLine());
+
+                        System.Console.WriteLine("Inserisci durata in ms");
+                        int ms = Int32.Parse(Console.ReadLine());
+                        Console.Beep(freq, ms);
+                    }
+                    catch (Exception ex)
+                    {
+                        System.Console.WriteLine("input non valido");
+                    }
+                    break;
+
+                case "6":
+                    System.Console.WriteLine("Trascina un file qui e premi invio");
+                    string filePath = Console.ReadLine().Trim('"'); //creo il percorso per aprire il file, rimuovendo le virgolette che possono apparire nel percorso
+
+                    try
+                    {
+                        string content = File.ReadAllText(filePath); //legge tutte le righe del file e le memorizza nella stringa content
+                        System.Console.WriteLine("Contenuto del file:");
+                        System.Console.WriteLine(content);
+                    }
+                    catch (Exception ex)
+                    {
+                        System.Console.WriteLine($"Si è verificato un errore: {ex.Message}");
+                    }
+                    break;
+
+                case "e":
+                    continua = false;//return; 
+                    break;
+
+                default:
+                    System.Console.WriteLine("Opzione errata:");
+                    break;
+
+            }
+
+            if (continua)
+            {
+                System.Console.WriteLine("Premi un tasto per contiuare...");
+                Console.ReadKey();
+            }
+
+        } while (continua);
+
+    }
+}
+```
+
+
+### 30 - Lambda 
+
+```c#
+ //In C#, le espressioni lambda sono funzioni anonime che possono essere utilizzate per definire brevi blocchi di codice.
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+
+class Program
+{
+    static void Main()
+    {
+        List<int> numeri = new List<int> { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 };
+
+        // .where funge come un ciclo su ogni elemento della lista, Usa una lambda per sommare tutti gli elementi pari
+        int sommaPari = numeri.Where(x => x % 2 == 0).Sum();//ritorna il numero se pari
+
+        Console.WriteLine($"La somma dei numeri pari è: {sommaPari}");
+    }
+}
+
+```
+
+### 30.1 - Stesso es senza lambda
+
+```c#
+using System;
+using System.Collections.Generic;
+using System.Linq;
+
+class Program
+{
+    static void Main()
+    {
+        List<int> numeri = new List<int> { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 };
+
+        // Filtra numeri pari
+        List<int> numeriPari = FiltraNumeriPari(numeri);
+
+        // Calcola la somma dei numeri pari
+        int sommaPari = CalcolaSomma(numeriPari);
+
+        Console.WriteLine($"La somma dei numeri pari è: {sommaPari}");
+    }
+
+    static List<int> FiltraNumeriPari(List<int> lista)
+    {
+        List<int> risultato = new List<int>();
+
+        foreach (var numero in lista)
+        {
+            if (numero % 2 == 0)
+            {
+                risultato.Add(numero);
+            }
+        }
+
+        return risultato;
+    }
+
+    static int CalcolaSomma(List<int> lista)
+    {
+        int somma = 0;
+
+        foreach (var numero in lista)
+        {
+            somma += numero;
+        }
+
+        return somma;
+    }
+}
+```
+
+### 30.2 - Lambda es 2
+
+```c#
+List<string> fruits =
+    new List<string> { "apple", "passionfruit", "banana", "mango",
+                    "orange", "blueberry", "grape", "strawberry" };
+
+IEnumerable<string> query = fruits.Where(fruit => fruit.Length < 6);
+
+foreach (string fruit in query)
+{
+    Console.WriteLine(fruit);
+}
+/*
+ This code produces the following output:
+
+ apple
+ mango
+ grape
+*/
+```
+
+### 31 - funzioni asincrone
+
+```c#
+/*
+Quando usiamo la parola chiave await in C#, stiamo dicendo al programma di aspettarsi un po' prima di fare qualcos'altro.
+Immagina che stai facendo una chiamata telefonica e devi aspettare che l'altra persona risponda. 
+Invece di stare in silenzio e non fare nulla mentre aspetti, potresti fare altre cose come leggere un libro o controllare il tuo telefono. await funziona in modo simile.
+Quando usiamo await con Task.Run(() => {  codice  }), stiamo dicendo al programma di iniziare l'esecuzione del blocco di codice in un modo particolare (asincrono) e nel frattempo fare altre cose. 
+Anche se il thread principale attende il completamento dell'operazione asincrona tramite await, durante questo periodo può gestire altre attività, rispondere agli input dell'utente o eseguire
+ operazioni concorrenti. 
+*/
+
+using System;
+using System.Threading.Tasks;
+
+class Program
+{
+    static async Task Main()
+    {
+        Console.WriteLine("Inizio del programma");
+
+        // Esempio di operazione asincrona con Task.Run
+        string risultato = await Task.Run(() =>
+        {
+            // Simuliamo un'operazione intensiva
+            for (int i = 0; i < 5; i++)
+            {
+                Console.WriteLine($"Passo {i + 1}...");
+                Task.Delay(1000).Wait(); // Simula un ritardo di 1 secondo
+            }
+
+            return "Operazione asincrona completata!";
+        });
+
+        // Stampiamo il risultato dopo il completamento dell'operazione asincrona
+        Console.WriteLine(risultato);
+
+        Console.WriteLine("Fine del programma");
+    }
+}
+```
+
+### 31.2 - Esercizio Funzioni asincrone
+
+```c#
+using System;
+using System.Threading.Tasks;
+
+class Program
+{
+    static async Task Main()
+    {
+        Console.WriteLine("Inizio del programma");
+
+        // Esempio di Task.Run per eseguire un ciclo che richiede tempo
+        var taskEsempioCiclo = Task.Run(async () => await EsempioCiclo());
+
+        // Operazioni che possono essere eseguite durante l'attesa
+        await Task.Run(() =>
+        {
+            for (int i = 0; i < 10; i++)
+            {
+                Console.WriteLine($"Attività durante l'attesa: Passo {i + 1}");
+                Task.Delay(500).Wait(); // Simula un ritardo di 0.5 secondi durante ogni passo
+            }
+        });
+
+        // Attendiamo il completamento dell'operazione che richiede tempo
+        await taskEsempioCiclo;
+
+        Console.WriteLine("Fine del programma");
+    }
+
+    static async Task EsempioCiclo()
+    {
+        Console.WriteLine("Inizio dell'operazione che richiede tempo");
+
+        // Simulazione di un ciclo che richiede tempo
+        for (int i = 0; i < 5; i++)
+        {
+            Console.WriteLine($"Passo {i + 1}...");
+            await Task.Delay(2000); // Simula un ritardo di 2 secondi per ogni passo
+        }
+
+        Console.WriteLine("Fine dell'operazione che richiede tempo");
+    }
+}
+```
+
+### 31.3 - Esercizio Funzioni asincrone in aula
+
+
+```c#
+//inputTask è un task che attende l'input dell'utente
+//delayTask è un task che attende per un periodo di tempo specificato (5 secondi in questo caso)
+
+
+class Program
+{
+    static async Task Main(string[] args) //L'utilizzo di async è necessario perché il metodo Main contiene operazioni asincrone come Task.Run, Task.Delay e await. Quando si utilizzano operazioni asincrone in un metodo, è necessario dichiarare tale metodo come async.
+    {
+        int timeoutInSeconds = 5; //imposta il tempo di attesa in secondi
+
+        Task inputTask = Task.Run(() => //oggetto che esegue codice nel blocco quando eseguito
+        {
+            Console.WriteLine($"Inserisci un input entro {timeoutInSeconds} secondi:");
+            return Console.ReadLine();
+        });
+
+        //La chiamata Task.Delay restituisce un task che si completa dopo il periodo di ritardo specificato. timespan sono i secondi del delay
+        Task delayTask = Task.Delay(TimeSpan.FromSeconds(timeoutInSeconds)); 
+
+        //Questa istruzione attende che uno qualsiasi dei due task (inputTask o delayTask) venga completato. L'operazione await restituirà il task che si completa per primo.
+        //== inputTask: Viene verificato se il task completato è inputTask. Questo significa che l'utente ha inserito un input prima che scadesse il tempo.
+        if (await Task.WhenAny(inputTask,delayTask) == inputTask)
+        {
+            //l'utente ha inserito un input
+            string input = await (inputTask as Task<string>);
+            System.Console.WriteLine($"Hai inserito: {input}");
+        }
+        else
+        {
+            //il tempo è scaduto
+            System.Console.WriteLine("tempo scaduto");
+        }
+    }
+}
+
+/*
+Task è parte del namespace System.Threading.Tasks e rappresenta un'attività asincrona in C#. È utilizzato per gestire operazioni asincrone e parallele in modo efficiente. Il framework .NET offre molte funzionalità per la gestione delle attività, tra cui Task.Run che ti permette di eseguire un blocco di codice in modo asincrono.
+
+Input utente: L'operazione Console.ReadLine() è una chiamata bloccante che attende che l'utente inserisca un input. Utilizzando Task.Run, questa operazione può essere eseguita in modo asincrono in un altro thread, consentendo al programma di continuare ad eseguire altre operazioni mentre è in attesa dell'input utente.
+
+Ritardo di tempo: L'operazione Task.Delay è utilizzata per creare un ritardo di tempo senza bloccare il thread principale. Anche in questo caso, l'utilizzo di operazioni asincrone consente al programma di procedere con altre operazioni mentre aspetta che scada il tempo.
+il tutto serve a compiere in contemporanea le azioni di attesa input utente e conteggio del tempo
+
+ 1)Utilizzando Task.Run e Console.ReadLine(), l'input dell'utente viene gestito in modo asincrono in un thread separato, permettendo al programma di continuare ad eseguire altre operazioni nel frattempo.
+ 2)Conteggio del tempo: Utilizzando Task.Delay, il programma crea un task che rappresenta un ritardo di tempo. Nel frattempo, il thread principale del programma può continuare ad eseguire altre operazioni.
+ 3)Il punto chiave è l'utilizzo di Task.WhenAny con l'operatore await. Questo permette al programma di attendere che uno qualsiasi dei due task (input utente o ritardo di tempo) venga completato. Quando uno dei due si completa, il programma può reagire di conseguenza: se l'utente ha inserito un input, lo legge e lo mostra; altrimenti, se il tempo è scaduto, mostra un messaggio di "tempo scaduto".
+
+ Task.WhenAny(inputTask, delayTask) aspetta che uno qualsiasi dei due task (inputTask o delayTask) venga completato.
+ L'await viene utilizzato per ottenere il risultato di questa operazione asincrona.
+ La condizione == inputTask verifica se il task completato è inputTask.
+
+ Quindi, il blocco di codice all'interno dell'if verrà eseguito solo se inputTask è stato completato prima di delayTask. In altre parole, se l'utente ha inserito un input prima che il tempo scadesse, il blocco di codice all'interno dell'if verrà eseguito.
+ */
+```
