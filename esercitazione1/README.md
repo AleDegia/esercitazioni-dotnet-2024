@@ -1777,7 +1777,7 @@ class Program
             Console.WriteLine($"Altre operazioni in corso... Ciclo {i + 1}");
             await Task.Delay(500); // // ulteriore operazione asincrona che esegue un ritardo di 0.5 secondi. è asincrona perché impiega un certo periodo di tempo per completarsi  e durante questo periodo, anziché bloccare il thread, consente al thread principale di continuare con altre attività. anche il ciclo for prende tempo. ma il delay è async per natura.
             //l'await attende il codice dentro il ciclo for prima di reiterare ma non blocca gli altri threads in esecuzione.
-            //'await non blocca il thread principale; invece, sospende temporaneamente l'esecuzione del metodo o flusso in cui si trova, consentendo al thread principale di continuare con altre attività. è come se ad ogni op asincrona si creassero dei branch separati e ogni await si riferisce a quel branch. vedi il flusso come branch.
+            //'await non blocca il thread principale; invece, sospende temporaneamente l'esecuzione del metodo o flusso in cui si trova, consentendo al thread principale di continuare con altre attività. è come se x ogni nuova op asincrona si creasse un branch/flusso separato in + e ogni await si riferisce a quel branch. vedi il flusso come branch.
         }
 
         // Aspetta il completamento delle due operazioni asincrone
