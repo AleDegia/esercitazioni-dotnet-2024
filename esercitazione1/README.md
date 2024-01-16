@@ -1605,12 +1605,14 @@ foreach (string fruit in query)
 
 ```c#
 /*
-Quando usiamo la parola chiave await in C#, stiamo dicendo al programma di aspettarsi un po' prima di fare qualcos'altro.
+Quando usiamo la parola chiave await in C#, stiamo dicendo al programma di aspettare un po' prima di fare qualcos'altro.
 Immagina che stai facendo una chiamata telefonica e devi aspettare che l'altra persona risponda. 
 Invece di stare in silenzio e non fare nulla mentre aspetti, potresti fare altre cose come leggere un libro o controllare il tuo telefono. await funziona in modo simile.
+await è utilizzata per aspettare il completamento di un'operazione asincrona prima di procedere oltre nel codice. 
 Quando usiamo await con Task.Run(() => {  codice  }), stiamo dicendo al programma di iniziare l'esecuzione del blocco di codice in un modo particolare (asincrono) e nel frattempo fare altre cose. 
 Anche se il thread principale attende il completamento dell'operazione asincrona tramite await, durante questo periodo può gestire altre attività, rispondere agli input dell'utente o eseguire
  operazioni concorrenti. 
+ Asincronia: I Task consentono di eseguire operazioni in modo asincrono senza bloccare il thread principale del programma. Ciò è particolarmente utile per operazioni che richiedono tempo, come le operazioni di I/O o le chiamate di rete.
 */
 
 using System;
@@ -1690,7 +1692,163 @@ class Program
 }
 ```
 
-### 31.3 - Esercizio Funzioni asincrone in aula
+### 31.3 - Altro es funzioni asincrone
+
+```c#
+using System;
+using System.Threading.Tasks;
+
+class Program
+{
+    static async Task Main()
+    {
+        Console.WriteLine("Inizio del programma");
+
+        // Chiamata a una funzione asincrona
+        Task funzioneAsincrona = EsempioFunzioneAsincrona();
+
+        Console.WriteLine("Prima del ciclo");
+
+        // Esegui un ciclo mentre aspetta il completamento della funzione asincrona EsempioFunzioneAsincrona()
+        for (int i = 0; i < 5; i++)
+        {
+            Console.WriteLine($"Ciclo {i + 1}");
+            await Task.Delay(500); // Attendi 0.5 secondi prima di ogni iterazione perchè aspetta che finisca il delay
+        }
+
+        // Aspetta il completamento della funzione asincrona prima di proseguire oltre nel codice
+        await funzioneAsincrona;
+
+        Console.WriteLine("Fine del programma");
+    }
+
+    static async Task EsempioFunzioneAsincrona()
+    {
+        Console.WriteLine("Inizio della funzione asincrona");
+
+        // Simulazione di un'attesa asincrona, ad esempio una richiesta a un servizio web
+        await Task.Delay(2000);
+
+        Console.WriteLine("Fine della funzione asincrona");
+    }
+}
+```
+
+### 31.4 - Altro es funzioni asincrone MIGLIORE
+
+```c#
+
+/*
+        1)Chiamata alla prima funzione asincrona (EsempioFunzioneAsincrona):
+        Il metodo EsempioFunzioneAsincrona viene avviato in modo asincrono, e Task.Delay(2000) simula un'attesa di 2 secondi.
+        L'esecuzione del metodo Main continua immediatamente dopo la chiamata a EsempioFunzioneAsincrona, senza aspettare che l'operazione completi.
+
+        2)Inizio del ciclo for e chiamata alla seconda funzione asincrona (EsempioFunzioneAsincrona):
+        Mentre l'operazione1 si sta eseguendo in background, il ciclo for viene eseguito, stampando i messaggi sulla console ogni 0.5 secondi con altro op async await Task.Delay(500);
+        (await non blocca il thread principale; invece, sospende temporaneamente l'esecuzione del metodo in cui si trova)
+        Nel frattempo, EsempioFunzioneAsincrona viene chiamato nuovamente per operazione2 e inizia a eseguire un'altra op asincrona di attesa di 2 secondi.
+
+        3) Continuazione del ciclo e attesa asincrona:
+        Il ciclo for continua a eseguire le sue iterazioni ogni 0.5 secondi mentre operazione1 e operazione2 sono ancora in eseuzione.
+
+        4)Aspetta il completamento di operazione1 e operazione2 senza andare avanti con le istruzioni:
+        await operazione1;
+        await operazione2;
+
+        -- il tipo di ritorno può essere Task (se non restituisce alcun valore) o Task<T> (se restituisce un valore di tipo T) --
+        */
+
+using System;
+using System.Threading.Tasks;
+
+class Program
+{
+    static async Task Main() //questo ci da accesso a Task.Delay ad esempio
+    {
+        Console.WriteLine("Inizio del programma");
+
+        // Chiamata a due funzioni asincrone
+        Task operazione1 = EsempioFunzioneAsincrona("Operazione 1", 2000); //task fa si di chiamare in esecuzione la prima funzione asincrona e nel frattempo andare avanti nel codice al for
+        Task operazione2 = EsempioFunzioneAsincrona("Operazione 2", 1000);
+
+        // Continua ad eseguire altre operazioni asincrone mentre aspetta il completamento delle prime due
+        for (int i = 0; i < 5; i++)
+        {
+            Console.WriteLine($"Altre operazioni in corso... Ciclo {i + 1}");
+            await Task.Delay(500); // // ulteriore operazione asincrona che esegue un ritardo di 0.5 secondi. è asincrona perché impiega un certo periodo di tempo per completarsi  e durante questo periodo, anziché bloccare il thread, consente al thread principale di continuare con altre attività. anche il ciclo for prende tempo. ma il delay è async per natura.
+            //l'await attende il codice dentro il ciclo for prima di reiterare ma non blocca gli altri threads in esecuzione.
+            //'await non blocca il thread principale; invece, sospende temporaneamente l'esecuzione del metodo o flusso in cui si trova, consentendo al thread principale di continuare con altre attività. è come se ad ogni op asincrona si creassero dei branch separati e ogni await si riferisce a quel branch. vedi il flusso come branch.
+        }
+
+        // Aspetta il completamento delle due operazioni asincrone
+        await operazione1; // non blocca operazione2. L'await in C# consente di aspettare il completamento di un'operazione asincrona 
+        await operazione2;
+
+        Console.WriteLine("Fine del programma");
+    }
+
+    static async Task EsempioFunzioneAsincrona(string nomeOperazione, int millisecondiAttessa)
+    {
+        Console.WriteLine($"Inizio di {nomeOperazione}");
+
+        // Simula un'attesa asincrona
+        await Task.Delay(millisecondiAttessa);
+
+        Console.WriteLine($"Fine di {nomeOperazione}");
+    }
+}
+```
+ 
+### 31.5 - SImulazione Esercizio funzioni asincrone in aula
+
+```c#
+using System;
+using System.Runtime.CompilerServices;
+using System.Threading.Tasks;
+using Microsoft.VisualBasic;
+
+class Program
+{
+    static void Main(string[] args)
+    {
+        int timeoutInSeconds = 5; //inizializza il tempo di timeout
+        System.Console.WriteLine($"Inserisci un input entro {timeoutInSeconds}");
+
+        bool inputReceived = false; //inizializza input come non ricevuto finchè non si verifica il Console.KeyAvailable
+        string? input = ""; //inizializza una variabile di tipo string chiamata input con una stringa vuota così può assegnare un valore ad input
+        //all'interno del ciclo e poi accedere a quel valore anche a ldi fuori del cicl (all'interno dell'intera funzione Main)
+        DateTime endTime = DateTime.Now.AddSeconds(timeoutInSeconds); // DateTime.Now restituisce l'ora corrente. Il metodo AddSeconds(timeoutInSeconds)
+        //aggiunge il numero specificato di secondi (in questo caso, il valore della variabile timeoutInSeconds) all'ora corrente. 
+        //Il risultato è un DateTime che rappresenta il momento esatto quando il tempo di attesa è in scadenza
+
+        while(DateTime.Now < endTime)// Il ciclo while (DateTime.Now < endTime) continua a eseguirsi finchè l'ora corrente (DateTime.Now) è inferiore a 
+        //endTime. QUesto significa che il ciclo continuerà a girare per la durata specificata da timeoutinSeconds (5)
+        {
+            if(Console.KeyAvailable) //viene utilizzato per verificare se è stato premuto un tasto, permettendo al programma di reagire immediatamente
+            //all'input dell'utente senza bloccare l'esecuzione
+            {
+                input = Console.ReadLine();
+                inputReceived = true; //dato che il valore di input viene controllato dopo il ciclo per determinare se l'utente ha fornito un input,
+                //inizializzandola con una stringa vuota si stabilisce un valore di partenza come noto. Se input rimane una stringa vuota dopo il ciclo,
+                //significa che l'utente non ha inserito alcun dato
+                break;
+            }
+
+            Thread.Sleep(100); //piccola pausa per ridurre il carico sulla cpu
+        }
+        if (inputReceived)
+        {
+            System.Console.WriteLine($"Hai inserito: {input}");
+        }
+        else
+        {
+            System.Console.WriteLine("Tempo scaduto");
+        }
+    }
+}
+```
+
+### 31.6 - Esercizio Funzioni asincrone in aula
 
 
 ```c#
@@ -1719,7 +1877,7 @@ class Program
         {
             //l'utente ha inserito un input
             string input = await (inputTask as Task<string>);
-            System.Console.WriteLine($"Hai inserito: {input}");
+            System.Console.WriteLine($"Hai inserito: {input}");//questo serve solo a displayare l'input immesso
         }
         else
         {

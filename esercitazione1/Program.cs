@@ -3,40 +3,35 @@ using System.Threading.Tasks;
 
 class Program
 {
-    static async Task Main()
+    static async Task Main() //questo ci da accesso a Task.Delay ad esempio
     {
         Console.WriteLine("Inizio del programma");
 
-        // Esempio di Task.Run per eseguire un ciclo che richiede tempo
-        var taskEsempioCiclo = Task.Run(async () => await EsempioCiclo());
+        // Chiamata a due funzioni asincrone
+        Task operazione1 = EsempioFunzioneAsincrona("Operazione 1", 2000); //task fa si di chiamare in esecuzione la prima funzione asincrona e nel frattempo andare avanti nel codice al for
+        Task operazione2 = EsempioFunzioneAsincrona("Operazione 2", 1000);
 
-        // Operazioni che possono essere eseguite durante l'attesa
-        await Task.Run(() =>
+        // Continua ad eseguire altre operazioni asincrone mentre avviene il completamento delle prime due
+        for (int i = 0; i < 5; i++)
         {
-            for (int i = 0; i < 10; i++)
-            {
-                Console.WriteLine($"Attività durante l'attesa: Passo {i + 1}");
-                Task.Delay(500).Wait(); // Simula un ritardo di 0.5 secondi durante ogni passo
-            }
-        });
+            Console.WriteLine($"Altre operazioni in corso... Ciclo {i + 1}");
+            await Task.Delay(500); // ulteriore operazione asincrona che esegue un ritardo di 0.5 secondi
+        }
 
-        // Attendiamo il completamento dell'operazione che richiede tempo
-        await taskEsempioCiclo;
+        // Aspetta il completamento delle due operazioni asincrone
+        await operazione1;
+        await operazione2;
 
         Console.WriteLine("Fine del programma");
     }
 
-    static async Task EsempioCiclo()
+    static async Task EsempioFunzioneAsincrona(string nomeOperazione, int millisecondiAttessa)
     {
-        Console.WriteLine("Inizio dell'operazione che richiede tempo");
+        Console.WriteLine($"Inizio di {nomeOperazione}");
 
-        // Simulazione di un ciclo che richiede tempo
-        for (int i = 0; i < 5; i++)
-        {
-            Console.WriteLine($"Passo {i + 1}...");
-            await Task.Delay(2000); // Simula un ritardo di 2 secondi per ogni passo
-        }
+        // Simula un'attesa asincrona
+        await Task.Delay(millisecondiAttessa);
 
-        Console.WriteLine("Fine dell'operazione che richiede tempo");
+        Console.WriteLine($"Fine di {nomeOperazione}");
     }
 }
