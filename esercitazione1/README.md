@@ -1985,3 +1985,81 @@ class Program
     }
 }
 ```
+
+### 33 - Fizz Buzz
+
+```c#
+class Program  //div per 3 stampi Fizz, per 5 stampi buzz, per entrambi stampi FizzBuzz
+{
+    static void Main()
+    {
+        int[] numeri = new int[100];
+        for (int i = 0; i < (numeri.Length); i++)
+        {
+            numeri[i] = i+1;
+        }
+
+        foreach (int numero in numeri)
+        {
+            
+
+             if (numero % 3 == 0 && numero % 5 == 0)
+            {
+                System.Console.WriteLine($"{numero} -> Fizz Buzz");
+
+            }
+
+            else if (numero % 3 == 0)
+            {
+                System.Console.WriteLine($"{numero} -> Fizz");
+
+            }
+            else if (numero % 5 == 0)
+            {
+                System.Console.WriteLine($"{numero} -> Buzz");
+
+            }
+            else
+            {
+                System.Console.WriteLine(numero);
+
+            }
+
+        }
+    }
+}
+```
+
+### 33.1 - Fizz Buzz con Random
+
+```c#
+class Program  //div per 3 stampi Fizz, per 5 stampi buzz, per entrambi stampi FizzBuzz
+{
+    static void Main()
+    {
+        Random random = new Random();
+        int numeroSorteggiato = random.Next(0,101);
+        //System.Console.WriteLine($"Il numero sorteggiato è {numeroSorteggiato}");  
+
+        if (numeroSorteggiato % 3 == 0 && numeroSorteggiato % 5 == 0)
+            {
+                System.Console.WriteLine($"{numeroSorteggiato} -> Fizz Buzz");
+            }
+        else if (numeroSorteggiato % 3 == 0)
+            {
+                System.Console.WriteLine($"{numeroSorteggiato} -> Fizz");
+
+            }
+            else if (numeroSorteggiato % 5 == 0)
+            {
+                System.Console.WriteLine($"{numeroSorteggiato} -> Buzz");
+
+            }
+            else
+            {
+                System.Console.WriteLine(numeroSorteggiato);
+
+            }
+    }
+}
+```
