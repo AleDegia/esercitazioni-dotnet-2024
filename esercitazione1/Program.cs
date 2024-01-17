@@ -1,18 +1,10 @@
-﻿//programma che utilizza la classe random x generare un numero compreso tra 1 e 10 per 10 volte (grazie al ciclo for) e vogliamo calcolare la somma
-//per istanziare una classe si usa il costruttore new nomeClasse()
-class Program
+﻿class Program
 {
     static void Main()
     {
+        List<String> nomi = ["Alex", "Simone", "Fabio", "Giada", "Carlo", "Dylan", "Natalia", "Alessandro"]; 
         Random random = new Random();
-        int somma = 0;
-        for (int i = 0; i < 10; i++)
-        {
-            int numero = random.Next(1,11); //genera numero casuale tra 1 e 10
-            System.Console.WriteLine($"numero generato: {numero}");
-            
-            somma += numero; //somma = somma + numero
-            System.Console.WriteLine($"La somma è {somma}");
-        }
+        int indice = random.Next(0,nomi.Count);
+        System.Console.WriteLine($"Il nome sorteggiato è {nomi[indice]}");  
     }
 }

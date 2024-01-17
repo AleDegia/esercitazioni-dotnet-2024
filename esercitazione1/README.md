@@ -1929,3 +1929,59 @@ class Program
     }
 }
 ```
+
+### 32.1 - classe Random con somma evidenziata in verde e pause
+
+```c#
+class Program
+{
+    static void Main()
+    {
+        Random random = new Random();
+        int somma = 0;
+        for (int i = 0; i < 10; i++) //reitera 10 volte
+        {
+            int numero = random.Next(1,11); //genera numero casuale tra 1 e 10
+            System.Console.Write("numero generato: "); //.Write per non andare a capo
+            Console.ForegroundColor = ConsoleColor.Green; //cambio colore dei caratteri displayati dal terminale
+            System.Console.WriteLine($"{numero}");
+            Thread.Sleep(1000); //sono delle pause di n secondi che fa fare al programma prima di riprendere con l'esecuzione
+            somma += numero; //somma = somma + numero
+            Console.ResetColor(); //resetto colore caratteri
+            
+            System.Console.WriteLine($"La somma è {somma}");
+            Thread.Sleep(1000);
+        }
+    }
+}
+```
+
+### 32.2 - Random su array
+
+```c#
+class Program
+{
+    static void Main()
+    {
+        string[] nomi = ["Mario", "Luigi", "Giovanni"]; //array di stringhe
+        Random random = new Random();
+        int indice = random.Next(0,nomi.Length);
+        System.Console.WriteLine($"Il nome sorteggiato è {nomi[indice]}");  
+    }
+}
+```
+
+### 32.3 - Random su lista
+
+```c#
+class Program
+{
+    static void Main()
+    {
+        List<String> nomi = ["Alex", "Simone", "Fabio", "Giada", "Carlo", "Dylan", "Natalia", "Alessandro"]; 
+        Random random = new Random();
+        int indice = random.Next(0,nomi.Count);
+        System.Console.WriteLine($"Il nome sorteggiato è {nomi[indice]}");  
+    }
+}
+```
