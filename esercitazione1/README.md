@@ -1781,7 +1781,7 @@ class Program
         }
 
         // Aspetta il completamento delle due operazioni asincrone
-        await operazione1; // non blocca operazione2. L'await in C# consente di aspettare il completamento di un'operazione asincrona 
+        await operazione1; // non blocca operazione2. L'await in C# consente di aspettare il completamento di un'operazione asincrona specifica (o meglio di quel flusso di istruzioni)
         await operazione2;
 
         Console.WriteLine("Fine del programma");
@@ -1905,4 +1905,27 @@ il tutto serve a compiere in contemporanea le azioni di attesa input utente e co
 
  Quindi, il blocco di codice all'interno dell'if verrà eseguito solo se inputTask è stato completato prima di delayTask. In altre parole, se l'utente ha inserito un input prima che il tempo scadesse, il blocco di codice all'interno dell'if verrà eseguito.
  */
+```
+
+### 32 - classe Random
+
+```c#
+//programma che utilizza la classe random x generare un numero compreso tra 1 e 10 per 10 volte (grazie al ciclo for) e vogliamo calcolare la somma
+//per istanziare una classe si usa il costruttore new nomeClasse()
+class Program
+{
+    static void Main()
+    {
+        Random random = new Random();
+        int somma = 0;
+        for (int i = 0; i < 10; i++)
+        {
+            int numero = random.Next(1,11); //genera numero casuale tra 1 e 10
+            System.Console.WriteLine($"numero generato: {numero}");
+            
+            somma += numero; //somma = somma + numero
+            System.Console.WriteLine($"La somma è {somma}");
+        }
+    }
+}
 ```
