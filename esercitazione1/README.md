@@ -2063,3 +2063,280 @@ class Program  //div per 3 stampi Fizz, per 5 stampi buzz, per entrambi stampi F
     }
 }
 ```
+
+### 33.2 - FizzBuzz con liste
+
+```c#
+class Program  
+{
+    static void Main()
+    {
+        List<int> Fizz = new List<int>();
+        List<int> Buzz = new List<int>();
+        List<int> FizzBuzz = new List<int>();
+
+        while ((Fizz.Count + Buzz.Count + FizzBuzz.Count) < 100) //essendo che la prima iterazione parte da quando la lista è a 0, lo fa 100 volte
+        {
+            Random random = new Random();
+            int numeroSorteggiato = random.Next(0, 101);
+            //System.Console.WriteLine($"Il numero sorteggiato è {numeroSorteggiato}");  
+
+            if (numeroSorteggiato % 3 == 0 && numeroSorteggiato % 5 == 0)
+            {
+                System.Console.WriteLine($"{numeroSorteggiato} -> Fizz Buzz");
+                 Thread.Sleep(2000);
+                FizzBuzz.Add(numeroSorteggiato);
+                string joinFizzBuzz = string.Join(", ", FizzBuzz);
+                System.Console.WriteLine("Lista FizzBuzz :" + joinFizzBuzz);
+                 Thread.Sleep(2000);
+                
+            }
+            else if (numeroSorteggiato % 3 == 0)
+            {
+                System.Console.WriteLine($"{numeroSorteggiato} -> Fizz");
+                 Thread.Sleep(2000);
+                Fizz.Add(numeroSorteggiato);
+                string joinFizz = string.Join(", ", Fizz);
+                System.Console.WriteLine("Lista Fizz :" + joinFizz);
+                 Thread.Sleep(2000);
+                
+            }
+            else if (numeroSorteggiato % 5 == 0)
+            {
+                System.Console.WriteLine($"{numeroSorteggiato} -> Buzz");
+                 Thread.Sleep(2000);
+                Buzz.Add(numeroSorteggiato);
+                string joinBuzz = string.Join(", ", Buzz);
+                System.Console.WriteLine("Lista Buzz :" + joinBuzz);
+                 Thread.Sleep(2000);
+            }
+            else
+            {
+                System.Console.WriteLine(numeroSorteggiato);
+
+            }
+        }
+        System.Console.WriteLine(Fizz.Count + Buzz.Count + FizzBuzz.Count);   
+        System.Console.WriteLine("lista Fizz senza duplicati e ordinata:");
+        List<int> fizzNoDuplicati = Fizz.Distinct().ToList();
+        System.Console.WriteLine(fizzNoDuplicati);
+        fizzNoDuplicati.Sort();
+        System.Console.WriteLine(string.Join(", ", fizzNoDuplicati));
+    }
+}
+```
+```c#
+### BONUS - es mio dowload immagine da url
+
+using System;
+using System.IO;
+using System.Net.Http;
+
+class Program
+{
+    static void Main()
+    {
+        //// Definisci l'URL dell'immagine che vuoi scaricare (tasto destro su immagine e apri in nuova scheda)
+        string imageUrl = "https://services.meteored.com/img/article/il-telescopio-spaziale-james-webb-ci-regala-incredibili-immagini-del-mostro-verde-1705007220340_1024.jpg";
+
+        // Specifica il percorso in cui salvare l'immagine scaricata
+        string outputPath = @"C:/Users/DOTNET/Documents/Corso-Dotnet-2024/CORSO-DOTNET-2024/esercitazioni-dotnet-2024/esercitazione1/imgs";
+
+if (!Directory.Exists(outputPath))
+{
+    Directory.CreateDirectory(outputPath);
+}
+
+        DownloadImage(imageUrl, outputPath);
+
+        Console.WriteLine("Immagine scaricata con successo.");
+        Console.ReadLine();
+    }
+
+    static void DownloadImage(string url, string outputPath)
+    {
+        // Crea un'istanza della classe HttpClient per effettuare richieste HTTP
+        using (HttpClient client = new HttpClient())
+        {
+            // Scarica i byte dell'immagine dall'URL
+            byte[] imageData = client.GetByteArrayAsync(url).Result;
+
+            // Salva i byte dell'immagine in un file
+            File.WriteAllBytes(outputPath, imageData);
+        }
+    }
+}
+```
+
+### 34 - calcolatrice
+
+```c#
+using System;
+using System.IO;
+using System.Net.Http;
+
+class Program
+{
+    static void Main()
+    {
+
+        //metodo che chieda il primo numero, metodo che chieda il secondo numero e un metodo che chieda l'operazione da fare. getire ecc /0, 1/2 da 0..
+        System.Console.WriteLine("Inserisci il primo numero");
+        int number = Convert.ToInt32(Console.ReadLine());
+
+        System.Console.WriteLine("Inserisci il secondo numero");
+        int number2 = Convert.ToInt32(Console.ReadLine());
+
+        System.Console.WriteLine("Digita: 1 per somma, 2 per sottrazione, 3 per moltiplicazione, 4 per divisione");
+        int input = Convert.ToInt32(Console.ReadLine());
+
+
+        //bool condizione = true;
+        while (true)
+        {
+            switch (input)
+            {
+                case 1: //se il valore della variabile dentro le parentesi tonde dello switch è quello scritto dopo il case, esegue, altrimenti passa al prossimo case
+                    System.Console.WriteLine($"{number} + {number2} è uguale a {number + number2}");
+                    break;
+                case 2:
+                    System.Console.WriteLine($"{number} - {number2} è uguale a {number - number2}");
+                    break;
+                case 3: //se il valore della variabile dentro le parentesi tonde dello switch è quello scritto dopo il case, esegue, altrimenti passa al prossimo case
+                    System.Console.WriteLine($"{number} * {number2} è uguale a {number * number2}");
+                    break;
+                case 4:
+                    System.Console.WriteLine($"{number} / {number2} è uguale a {number / number2}");
+                    break;
+                default:
+                    System.Console.WriteLine($"operazione non riconosciuta");
+                    break;
+            }
+
+            System.Console.WriteLine("Digita: 1 per cambiare i valori dei due numeri, 2 per cambiare tipo di operazione, 3 per uscire ");
+            int input2 = Convert.ToInt32(Console.ReadLine());
+
+            switch (input2)
+            {
+                case 1: //se il valore della variabile dentro le parentesi tonde dello switch è quello scritto dopo il case, esegue, altrimenti passa al prossimo case
+                    System.Console.WriteLine("Inserisci il primo numero");
+                    number = Convert.ToInt32(Console.ReadLine());
+
+                    System.Console.WriteLine("Inserisci il secondo numero");
+                    number2 = Convert.ToInt32(Console.ReadLine());
+                    break;
+                case 2:
+                    System.Console.WriteLine("Digita: 1 per somma, 2 per sottrazione, 3 per moltiplicazione, 4 per divisione");
+                    input = Convert.ToInt32(Console.ReadLine());
+                    break;
+                case 3: //se il valore della variabile dentro le parentesi tonde dello switch è quello scritto dopo il case, esegue, altrimenti passa al prossimo case
+                    System.Console.WriteLine($"stai uscendo..");
+                    return;
+                default:
+                    System.Console.WriteLine($"operazione non riconosciuta");
+                    break;
+            }
+        }
+    }
+}
+```
+
+```c#
+using System;
+using System.IO;
+using System.Net.Http;
+
+class Program
+{
+    static void Main()
+    {
+        int number =0;
+        int number2 = 0;
+        int input =0;
+        //bool verifica = true;
+
+        while(true){
+        try{
+
+        //metodo che chieda il primo numero, metodo che chieda il secondo numero e un metodo che chieda l'operazione da fare. getire ecc /0, 1/2 da 0.., vogio che se sbaglio un inserimento m
+        //mi richieda quell'inserimento specifico e non riparta richiedendo dal primo numero
+        System.Console.WriteLine("Inserisci il primo numero");
+        number = Convert.ToInt32(Console.ReadLine());
+        
+        System.Console.WriteLine("Inserisci il secondo numero");
+        number2 = Convert.ToInt32(Console.ReadLine());
+
+        System.Console.WriteLine("Digita: 1 per somma, 2 per sottrazione, 3 per moltiplicazione, 4 per divisione");
+        ConsoleKeyInfo key = Console.ReadKey(true); //La versione di ReadKey con true come argomento imposta la proprietà Intercept su true, il che significa che il tasto premuto non verrà visualizzato sulla console. Ciò consente di acquisire l'input da tastiera senza dover premere invio.
+        input = int.Parse(key.KeyChar.ToString());//conversione da keychar a stringa a intero
+
+        // Verifica se l'input è valido
+        if (input >= 1 && input <= 4)
+        {
+            
+            // Esci dal ciclo while se l'input è valido
+            break;
+        }
+        else
+        {
+            System.Console.WriteLine("Input non valido. Riprova.");
+            continue; //rinizia il ciclo
+        }
+         }
+        catch (Exception ex)
+        {
+            System.Console.WriteLine("input non valido");
+            //verifica = false;
+            
+
+        }}
+
+        bool condizione = true;
+        while (condizione)
+        {
+            switch (input)
+            {
+                case 1: //se il valore della variabile dentro le parentesi tonde dello switch è quello scritto dopo il case, esegue, altrimenti passa al prossimo case
+                    System.Console.WriteLine($"{number} + {number2} è uguale a {number + number2}");
+                    break;
+                case 2:
+                    System.Console.WriteLine($"{number} - {number2} è uguale a {number - number2}");
+                    break;
+                case 3: //se il valore della variabile dentro le parentesi tonde dello switch è quello scritto dopo il case, esegue, altrimenti passa al prossimo case
+                    System.Console.WriteLine($"{number} * {number2} è uguale a {number * number2}");
+                    break;
+                case 4:
+                    System.Console.WriteLine($"{number} / {number2} è uguale a {number / number2}");
+                    break;
+                default:
+                    System.Console.WriteLine($"operazione non riconosciuta");
+                    break;
+            }
+
+            System.Console.WriteLine("Digita: 1 per cambiare i valori dei due numeri, 2 per cambiare tipo di operazione, 3 per uscire ");
+            int input2 = Convert.ToInt32(Console.ReadLine());
+
+            switch (input2)
+            {
+                case 1: //se il valore della variabile dentro le parentesi tonde dello switch è quello scritto dopo il case, esegue, altrimenti passa al prossimo case
+                    System.Console.WriteLine("Inserisci il primo numero");
+                    number = Convert.ToInt32(Console.ReadLine());
+
+                    System.Console.WriteLine("Inserisci il secondo numero");
+                    number2 = Convert.ToInt32(Console.ReadLine());
+                    break;
+                case 2:
+                    System.Console.WriteLine("Digita: 1 per somma, 2 per sottrazione, 3 per moltiplicazione, 4 per divisione");
+                    input = Convert.ToInt32(Console.ReadLine());
+                    break;
+                case 3: //se il valore della variabile dentro le parentesi tonde dello switch è quello scritto dopo il case, esegue, altrimenti passa al prossimo case
+                    System.Console.WriteLine($"stai uscendo..");
+                    return;
+                default:
+                    System.Console.WriteLine($"operazione non riconosciuta");
+                    break;
+            }
+        }
+    }
+}
+```
