@@ -2241,6 +2241,8 @@ class Program
 }
 ```
 
+### 34.1 - Cacolatrice con try cathc
+
 ```c#
 using System;
 using System.IO;
