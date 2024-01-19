@@ -2342,3 +2342,182 @@ class Program
     }
 }
 ```
+
+### 35 - Indovina Numero
+
+```c#
+class Program //implementare: numero di tentativi quando indoviniamo, se inseriamo numero + alto o basso ci da suggerimenti dicendoci se il numero è + alto o + basso
+{
+    static void Main()
+    {
+       
+        Random random = new Random();
+
+        int numeroDaIndovinare = random.Next(1,101); //genera numero casuale tra 1 e 10;
+        int numeroTentativiMax = 10;
+        int contatoreTentativi = 0;
+        int rangeIniziale = 80;
+        // int numeroInferioreRange = numeroDaIndovinare - (rangeIniziale/2);
+        int numeroInferioreRange = 0;
+        int numeroSuperioreRange = 0;
+
+        
+        System.Console.WriteLine("Trova il numero da indovinare: è compreso tra 1 e 100. Hai 10 tentativi!");
+        System.Console.WriteLine("Inserisci il numero");
+        int number = Convert.ToInt32(Console.ReadLine());
+
+       
+        
+        while(number!=numeroDaIndovinare && numeroTentativiMax>0)
+        {
+            System.Console.WriteLine("Sbagliato! Ritenta");
+            //number = Convert.ToInt32(Console.ReadLine());
+            
+            numeroTentativiMax --;
+            contatoreTentativi++;
+            if(number<numeroDaIndovinare)
+            {
+                System.Console.WriteLine("prova con un numero più alto ;)");
+            }
+            else if(number>numeroDaIndovinare)
+            {
+                System.Console.WriteLine("prova con un numero più basso ;)");
+            }
+            
+
+            Random random2 = new Random();
+                
+            //voglio che generi un range pari al rangeIniziale displayando il numero inferiore del range e il numero maggiore del range
+            while(numeroInferioreRange > numeroDaIndovinare || numeroSuperioreRange < numeroDaIndovinare || (numeroSuperioreRange - numeroInferioreRange)!=rangeIniziale)
+            {
+                numeroInferioreRange = random2.Next(1,101);
+                numeroSuperioreRange = random2.Next(1,101);
+            }
+            //System.Console.WriteLine("Sbagliato! Ritenta");
+            System.Console.WriteLine("il numero da indovinare si trova tra " + numeroInferioreRange + " e " + numeroSuperioreRange);
+            rangeIniziale -= 10; //restringe il range di 10 a ogni tentativo
+            if(rangeIniziale<0)
+            {
+                System.Console.WriteLine("hai perso :(");
+                return;
+            }
+            number = Convert.ToInt32(Console.ReadLine());
+            
+        }
+
+        if(number==numeroDaIndovinare){
+            System.Console.WriteLine("giusto bravo");
+            numeroTentativiMax--;
+            contatoreTentativi++;
+            System.Console.WriteLine($"numero di tentativi rimasti = {numeroTentativiMax}");
+            System.Console.WriteLine($"numero di tentativi = {contatoreTentativi}");
+        }  
+    }
+}
+```
+
+### 35.1 - Estrazione roulette con calcolo vincita/perdita e balance
+
+```c#
+//implementare: numero di tentativi quando indoviniamo, se inseriamo numero + alto o basso ci da suggerimenti dicendoci se il numero è + alto o + basso
+//input utente per fargli mettere una moneta
+//ricalcolare ogni volta il numero di monete presenti nella macchinetta
+
+class Program //quando arrivi a un tot di punteggio, o inizia nuova partita, statistiche personali, guadagno se indovino
+{ //a ogni giro 2 numeri a caso danno x4
+    static void Main()
+    {
+        double balance=100;
+        int importoScommessa=0;
+        //int punteggio = 0;
+        int quantitaNumeriScelti = 0;
+        double probabilitaVittoria = (10 * quantitaNumeriScelti) ;
+        //double probabilitaSconfitta = (quantitaNumeriScelti - 1.0) / quantitaNumeriScelti;
+        
+
+        while (true)
+        {
+            Random random = new Random();
+            int numeroDaInd = random.Next(1, 11);
+            Console.WriteLine("Indovina il numero sorteggiato");
+            int tentativi = 0;
+            
+            while(true) //ciclo che mi richiede l'importo finchè non è valido, ovvero minore del mio saldo
+            {
+                System.Console.WriteLine("Scegli l'importo da scommettere");
+                importoScommessa = Int32.Parse(Console.ReadLine());
+                if(importoScommessa<=balance)
+                {
+                    break;
+                }
+            }
+
+            //sottraggo l'importo dal balance
+            balance -= importoScommessa;
+
+            Console.WriteLine("Scegli su quanli numeri scommettere da 1 a 10 (inserisci i numeri separati da virgole):");
+            string numeroScelto = Console.ReadLine();
+
+            
+
+            // Dividi la stringa usando il carattere ','
+            string[] numeriStringa = numeroScelto.Split(',');
+
+            // Crea un array di interi per memorizzare i numeri e memorizzo la quantita di numeri che gioco 
+            //x calcolare poi il payout correttamente
+            int[] numeriArray = new int[numeriStringa.Length];
+            quantitaNumeriScelti = numeriArray.Length;
+
+            //per ogni stringa di numeriStringa la metto nell'array numeriString convertita in int
+            for(int i=0; i<numeriStringa.Length; i++)
+            {
+                numeriArray[i] =  Int32.Parse(numeriStringa[i]);
+            }
+            //paragono i numeri scelti col numero estratto col random
+            foreach(var numero in numeriArray)
+            {
+                if(numero==numeroDaInd)
+                {
+                    System.Console.WriteLine("è uscito il " + numeroDaInd);
+                    System.Console.WriteLine("Hai vinto");
+                    
+                    
+                    double percentualeGuadagno = 10/quantitaNumeriScelti;
+                    
+                    double guadagno = importoScommessa * percentualeGuadagno;
+                    balance += guadagno;
+                    System.Console.WriteLine("qn" + quantitaNumeriScelti);
+                    break;
+                }   
+
+                //vedo se per ogni numero quanti perdono. Se il numero delle perdite è = al numero dei numeri scommessi,
+                //vado effettivamente a levare l'importo scommesso dal balance
+                // else if(numero!=numeroDaInd)
+                // {
+                //     int conteggioNumeri = 0;
+                //     conteggioNumeri++;
+                //     if(conteggioNumeri==quantitaNumeriScelti)
+                //     {
+                //         System.Console.WriteLine("è uscito il " + numeroDaInd);
+                //         System.Console.WriteLine("hai perso :(");
+                //         double perdita = importoScommessa;
+                //         balance -= perdita;
+                //     }
+                // }
+            }
+            
+            
+            System.Console.WriteLine();
+            System.Console.WriteLine("balance attuale " + balance);
+            System.Console.WriteLine("");
+            
+            Console.WriteLine("Vuoi continuare? (s/n)");
+            string risposta = Console.ReadLine()!;
+            if (risposta == "n")
+            {
+                break;
+            }
+        }
+    }
+}
+```

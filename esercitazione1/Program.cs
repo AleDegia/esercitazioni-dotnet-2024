@@ -1,97 +1,103 @@
-﻿using System;
-using System.IO;
-using System.Net.Http;
+﻿//implementare: numero di tentativi quando indoviniamo, se inseriamo numero + alto o basso ci da suggerimenti dicendoci se il numero è + alto o + basso
+//input utente per fargli mettere una moneta
+//ricalcolare ogni volta il numero di monete presenti nella macchinetta
 
-class Program
-{
+class Program //quando arrivi a un tot di punteggio, o inizia nuova partita, statistiche personali, guadagno se indovino
+{ //a ogni giro 2 numeri a caso danno x4
     static void Main()
     {
-        int number =0;
-        int number2 = 0;
-        int input =0;
-        //bool verifica = true;
-
-        while(true){
-        try{
-
-        //metodo che chieda il primo numero, metodo che chieda il secondo numero e un metodo che chieda l'operazione da fare. getire ecc /0, 1/2 da 0.., vogio che se sbaglio un inserimento m
-        //mi richieda quell'inserimento specifico e non riparta richiedendo dal primo numero
-        System.Console.WriteLine("Inserisci il primo numero");
-        number = Convert.ToInt32(Console.ReadLine());
+        double balance=100;
+        int importoScommessa=0;
+        //int punteggio = 0;
+        int quantitaNumeriScelti = 0;
+        double probabilitaVittoria = (10 * quantitaNumeriScelti) ;
+        //double probabilitaSconfitta = (quantitaNumeriScelti - 1.0) / quantitaNumeriScelti;
         
-        System.Console.WriteLine("Inserisci il secondo numero");
-        number2 = Convert.ToInt32(Console.ReadLine());
 
-        System.Console.WriteLine("Digita: 1 per somma, 2 per sottrazione, 3 per moltiplicazione, 4 per divisione");
-        ConsoleKeyInfo key = Console.ReadKey(true); //La versione di ReadKey con true come argomento imposta la proprietà Intercept su true, il che significa che il tasto premuto non verrà visualizzato sulla console. Ciò consente di acquisire l'input da tastiera senza dover premere invio.
-        input = int.Parse(key.KeyChar.ToString());//conversione da keychar a stringa a intero
-
-        // Verifica se l'input è valido
-        if (input >= 1 && input <= 4)
+        while (true)
         {
+            Random random = new Random();
+            int numeroDaInd = random.Next(1, 11);
+            Console.WriteLine("Indovina il numero sorteggiato");
+            int tentativi = 0;
             
-            // Esci dal ciclo while se l'input è valido
-            break;
-        }
-        else
-        {
-            System.Console.WriteLine("Input non valido. Riprova.");
-            continue; //rinizia il ciclo
-        }
-         }
-        catch (Exception ex)
-        {
-            System.Console.WriteLine("input non valido");
-            //verifica = false;
-            
-
-        }}
-
-        bool condizione = true;
-        while (condizione)
-        {
-            switch (input)
+            while(true) //ciclo che mi richiede l'importo finchè non è valido, ovvero minore del mio saldo
             {
-                case 1: //se il valore della variabile dentro le parentesi tonde dello switch è quello scritto dopo il case, esegue, altrimenti passa al prossimo case
-                    System.Console.WriteLine($"{number} + {number2} è uguale a {number + number2}");
+                System.Console.WriteLine("Scegli l'importo da scommettere");
+                importoScommessa = Int32.Parse(Console.ReadLine());
+                if(importoScommessa<=balance)
+                {
                     break;
-                case 2:
-                    System.Console.WriteLine($"{number} - {number2} è uguale a {number - number2}");
-                    break;
-                case 3: //se il valore della variabile dentro le parentesi tonde dello switch è quello scritto dopo il case, esegue, altrimenti passa al prossimo case
-                    System.Console.WriteLine($"{number} * {number2} è uguale a {number * number2}");
-                    break;
-                case 4:
-                    System.Console.WriteLine($"{number} / {number2} è uguale a {number / number2}");
-                    break;
-                default:
-                    System.Console.WriteLine($"operazione non riconosciuta");
-                    break;
+                }
             }
 
-            System.Console.WriteLine("Digita: 1 per cambiare i valori dei due numeri, 2 per cambiare tipo di operazione, 3 per uscire ");
-            int input2 = Convert.ToInt32(Console.ReadLine());
+            //sottraggo l'importo dal balance
+            balance -= importoScommessa;
 
-            switch (input2)
+            Console.WriteLine("Scegli su quanli numeri scommettere da 1 a 10 (inserisci i numeri separati da virgole):");
+            string numeroScelto = Console.ReadLine();
+
+            
+
+            // Dividi la stringa usando il carattere ','
+            string[] numeriStringa = numeroScelto.Split(',');
+
+            // Crea un array di interi per memorizzare i numeri e memorizzo la quantita di numeri che gioco 
+            //x calcolare poi il payout correttamente
+            int[] numeriArray = new int[numeriStringa.Length];
+            quantitaNumeriScelti = numeriArray.Length;
+
+            //per ogni stringa di numeriStringa la metto nell'array numeriString convertita in int
+            for(int i=0; i<numeriStringa.Length; i++)
             {
-                case 1: //se il valore della variabile dentro le parentesi tonde dello switch è quello scritto dopo il case, esegue, altrimenti passa al prossimo case
-                    System.Console.WriteLine("Inserisci il primo numero");
-                    number = Convert.ToInt32(Console.ReadLine());
+                numeriArray[i] =  Int32.Parse(numeriStringa[i]);
+            }
+            //paragono i numeri scelti col numero estratto col random
+            foreach(var numero in numeriArray)
+            {
+                if(numero==numeroDaInd)
+                {
+                    System.Console.WriteLine("è uscito il " + numeroDaInd);
+                    System.Console.WriteLine("Hai vinto");
+                    
+                    
+                    double percentualeGuadagno = 10/quantitaNumeriScelti;
+                    
+                    double guadagno = importoScommessa * percentualeGuadagno;
+                    balance += guadagno;
+                    System.Console.WriteLine("qn" + quantitaNumeriScelti);
+                    break;
+                }   
 
-                    System.Console.WriteLine("Inserisci il secondo numero");
-                    number2 = Convert.ToInt32(Console.ReadLine());
-                    break;
-                case 2:
-                    System.Console.WriteLine("Digita: 1 per somma, 2 per sottrazione, 3 per moltiplicazione, 4 per divisione");
-                    input = Convert.ToInt32(Console.ReadLine());
-                    break;
-                case 3: //se il valore della variabile dentro le parentesi tonde dello switch è quello scritto dopo il case, esegue, altrimenti passa al prossimo case
-                    System.Console.WriteLine($"stai uscendo..");
-                    return;
-                default:
-                    System.Console.WriteLine($"operazione non riconosciuta");
-                    break;
+                //vedo se per ogni numero quanti perdono. Se il numero delle perdite è = al numero dei numeri scommessi,
+                //vado effettivamente a levare l'importo scommesso dal balance
+                // else if(numero!=numeroDaInd)
+                // {
+                //     int conteggioNumeri = 0;
+                //     conteggioNumeri++;
+                //     if(conteggioNumeri==quantitaNumeriScelti)
+                //     {
+                //         System.Console.WriteLine("è uscito il " + numeroDaInd);
+                //         System.Console.WriteLine("hai perso :(");
+                //         double perdita = importoScommessa;
+                //         balance -= perdita;
+                //     }
+                // }
+            }
+            
+            
+            System.Console.WriteLine();
+            System.Console.WriteLine("balance attuale " + balance);
+            System.Console.WriteLine("");
+            
+            Console.WriteLine("Vuoi continuare? (s/n)");
+            string risposta = Console.ReadLine()!;
+            if (risposta == "n")
+            {
+                break;
             }
         }
     }
 }
+        
+    
