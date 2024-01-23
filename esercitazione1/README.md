@@ -2521,3 +2521,294 @@ class Program //quando arrivi a un tot di punteggio, o inizia nuova partita, sta
     }
 }
 ```
+
+###
+
+```c#
+//implementare: numero di tentativi quando indoviniamo, se inseriamo numero + alto o basso ci da suggerimenti dicendoci se il numero è + alto o + basso
+//input utente per fargli mettere una moneta
+//ricalcolare ogni volta il numero di monete presenti nella macchinetta
+
+class Program //roulette
+{ 
+    static void Main()
+    {
+        double balance=100.0;
+        double importoScommessa=0;
+        //int punteggio = 0;
+        int quantitaNumeriScelti = 0;
+        double probabilitaVittoria = (10 * quantitaNumeriScelti) ;
+        
+        
+
+        while (true)
+        {
+            Random random = new Random();
+            int numeroDaInd = random.Next(1, 11);
+            Console.WriteLine("\nIndovina il numero sorteggiato");
+            
+            while(true) //ciclo che mi richiede l'importo finchè non è valido, ovvero minore del mio saldo
+            {
+                System.Console.WriteLine("Scegli l'importo da scommettere");
+                importoScommessa = Convert.ToDouble(Console.ReadLine());
+                if(importoScommessa<=balance)
+                {
+                    break;
+                }
+            }
+
+            //sottraggo l'importo dal balance
+            balance -= importoScommessa;
+
+            Console.WriteLine("Scegli su quali numeri scommettere da 1 a 10 (inserisci i numeri separati da virgole):");
+            string numeroScelto = Console.ReadLine();
+
+            
+
+            // Divido la stringa usando il carattere ','
+            
+            string[] numeriStringa = numeroScelto.Split(',');
+            // Console.WriteLine(numeriStringa[1]);
+
+            // Creo un array di interi per memorizzare i numeri e memorizzo la quantita di numeri che gioco 
+            //x calcolare poi il payout correttamente
+            int[] numeriArray = new int[numeriStringa.Length];
+
+            quantitaNumeriScelti = numeriArray.Length;
+            
+            //per ogni stringa di numeriStringa la metto nell'array numeriString convertita in int
+            for(int i=0; i<numeriStringa.Length; i++)
+            {
+                numeriArray[i] =  Int32.Parse(numeriStringa[i]);
+                //Console.WriteLine(numeriArray[i]);
+            }
+            //paragono i numeri scelti col numero estratto col random
+            foreach(int numero in numeriArray)
+            {
+                if(numero==numeroDaInd)
+                {
+                    System.Console.WriteLine("è uscito il " + numeroDaInd);
+                    
+                    
+                    double percentualeGuadagno = 10.0/quantitaNumeriScelti;
+                    
+                    double guadagno = importoScommessa * percentualeGuadagno;
+                    balance += guadagno;
+                    System.Console.WriteLine("Hai vinto " + guadagno);
+                    break;
+                }   
+                //va subito qui ogni volta che sbaglia
+                else{
+                    System.Console.WriteLine("è uscito il numero " + numeroDaInd);
+                    System.Console.WriteLine("Hai perso :(");
+                    break;
+                }
+
+                //vedo se per ogni numero quanti perdono. Se il numero delle perdite è = al numero dei numeri scommessi,
+                //vado effettivamente a levare l'importo scommesso dal balance
+                // else if(numero!=numeroDaInd)
+                // {
+                //     int conteggioNumeri = 0;
+                //     conteggioNumeri++;
+                //     if(conteggioNumeri==quantitaNumeriScelti)
+                //     {
+                //         System.Console.WriteLine("è uscito il " + numeroDaInd);
+                //         System.Console.WriteLine("hai perso :(");
+                //         double perdita = importoScommessa;
+                //         balance -= perdita;
+                //     }
+                // }
+            }
+            
+            
+            System.Console.WriteLine();
+            System.Console.WriteLine("balance attuale " + balance);
+            System.Console.WriteLine("");
+            
+            Console.WriteLine("Vuoi continuare? (s/n)");
+            string risposta = Console.ReadLine()!;
+            if (risposta == "n")
+            {
+                break;
+            }
+            else
+            {Console.Clear();}
+        }
+    }
+}
+``` 
+
+### eccezioni
+
+Gli esempi piu comuni sono:
+- System.IO.IOException ( si verifica quando si tenta di accedere a un file che non esiste)
+- System.IndexOutOfRangeException (quando si tenta di accedere ad elemento di un array con indice non valido)
+- System.NullReferenceException (si verifica quando si tenta di accedere a un oggetto null)
+- System.OutOfMemoryException (si verifica quando non c'è abbastanza memoria disponibile)
+- System.StackOverflowException (si verifica quando la pila è piena)
+
+Eccezioni generate dal programmatore:
+
+- System.ArgumentException (si verifica quando un argomento di un metodo non è valido)
+- System.ArgumentNullException (si verifica quando un argomento di un metodo è null)
+- System.ArgumentOutOfRangeException (si verifica quando un argomento di un metodo è fuori dal range consentito)
+- System.DividedByZeroException (quando si tenta di dividere per 0)
+- System.InvalidCastException (si verifica quando si tenta di convertire un tipo in un altro tipo non valido)
+- System.NotImplementedException (si verifica quando si tenta di usare un metodo non implementato)
+
+
+Si usano 3 tipi:
+ - try-cath-finally -> il finally viene sempre eseguito
+ - try-catch-finally-throw -> il finally viene eseguito solo se non viene generata un exxezione
+ - try-parse
+    
+```c#
+try
+{
+    //codice che può generare un eccezione
+}
+catch
+{
+    //codice che gestisce l'eccezione
+}
+finally
+{
+    //codice che viene sempre eseguito
+}
+
+try
+{
+    //codice che può generare un eccezione
+}
+catch
+{
+    //codice che gestisce l'eccezione
+    throw;
+}
+finally
+{
+    //codice che viene eseguito solo se non viene generata un'eccezione
+}
+
+```
+
+- Il try-parse lo si usa quando invece che gestire l'eccezione si vuole solo controllare se l'eccezioni è andata a buon fine o no (dando true se si e false se no invece che un eccezione)
+
+### vogliamo verificare che l'utente inserisca un numero tra 1 e 10
+
+```c#
+using System.Linq.Expressions;
+
+class Program
+{
+    static void Main(string[] args)
+    {
+        Console.WriteLine("Inserisci un numero tra 1 e 10");
+        try{
+        int numero = int.Parse(Console.ReadLine()!);
+        if(numero<1 || numero>10)
+        {
+            Console.WriteLine("Il numero non è valido");
+            return;
+        }
+
+        Console.WriteLine($"Il numero inserito è {numero}");
+        
+        }
+        catch (Exception e)
+        {
+            System.Console.WriteLine("Il numero non è valido!!");
+            return;
+        }
+    }
+}
+```
+
+### vogliamo gestire System.IO.IOException (si vierifica quando si tenta di accedere a un file che non esiste)
+
+```c#
+
+class Program
+{
+    static void Main(string[] args)
+    {
+        try
+        {
+            string contenuto = File.ReadAllText("file.txt"); //il file deve essere nella stessa cartella del programma
+            Console.WriteLine(contenuto);
+        }
+        catch(Exception e)
+        {
+            System.Console.WriteLine("Il file non esiste");
+            return;
+        }
+    }
+}
+
+```
+### gestiamo System.IndexOutOfRangeException
+
+```c#
+class Program
+{
+    static void Main(string[] args)
+    {
+        int [] numeri = {1,2,3};
+        try
+        {
+           System.Console.WriteLine(numeri[2]); //3
+           System.Console.WriteLine(numeri[3]); //indice non valido
+           System.Console.WriteLine(numeri[1]); // non stampa perchè entrato nel catch
+        }
+        catch(Exception e)
+        {
+            System.Console.WriteLine("Indice non valido");
+            return;
+        }
+        finally
+        {
+            System.Console.WriteLine(numeri[0]); //lo stampa 
+        }
+    }
+}
+```
+
+### Vogliamo gestire System.NullReferenceException ( si verifica quando il reference punta a un field di un oggetto che è null)
+
+```c#
+class Program
+{
+    static void Main(string[] args)
+    {
+        string nome = null; //stringa senza nulla
+        try
+        {
+            System.Console.WriteLine(nome.Length);
+        }
+        catch(Exception e)
+        {
+            System.Console.WriteLine("Il nome non è valido");
+            return;
+        }
+    }
+}
+```
+### System.OutOfMemoryException
+
+```c#
+class Program
+{
+    static void Main(string[] args)
+    {
+        try
+        {
+            int [] numeri = new int[int.MaxValue]; //è il max value che può contenere un int, e un array non ci arriva
+        }
+        catch(Exception e)
+        {
+            System.Console.WriteLine("Memoria insufficiente");
+            return;
+        }
+    }
+}
+```
