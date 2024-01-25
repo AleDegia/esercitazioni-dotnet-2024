@@ -3308,7 +3308,7 @@ class Program //roulette , da implementare switch per puntare su pari e dispari,
                     case 1: //se il valore della variabile dentro le parentesi tonde dello switch è quello scritto dopo il case, esegue, altrimenti passa al prossimo case
                         System.Console.WriteLine($"pari o dispari? 1:pari, 2:dispari");
                         scelta = Int32.Parse(Console.ReadLine());
-                        // System.Console.WriteLine("scelta fatta!");
+                        
                         switch (scelta)
                         {
                             case 1:
@@ -3350,6 +3350,7 @@ class Program //roulette , da implementare switch per puntare su pari e dispari,
             {
                 try
                 {
+                    //verifico quale scelta è stata fatta e assegno il valore alla stringa numeroScelto
                     if (scelta1 == 3)
                     {
                         Console.WriteLine("Scegli su quali numeri scommettere da 1 a 10 (inserisci i numeri separati da virgole):");
@@ -3466,6 +3467,665 @@ class Program //roulette , da implementare switch per puntare su pari e dispari,
             }
             else
             { Console.Clear(); }
+        }
+    }
+}
+```
+
+
+### suggerimenti di carlo applicati alla roulette e messi default agli switch interni
+
+```c#
+
+class Program
+// roulette , da implementare switch per puntare su pari e dispari, e implementare lo 0, 
+// usare funzioni asincrone x timer di chiusura puntate e inizio roulette, anche un rigioca ultima puntata fatta.
+{
+    static void Main()
+    {
+
+        int vittorie = 0;
+        int sconfitte = 0;
+
+        //----------------------------------------
+
+        double balance = 100.0;
+        double importoScommessa = 0;
+        int scelta = 0;
+        int scelta1 = 0;
+
+        //int punteggio = 0;
+        int quantitaNumeriScelti = 0;
+        double probabilitaVittoria = (10 * quantitaNumeriScelti);
+        int contatore = 0;
+        string numeroScelto = null;
+        int[] numeriArray = new int[0];
+
+
+
+        while (true)
+        {
+
+            double percentualeVittorie = CalcolaPercentuale(vittorie, vittorie + sconfitte);
+            double percentualeSconfitte = CalcolaPercentuale(sconfitte, vittorie + sconfitte);
+
+            if (vittorie > 0 || sconfitte > 0)
+            { //aggiunto condizione x non mostrare se non si ha ancora giocato
+                Console.WriteLine($"Percentuale di vittorie: {Math.Round(percentualeVittorie, 2)}%");
+                Console.WriteLine($"Percentuale di sconfitte: {Math.Round(percentualeSconfitte, 2)}%");
+            }
+
+            // Metodo per calcolare la percentuale (lo tengo qua solo per vedere subito com'è fatto il metodo senza dover andare giu)
+            static double CalcolaPercentuale(int parte, int totale)
+            {
+                if (totale == 0)
+                {
+                    return 0.0; // Gestione caso in cui il totale è zero per evitare divisione per zero
+                }
+
+                return ((double)parte / totale) * 100;
+            }
+
+            /////////////////////////////
+
+
+            Random random = new Random();
+            int numeroDaInd = random.Next(1, 11);
+            Console.WriteLine("\nIndovina il numero sorteggiato");
+
+            while (true) //ciclo che mi richiede l'importo finchè non è valido, ovvero minore del mio saldo
+            {
+                try
+                {
+                    System.Console.WriteLine($"Scegli l'importo da scommettere (balance -> {balance})");
+                    importoScommessa = Convert.ToDouble(Console.ReadLine());
+                    if (importoScommessa <= balance && importoScommessa>0)
+                    {
+                        break;
+                    }
+                    else
+                    {
+                        System.Console.WriteLine("Non puoi scommettere questo importo");
+                    }
+                }
+                catch (Exception ex)
+                {
+                    System.Console.WriteLine("formato non valido");
+                }
+            }
+
+            //sottraggo l'importo dal balance
+            balance -= importoScommessa;
+
+        Label:
+            try
+            {
+
+                System.Console.WriteLine("Che tipo di puntata vuoi fare? 1:pari o dispari, 2: prima metà/seconda metà, 3: numeri singoli");
+                scelta1 = Int32.Parse(Console.ReadLine()!);  //! è per levare gli warning..
+            Label2: Label3:
+                switch (scelta1)
+                {
+                    case 1: //se il valore della variabile dentro le parentesi tonde dello switch è quello scritto dopo il case, esegue, altrimenti passa al prossimo case
+                        System.Console.WriteLine($"pari o dispari? 1:pari, 2:dispari");
+                        scelta = Int32.Parse(Console.ReadLine()!);
+
+                        switch (scelta)
+                        {
+                            case 1:
+                                System.Console.WriteLine("scelta fatta!");
+                                break;
+                            case 2:
+                                System.Console.WriteLine("scelta fatta!");
+                                break;
+                            default:
+                                System.Console.WriteLine("input non valido");
+                                goto Label2;
+                        }
+                        break;
+                    case 2:
+                        System.Console.WriteLine($"prima metà(1 a 5) o seconda metà(6 a 10)? 1:prima, 2:seconda");
+                        scelta = Int32.Parse(Console.ReadLine());
+                        switch (scelta)
+                        {
+                            case 1:
+                            case 2:
+                                System.Console.WriteLine("scelta fatta!");
+                                break;
+                            default:
+                                goto Label3;
+                        }
+                        break;
+                    case 3:
+                        break;
+                    default:
+                        System.Console.WriteLine("input non valido");
+                        goto Label;
+                }
+            }
+            catch
+            {
+                System.Console.WriteLine("input non valido");
+                System.Console.WriteLine();
+                goto Label;
+            }
+
+            while (true)
+            {
+                try
+                {
+                    //verifico quale scelta è stata fatta e assegno il valore alla stringa numeroScelto (che poi viene convertita in array di stringhe e poi array di int)
+                    if (scelta1 == 3)
+                    {
+                        Console.WriteLine("Scegli su quali numeri scommettere da 1 a 10 (inserisci i numeri separati da virgole):");
+                        numeroScelto = Console.ReadLine();
+                    }
+
+                    if (scelta1 == 1 && scelta == 1)
+                    {
+                        numeroScelto = "2,4,6,8,10"; //lascio cosi perchè è piu veloce e selezionando i numeri pari dovrei scrivere varie righe di codice
+                    }
+                    else if (scelta1 == 1 && scelta == 2)
+                    {
+                        numeroScelto = "1,3,5,7,9";
+                    }
+
+                    if (scelta1 == 2 && scelta == 1)
+                    {
+                        numeroScelto = "1,2,3,4,5";
+                    }
+                    else if (scelta1 == 2 && scelta == 2)
+                    {
+                        numeroScelto = "6,7,8,9,10";
+                    }
+
+                    // Divido la stringa usando il separatore ','
+                    string[] numeriStringa = numeroScelto.Split(',');
+
+                    // Creo un array di interi per memorizzare i numeri e memorizzo la quantita di numeri che gioco 
+                    //x calcolare poi il payout correttamente
+                    numeriArray = new int[numeriStringa.Length];
+
+                    quantitaNumeriScelti = numeriArray.Length;
+
+                    //per ogni stringa di numeriStringa la metto nell'array numeriString convertita in int
+                    for (int i = 0; i < numeriStringa.Length; i++)
+                    {
+                        numeriArray[i] = Int32.Parse(numeriStringa[i]);
+                        //Console.WriteLine(numeriArray[i]);
+                    }
+                    break;
+                }//chisura try
+                catch
+                {
+                    System.Console.WriteLine("formato non valido");
+
+                }
+
+            }
+
+            //. . . 
+            System.Console.Write(". ");
+            Thread.Sleep(500);
+            System.Console.Write(". ");
+            Thread.Sleep(500);
+            System.Console.Write(". \n");
+            Thread.Sleep(500);
+
+            //paragono i numeri scelti col numero estratto col random
+            foreach (int numero in numeriArray)
+            {
+                contatore++;
+                if (numero == numeroDaInd)
+                {
+                    vittorie++;
+                    System.Console.WriteLine("è uscito il " + numeroDaInd);
+                    double percentualeGuadagno = 10.0 / quantitaNumeriScelti;
+
+                    double guadagno = importoScommessa * percentualeGuadagno;
+                    balance += guadagno;
+                    System.Console.Write("Hai vinto ");
+                    Console.ForegroundColor = ConsoleColor.Green;
+                    System.Console.WriteLine(guadagno);
+                    Console.ResetColor(); //resetto colore caratteri
+                    contatore = 0;
+                    break;
+                }
+                //se per tutti i numeri che ho scelto non è uscito il num da indovinare
+                else if (quantitaNumeriScelti == contatore)
+                {
+                    sconfitte++;
+                    System.Console.WriteLine("è uscito il numero " + numeroDaInd);
+                    System.Console.WriteLine("Hai perso :(");
+                    quantitaNumeriScelti = 0;
+                    contatore = 0; //riporto il contatore a 0 senno poi non entra 
+                    break;
+                }
+
+                //vedo se per ogni numero quanti perdono. Se il numero delle perdite è = al numero dei numeri scommessi,
+                //vado effettivamente a levare l'importo scommesso dal balance
+                // else if(numero!=numeroDaInd)
+                // {
+                //     int conteggioNumeri = 0;
+                //     conteggioNumeri++;
+                //     if(conteggioNumeri==quantitaNumeriScelti)
+                //     {
+                //         System.Console.WriteLine("è uscito il " + numeroDaInd);
+                //         System.Console.WriteLine("hai perso :(");
+                //         double perdita = importoScommessa;
+                //         balance -= perdita;
+                //     }
+                // }
+            }
+
+
+            System.Console.WriteLine();
+            System.Console.WriteLine("balance attuale " + balance);
+            System.Console.WriteLine("");
+
+            Console.WriteLine("Vuoi continuare? (s/n)");
+            string risposta = Console.ReadLine()!;
+            if (risposta == "n")
+            {
+                break;
+            }
+            else
+            { Console.Clear(); }
+        }
+    }
+}
+```
+
+```c#
+class Program
+// roulette , da implementare switch per puntare su pari e dispari, e implementare lo 0, 
+// usare funzioni asincrone x timer di chiusura puntate e inizio roulette, anche un rigioca ultima puntata fatta.
+{
+    static void Main()
+    {
+
+        int vittorie = 0;
+        int sconfitte = 0;
+
+        //----------------------------------------
+
+        double balance = 100.0;
+        double importoScommessa = 0;
+        int scelta = 0;
+        int scelta1 = 0;
+
+        //int punteggio = 0;
+        int quantitaNumeriScelti = 0;
+        double probabilitaVittoria = (10 * quantitaNumeriScelti);
+        int contatore = 0;
+        string numeroScelto = null;
+        int[] numeriArray = new int[0];
+
+
+
+        while (true)
+        {
+
+            double percentualeVittorie = CalcolaPercentuale(vittorie, vittorie + sconfitte);
+            double percentualeSconfitte = CalcolaPercentuale(sconfitte, vittorie + sconfitte);
+
+            if (vittorie > 0 || sconfitte > 0)
+            { //aggiunto condizione x non mostrare se non si ha ancora giocato
+                Console.WriteLine($"Percentuale di vittorie: {Math.Round(percentualeVittorie, 2)}%");
+                Console.WriteLine($"Percentuale di sconfitte: {Math.Round(percentualeSconfitte, 2)}%");
+            }
+
+            // Metodo per calcolare la percentuale (lo tengo qua solo per vedere subito com'è fatto il metodo senza dover andare giu)
+            static double CalcolaPercentuale(int parte, int totale)
+            {
+                if (totale == 0)
+                {
+                    return 0.0; // Gestione caso in cui il totale è zero per evitare divisione per zero
+                }
+
+                return ((double)parte / totale) * 100;
+            }
+
+            /////////////////////////////
+
+
+            Random random = new Random();
+            int numeroDaInd = random.Next(1, 11);
+            Console.WriteLine("\nIndovina il numero sorteggiato");
+
+            while (true) //ciclo che mi richiede l'importo finchè non è valido, ovvero minore del mio saldo
+            {
+                try
+                {
+                     if(importoScommessa!=0)
+                    {
+                        System.Console.WriteLine($"se vuoi riusare l'ultima puntata premi '666', per fare 2x premi '333', altrimenti digita l'importo da scommettere (balance -> {balance})");
+                        string input = Console.ReadLine();
+                        if(input=="666"){importoScommessa=importoScommessa;}
+                        else if (input=="333"){importoScommessa = importoScommessa *2;}
+                    }
+                    else if(importoScommessa==0){
+                        System.Console.WriteLine($"Scegli l'importo da scommettere (balance -> {balance})");
+                        importoScommessa = Convert.ToDouble(Console.ReadLine());}
+
+                    if (importoScommessa <= balance && importoScommessa>0)
+                    {
+                        break;
+                    }
+                    else
+                    {
+                        System.Console.WriteLine("Non puoi scommettere questo importo");
+                    }
+                }
+                catch (Exception ex)
+                {
+                    System.Console.WriteLine("formato non valido");
+                }
+            }
+
+            //sottraggo l'importo dal balance
+            balance -= importoScommessa;
+
+        Label:
+            try
+            {
+
+                System.Console.WriteLine("Che tipo di puntata vuoi fare? 1:pari o dispari, 2: prima metà/seconda metà, 3: numeri singoli");
+                scelta1 = Int32.Parse(Console.ReadLine()!);  //! è per levare gli warning..
+            Label2: Label3:
+                switch (scelta1)
+                {
+                    case 1: //se il valore della variabile dentro le parentesi tonde dello switch è quello scritto dopo il case, esegue, altrimenti passa al prossimo case
+                        System.Console.WriteLine($"pari o dispari? 1:pari, 2:dispari");
+                        scelta = Int32.Parse(Console.ReadLine()!);
+
+                        switch (scelta)
+                        {
+                            case 1:
+                                System.Console.WriteLine("scelta fatta!");
+                                break;
+                            case 2:
+                                System.Console.WriteLine("scelta fatta!");
+                                break;
+                            default:
+                                System.Console.WriteLine("input non valido");
+                                goto Label2;
+                        }
+                        break;
+                    case 2:
+                        System.Console.WriteLine($"prima metà(1 a 5) o seconda metà(6 a 10)? 1:prima, 2:seconda");
+                        scelta = Int32.Parse(Console.ReadLine());
+                        switch (scelta)
+                        {
+                            case 1:
+                            case 2:
+                                System.Console.WriteLine("scelta fatta!");
+                                break;
+                            default:
+                                goto Label3;
+                        }
+                        break;
+                    case 3:
+                        break;
+                    default:
+                        System.Console.WriteLine("input non valido");
+                        goto Label;
+                }
+            }
+            catch
+            {
+                System.Console.WriteLine("input non valido");
+                System.Console.WriteLine();
+                goto Label;
+            }
+
+            while (true)
+            {
+                try
+                {
+                    //verifico quale scelta è stata fatta e assegno il valore alla stringa numeroScelto (che poi viene convertita in array di stringhe e poi array di int)
+                    if (scelta1 == 3)
+                    {
+                        Console.WriteLine("Scegli su quali numeri scommettere da 1 a 10 (inserisci i numeri separati da virgole):");
+                        numeroScelto = Console.ReadLine();
+                    }
+
+                    if (scelta1 == 1 && scelta == 1)
+                    {
+                        numeroScelto = "2,4,6,8,10"; //lascio cosi perchè è piu veloce e selezionando i numeri pari dovrei scrivere varie righe di codice
+                    }
+                    else if (scelta1 == 1 && scelta == 2)
+                    {
+                        numeroScelto = "1,3,5,7,9";
+                    }
+
+                    if (scelta1 == 2 && scelta == 1)
+                    {
+                        numeroScelto = "1,2,3,4,5";
+                    }
+                    else if (scelta1 == 2 && scelta == 2)
+                    {
+                        numeroScelto = "6,7,8,9,10";
+                    }
+
+                    // Divido la stringa usando il separatore ','
+                    string[] numeriStringa = numeroScelto.Split(',');
+
+                    // Creo un array di interi per memorizzare i numeri e memorizzo la quantita di numeri che gioco 
+                    //x calcolare poi il payout correttamente
+                    numeriArray = new int[numeriStringa.Length];
+
+                    quantitaNumeriScelti = numeriArray.Length;
+
+                    //per ogni stringa di numeriStringa la metto nell'array numeriString convertita in int
+                    for (int i = 0; i < numeriStringa.Length; i++)
+                    {
+                        numeriArray[i] = Int32.Parse(numeriStringa[i]);
+                        //Console.WriteLine(numeriArray[i]);
+                    }
+                    break;
+                }//chisura try
+                catch
+                {
+                    System.Console.WriteLine("formato non valido");
+
+                }
+
+            }
+
+            //. . . 
+            System.Console.Write(". ");
+            Thread.Sleep(500);
+            System.Console.Write(". ");
+            Thread.Sleep(500);
+            System.Console.Write(". \n");
+            Thread.Sleep(500);
+
+            //paragono i numeri scelti col numero estratto col random
+            foreach (int numero in numeriArray)
+            {
+                contatore++;
+                if (numero == numeroDaInd)
+                {
+                    vittorie++;
+                    System.Console.WriteLine("è uscito il " + numeroDaInd);
+                    double percentualeGuadagno = 10.0 / quantitaNumeriScelti;
+
+                    double guadagno = importoScommessa * percentualeGuadagno;
+                    balance += guadagno;
+                    System.Console.Write("Hai vinto ");
+                    Console.ForegroundColor = ConsoleColor.Green;
+                    System.Console.WriteLine(guadagno);
+                    Console.ResetColor(); //resetto colore caratteri
+                    contatore = 0;
+                    break;
+                }
+                //se per tutti i numeri che ho scelto non è uscito il num da indovinare
+                else if (quantitaNumeriScelti == contatore)
+                {
+                    sconfitte++;
+                    System.Console.WriteLine("è uscito il numero " + numeroDaInd);
+                    System.Console.WriteLine("Hai perso :(");
+                    quantitaNumeriScelti = 0;
+                    contatore = 0; //riporto il contatore a 0 senno poi non entra 
+                    break;
+                }
+
+                //vedo se per ogni numero quanti perdono. Se il numero delle perdite è = al numero dei numeri scommessi,
+                //vado effettivamente a levare l'importo scommesso dal balance
+                // else if(numero!=numeroDaInd)
+                // {
+                //     int conteggioNumeri = 0;
+                //     conteggioNumeri++;
+                //     if(conteggioNumeri==quantitaNumeriScelti)
+                //     {
+                //         System.Console.WriteLine("è uscito il " + numeroDaInd);
+                //         System.Console.WriteLine("hai perso :(");
+                //         double perdita = importoScommessa;
+                //         balance -= perdita;
+                //     }
+                // }
+            }
+
+
+            System.Console.WriteLine();
+            System.Console.WriteLine("balance attuale " + balance);
+            System.Console.WriteLine("");
+
+            Console.WriteLine("Vuoi continuare? (s/n)");
+            string risposta = Console.ReadLine()!;
+            if (risposta == "n")
+            {
+                break;
+            }
+            else
+            { Console.Clear(); }
+        }
+    }
+}
+```
+
+### OOP e metodi
+
+```c#
+using System;
+using System.Collections.Generic;
+
+class Program
+{
+    static List<Contact> contacts = new List<Contact>();
+
+    static void Main()
+    {
+        while (true)
+        {
+            Console.WriteLine("1. Aggiungi contatto");
+            Console.WriteLine("2. Visualizza contatti");
+            Console.WriteLine("3. Esci");
+
+            string choice = Console.ReadLine();
+
+            switch (choice)
+            {
+                case "1":
+                    AggiungiContatto();
+                    break;
+                case "2":
+                    VisualizzaContatti();
+                    break;
+                case "3":
+                    Environment.Exit(0);
+                    break;
+                default:
+                    Console.WriteLine("Scelta non valida. Riprova.");
+                    break;
+            }
+        }
+    }
+
+    static void AggiungiContatto()
+    {
+        Console.Write("Inserisci il nome: ");
+        string nome = Console.ReadLine();
+        Console.Write("Inserisci il numero di telefono: ");
+        string telefono = Console.ReadLine();
+
+        Contact nuovoContatto = new Contact(nome, telefono);
+        contacts.Add(nuovoContatto);
+
+        Console.WriteLine("Contatto aggiunto con successo!");
+    }
+
+    static void VisualizzaContatti()
+    {
+        if (contacts.Count == 0)
+        {
+            Console.WriteLine("Nessun contatto presente.");
+        }
+        else
+        {
+            Console.WriteLine("Lista dei contatti:");
+
+            foreach (var contatto in contacts)
+            {
+                Console.WriteLine($"Nome: {contatto.Nome}, Telefono: {contatto.Telefono}");
+            }
+        }
+    }
+}
+
+class Contact
+{
+    public string Nome { get; set; }
+    public string Telefono { get; set; }
+
+    public Contact(string nome, string telefono)
+    {
+        Nome = nome;
+        Telefono = telefono;
+    }
+}
+```
+
+### lettura file txt
+
+```c#
+class Program
+{
+   
+
+    static void Main(string[] args)
+    {
+        string path = @"./test/prova.txt"; //il file deve essere nella stessa cartella del programma
+        //string [] lines2 = string[]
+        string[] lines = File.ReadAllLines(path); //legge tutte le righe del file (lines[0] = "Riga 1"; lines[1] = "Riga 2"; lines[2] = "Riga 3";)
+        foreach(string line in lines) //per ogni riga
+        {
+            System.Console.WriteLine(line); //stampa la riga
+        }
+    }
+}
+```
+
+### lettura file txt 2
+
+```c#
+class Program
+{
+    static void Main(string[] args)
+    {
+        string path = @"./test/prova.txt"; //il file deve essere nella stessa cartella del programma
+        string[] lines = File.ReadAllLines(path); //legge tutte le righe del file
+        string[] nomi = new string[lines.Length]; //crea un array di stringhe della lunghezza del numero di righe del file (è = a lines)
+
+        for(int i = 0; i< lines.Length; i++)
+        {
+            nomi[i] = lines[i]; //assegna ad ogni elemento dell'array di stringhe il valore 
+        }
+
+        foreach(string nome in nomi) //per ogni riga
+        {
+            System.Console.WriteLine(nome); //stampa la riga
         }
     }
 }
