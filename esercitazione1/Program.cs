@@ -1,7 +1,5 @@
 ﻿class Program
 {
-   
-
     static void Main(string[] args)
     {
         string path = @"./test/prova.txt"; //il file deve essere nella stessa cartella del programma
@@ -12,10 +10,21 @@
         {
             nomi[i] = lines[i]; //assegna ad ogni elemento dell'array di stringhe il valore 
         }
-
-        foreach(string nome in nomi) //per ogni riga
+        Random random = new Random(); 
+        int index = random.Next(nomi.Length); //genera un numero casuale tra 0 e la lunghezza dell'array di stringhe
+        System.Console.WriteLine(nomi[index]); //stampa il nome corrispondente all'indice generato casualmente
+        string path2 = @"./test/test2.txt";
+        if(!File.Exists(path2))
         {
-            System.Console.WriteLine(nome); //stampa la riga
+            File.Create(path2).Close();
+        }
+        if(!File.ReadAllLines(path2).Contains(nomi[index])) // se il txt non contiene il nome sorteggiato lo aggiunge 
+        {
+            File.AppendAllText(path2, nomi[index] + "\n"); // \n serve ad aggiungere il nome dopo a capo
+        }
+        else
+        {
+            System.Console.WriteLine("il nome è già presente nel file");
         }
     }
 }
