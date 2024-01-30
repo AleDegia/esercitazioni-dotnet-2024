@@ -1,31 +1,220 @@
-﻿//Programma che legge un file csv creando un array di stringhe per ogni riga del file e divide ogni riga in un array di
-//string utilizzando la virgola come separatore e crea un file csv per ogni riga del file con il nome del file che corrisponde
-//al nome della prima colonna ed il contenuto del file che corrisponde al contenuto delle altre colonne disponibili
+﻿
 
 class Program
 {
+    
     static void Main()
     {
-        string path = @"test.csv";  //il file deve essere nella stessa cartella del programma
-        string [] lines = File.ReadAllLines(path);  //Legge tutte le righe dal file specificato (test.csv) e le memorizza in un array di stringhe chiamato lines. Ogni elemento dell'array rappresenta una riga del file CSV.
-        string [][] nomi = new string[lines.Length][]; //crea un array di un array
-
-        for(int i = 0; i < lines.Length; i++)
+        int numeroGiocatori = 0;
+    int [] posizioneGiocatori = new int [6];
+        //chiedo in quanti si è a giocare
+        while (true)
         {
-            nomi[i] = lines[i].Split(','); //assegno ad ogni elemnto dell'array di array di stringhe il valore della riga corrispondente divisa in un array di stringhe utilizzando la virgola ocme separatore
+            try
+            {
+                System.Console.WriteLine("In quanti siete a giocare? Si gioca al massimo in 6");
+                numeroGiocatori = Int32.Parse(Console.ReadLine());
+                //se ci sono + di 6 giocatori non si può iniziare a giocare e ritorna all'inizio del while
+                if(numeroGiocatori>6)
+                {
+                    System.Console.WriteLine("Si gioca al massimo in 6.");
+                    continue; 
+                }
+                break;
+            }
+            catch (FormatException)
+            {
+                Console.WriteLine($"Unable to parse {numeroGiocatori}");
+            }
         }
 
-        foreach(string[] nome in nomi)
+        string [] nomiGiocatori = new string [6];
+        int[] abilita = new int[2];
+        Dictionary<int, string> abilitaGiocatori = new Dictionary<int, string>();
+        // Dictionary<int, string> associazioneTurniNomi = new Dictionary<int, string>();
+        int[] caselle = new int[56];
+        int contatore = 1;
+
+
+        //assegno i nomi dei giocatori alla rispettive variabili nell'array uno ad uno grazie al ciclo
+        for(int i=0; i<numeroGiocatori; i++)
         {
-            string path2 = nome[0] + ".csv";
-            File.Create(path2).Close();
-            for(int i = 1; i < nome.Length; i++)
+            System.Console.WriteLine($"Inserisci il nome del giocatore {contatore}");
+            string nomeGiocatoreInput = Console.ReadLine();
+            nomiGiocatori[i] = nomeGiocatoreInput;
+            System.Console.WriteLine($"Scegli l'abilità che vuoi usare");
+            System.Console.WriteLine("digita 1 per Controllo, 2 per ...");
+            int abilitaScelta =  Int32.Parse(Console.ReadLine());
+            // associazioneTurniNomi.Add(i+1,nomiGiocatori[i]);
+            contatore++;
+
+            switch(abilitaScelta)
             {
-                File.AppendAllText(path2, nome[i] + "\n");
+                case 1:
+                    System.Console.WriteLine($"{nomiGiocatori[i]} ha scelto 'Controllo' ");
+                    abilitaGiocatori.Add(1,nomiGiocatori[i]);
+                    continue;
+                case 2:
+                    System.Console.WriteLine($"{nomiGiocatori[i]} ha scelto 'Abilita2' ");
+                    abilitaGiocatori.Add(2,nomiGiocatori[i]);
+                    continue;
             }
-        }    
-        File.Delete("nome.csv");
+        }
+
+
+        int[] turnoGiocatore = {1,2,3,4,5,6};
+        int turno=1;
+        int dado1;
+        int dado2;
+
+        Random random = new Random();
+        
+
+        System.Console.WriteLine("\n INIZIAMO! \n");
+
+        while(true)
+        {  
+            
+            for(int i=0; i<numeroGiocatori; i++)  //ciclo per eseguire le istruzioni in base al turno del giocatore
+            {   
+                
+                //se il nome giocatore che usa l'abilità è il nome giocatore in pos i di nomiGiocatori vuol dire che è il suo turno
+                if(abilitaGiocatori.ContainsKey(1) && abilitaGiocatori.ContainsValue(nomiGiocatori[i]) && turnoGiocatore[i] == turno)
+                {
+                //--------------------------------------------------------------
+                // METODO LOGICA CONTROLLO
+
+                doppioNumero2:
+                dado1 = random.Next(1, 7);//escono numeri da 1 a 6
+                dado2 = random.Next(1, 7);//escono numeri da 1 a 6
+                
+                //. . . 
+                System.Console.Write(". ");
+                Thread.Sleep(500);
+                System.Console.Write(". ");
+                Thread.Sleep(500);
+                System.Console.Write(". \n \n");
+                Thread.Sleep(500);
+
+                posizioneGiocatori[i] = posizioneGiocatori[i] +dado1+dado2; //aggiorno la posizione del giocatore che gioca
+                
+                System.Console.WriteLine($"{nomiGiocatori[i]} ha fatto {dado1} e {dado2}");
+                System.Console.WriteLine("posizione aggiornata: casella numero " + posizioneGiocatori[i]);
+                //posizioneGiocatore1 = posizioneGiocatore1+dado1+dado2;
+                //System.Console.WriteLine($"{nomeGiocatore1} ");
+                Thread.Sleep(1000);
+
+                if(dado1==dado2)
+                {
+                    System.Console.WriteLine("doppio numero! tiri di nuvo :)");
+                    goto doppioNumero2;
+                }
+                
+                System.Console.WriteLine("vuoi atterrare di 1 avanti o no? y/n");
+                string input = Console.ReadLine();
+                if(input=="y")
+                {
+                    posizioneGiocatori[i]+=1;
+                    System.Console.WriteLine("ora sei nella casella " + posizioneGiocatori[i]);
+                }
+
+                if(i+1==numeroGiocatori) //se i giocatori hanno giocato tutti, rinizio il ciclo di giocate dal primo
+                {
+                    System.Console.WriteLine($"quando sei pronto per tirare {nomiGiocatori[0]} premi un tasto");
+                    Console.ReadKey(true);
+                    System.Console.WriteLine();
+                    continue;
+                }
+                System.Console.WriteLine($"quando sei pronto per tirare {nomiGiocatori[i+1]} premi un tasto");
+                Console.ReadKey(true);
+                System.Console.WriteLine();
+                } 
+                else 
+                {
+
+
+                doppioNumero:
+                dado1 = random.Next(1, 7);//escono numeri da 1 a 6
+                dado2 = random.Next(1, 7);//escono numeri da 1 a 6
+                
+                //. . . 
+                System.Console.Write(". ");
+                Thread.Sleep(500);
+                System.Console.Write(". ");
+                Thread.Sleep(500);
+                System.Console.Write(". \n \n");
+                Thread.Sleep(500);
+
+                posizioneGiocatori[i] = posizioneGiocatori[i] +dado1+dado2; //aggiorno la posizione del giocatore che gioca
+                
+                System.Console.WriteLine($"{nomiGiocatori[i]} ha fatto {dado1} e {dado2}");
+                System.Console.WriteLine("posizione aggiornata: casella numero " + posizioneGiocatori[i]);
+                //posizioneGiocatore1 = posizioneGiocatore1+dado1+dado2;
+                //System.Console.WriteLine($"{nomeGiocatore1} ");
+                Thread.Sleep(1000);
+
+                if(dado1==dado2)
+                {
+                    System.Console.WriteLine("doppio numero! tiri di nuvo :)");
+                    goto doppioNumero;
+                }
+
+                if(i+1==numeroGiocatori) //se i giocatori hanno giocato tutti, rinizio il ciclo di giocate dal primo
+                {
+                    System.Console.WriteLine($"quando sei pronto per tirare {nomiGiocatori[0]} premi un tasto");
+                    Console.ReadKey(true);
+                    System.Console.WriteLine();
+                    continue;
+                }
+                System.Console.WriteLine($"quando sei pronto per tirare {nomiGiocatori[i+1]} premi un tasto");
+                Console.ReadKey(true);
+                System.Console.WriteLine();
+            }}
+        // break;
+        }
     }
+
+    public static void logicaControllo(int[] posizioneGiocatori, int i, string[] nomiGiocatori, int numeroGiocatori)
+    {
+        doppioNumero:
+                Random random = new Random();
+                int dado1 = random.Next(1, 7);//escono numeri da 1 a 6
+                int dado2 = random.Next(1, 7);//escono numeri da 1 a 6
+                
+                //. . . 
+                System.Console.Write(". ");
+                Thread.Sleep(500);
+                System.Console.Write(". ");
+                Thread.Sleep(500);
+                System.Console.Write(". \n \n");
+                Thread.Sleep(500);
+
+                posizioneGiocatori[i] = posizioneGiocatori[i] +dado1+dado2; //aggiorno la posizione del giocatore che gioca
+                
+                System.Console.WriteLine($"{nomiGiocatori[i]} ha fatto {dado1} e {dado2}");
+                System.Console.WriteLine("posizione aggiornata: casella numero " + posizioneGiocatori[i]);
+                //posizioneGiocatore1 = posizioneGiocatore1+dado1+dado2;
+                //System.Console.WriteLine($"{nomeGiocatore1} ");
+                Thread.Sleep(1000);
+
+                if(dado1==dado2)
+                {
+                    System.Console.WriteLine("doppio numero! tiri di nuvo :)");
+                    goto doppioNumero;
+                }
+
+                if(i+1==numeroGiocatori) //se i giocatori hanno giocato tutti, rinizio il ciclo di giocate dal primo
+                {
+                    System.Console.WriteLine($"quando sei pronto per tirare {nomiGiocatori[0]} premi un tasto");
+                    Console.ReadKey(true);
+                    System.Console.WriteLine();
+                    // continue;
+                }
+                System.Console.WriteLine($"quando sei pronto per tirare {nomiGiocatori[i+1]} premi un tasto");
+                Console.ReadKey(true);
+                System.Console.WriteLine();
+    }
+
 }
 
 

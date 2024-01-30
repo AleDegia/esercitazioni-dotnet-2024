@@ -13,19 +13,34 @@ progetteremo un'applicazione per giocare al gioco dell'oca, da solo o in piu per
 - il programma deve essere in grado di gestire i turni di gioco basati sul lancio di 2 dadi per turno
 - di default ogni giocatore tira una volta sola ed il turno passa al giocatore successivo, mentre se esce numero doppio dai dadi può tirare un altra volta (questo ogni volta che esce numero doppio)
 - il programma gestisce le funzionalità delle caselle con regole specifiche: 
+  - Casella 4  - Muoviti una posizione davanti al primo (le abilità della casella non si attivano)
+  - Casella 8  - Teletrasporto 1: Spostati alla casella 14
+  - Casella 10 - Raggiungimento: Spostati nella posizione del primo giocatore
   - Casella 12 - Il Pozzo: Se atterri sulla casella 12, finisci nel pozzo e perdi un turno:
+  - Casella 15 - Teletrasporto: spostati alla posizione 23
+  - Casella 16 - Cambio abilità: puoi scegliere se cambiare la tua abilità e tenerla fino a fine gioco
+  - Casella 17 - Ruba per il prossimo giro l'abilità di un giocatore, quel giocatore la perderà per il prossimo turno e te la avrai in aggiunta alla tua
   - Casella 24 - Il Dottore: Se atterri qui, recupera immediatamente un turno perso. 
+  - Casella 26 - Disabilitante: Il giocatore che finisce qui perde le sue abilità fino a fine partita
+  - Casella 29 - Lo scambio: Scegli un giocatore. Scambiatevi di posizione sulla scacchiera.
   - Casella 30 - Il Ponte: Salta due caselle in avanti.
   - Casella 33 - La Malasorte: Perdi un turno a causa di sfortuna.
   - Casella 37 - Ritorno alle origini: torna alla casella 18
   - Casella 38 - Rilancio arretrante: rilanci i dadi e ti muoverai indietro invece che avanti
+  - Casella 42 - Torna all'inizio
+  - Casella 46 - Vittoria: Hai vinto!
 
 
 - il programma farà scegliere ad ogni giocatore un'abilità iniziale tra:
- - decidi se avanzare di 1 quando atterri su una casella (prima di atterrare)
- - sposta avanti di uno un avversario a scelta
- - giochi con 3 dadi invece che con 2
- - i giocatori che atterrano su un multiplo di 4 ritornano alla posizione in cui erano prima del lancio
+  - Controllo: decidi se avanzare di 1 quando atterri su una casella (prima di atterrare)
+  - sposta avanti di uno un avversario a scelta
+  - giochi con 1, 2 o 3 dadi invece che con 2 ogni tiro (scegli tu)
+  - i giocatori che atterrano su un multiplo di 4 ritornano alla posizione in cui erano prima del lancio
+  - ogni giro decidi per un giocatore se farlo rilanciare o meno prima che atterri sulla casella
+  - se un gicatore si sposta per via di un abilità quel giocatore deve spostarsi indietro di 4 dopo esser atterrato sulla casella 
+  - Sei immune alla abilità degli altri giocatori e delle caselle che vuoi che non si attivino
+  - possono esser tirati al massimo 2 dadi per giocatore
+  - disabilità l'abilità di un giocatore (puoi scegliere ogni giro un nuovo giocatore)
 
 
 ## Definizione di Strutture e Convenzioni:
@@ -51,7 +66,7 @@ progetteremo un'applicazione per giocare al gioco dell'oca, da solo o in piu per
 
 ## implementazione primarie 
 
-- IMPO: se escono due numeri uguali dai dati si tira 2 volte e non cambia il turno
+- IMPO: se escono due numeri uguali dai dati si tira 2 volte e non cambia il turno <input type="checkbox" checked>
 - IMPO: quando si arriva alla fine se si supera la casella di vittoria si torna indietro di n volte che la si è superata
 
 
