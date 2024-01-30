@@ -159,6 +159,39 @@ class Program
                     goto doppioNumero;
                 }
 
+                //implemento la visualizzazione grafica del gioco nel txt
+                string filePath = "C:/Users/DOTNET/Documents/Corso-Dotnet-2024/CORSO-DOTNET-2024/esercitazioni-dotnet-2024/esercitazione1/fileDadi.txt";
+
+                try
+                {
+                    // Apri il file in lettura utilizzando StreamReader
+                    using (StreamReader reader = new StreamReader(filePath))
+                    {
+                        string riga;
+                        int numeroRiga = 1;
+
+                        using (StreamWriter writer = new StreamWriter(filePath))
+                        {
+
+                        // Leggi ogni riga fino a quando raggiungi la fine del file
+                        while ((riga = reader.ReadLine()) != null)
+                        {
+                            
+                            // Esegui le operazioni desiderate con la riga letta
+                            if(numeroRiga == posizioneGiocatori[i] && riga.Contains(posizioneGiocatori[i].ToString()))
+                            {
+                                 writer.WriteLine(" StringaAggiuntaAllaRiga" + riga);
+                            }
+                        }
+                        }
+                    }
+                }
+                catch (Exception e)
+                {
+                    // Gestisci l'eccezione
+                    Console.WriteLine("Si è verificato un errore durante la lettura del file: " + e.Message);
+                }
+
                 if(i+1==numeroGiocatori) //se i giocatori hanno giocato tutti, rinizio il ciclo di giocate dal primo
                 {
                     System.Console.WriteLine($"quando sei pronto per tirare {nomiGiocatori[0]} premi un tasto");

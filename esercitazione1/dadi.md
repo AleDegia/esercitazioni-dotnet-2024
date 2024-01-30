@@ -67,10 +67,11 @@ progetteremo un'applicazione per giocare al gioco dell'oca, da solo o in piu per
 ## implementazione primarie 
 
 - IMPO: se escono due numeri uguali dai dati si tira 2 volte e non cambia il turno <input type="checkbox" checked>
-- IMPO: quando si arriva alla fine se si supera la casella di vittoria si torna indietro di n volte che la si è superata
+- IMPO: far visualizzare visivamente la situazione nelle caselle storandola in un txt/csv
 
 
 ## implementazioni secondarie 
 - timer di gioco
 - effetti caselle
 - bonus
+- IMPO: quando si arriva alla fine se si supera la casella di vittoria si torna indietro di n volte che la si è superata
