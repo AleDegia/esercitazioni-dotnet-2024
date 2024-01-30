@@ -1,2 +1,2 @@
 nome: Alessandro
-punteggio: 60
+punteggio: 80
