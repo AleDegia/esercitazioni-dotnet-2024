@@ -30,6 +30,7 @@ progetteremo un'applicazione per giocare al gioco dell'oca, da solo o in piu per
   - Casella 42 - Torna all'inizio
   - Casella 46 - Vittoria: Hai vinto!
 
+- faccio file csv che stora le posizioni dei giocatori nel gioco dell'oca e le aggiorna ad ogni giro
 
 - il programma farà scegliere ad ogni giocatore un'abilità iniziale tra:
   - Controllo: decidi se avanzare di 1 quando atterri su una casella (prima di atterrare)
