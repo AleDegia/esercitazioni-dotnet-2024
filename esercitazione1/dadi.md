@@ -13,9 +13,9 @@ progetteremo un'applicazione per giocare al gioco dell'oca, da solo o in piu per
 - il programma deve essere in grado di gestire i turni di gioco basati sul lancio di 2 dadi per turno
 - di default ogni giocatore tira una volta sola ed il turno passa al giocatore successivo, mentre se esce numero doppio dai dadi può tirare un altra volta (questo ogni volta che esce numero doppio)
 - il programma gestisce le funzionalità delle caselle con regole specifiche: 
-  - Casella 4  - Muoviti una posizione davanti al primo (le abilità della casella non si attivano)
+  - Casella 4  - Raggiungimento: Muoviti una posizione davanti al primo (le abilità della casella non si attivano)
   - Casella 8  - Teletrasporto 1: Spostati alla casella 14
-  - Casella 10 - Raggiungimento: Spostati nella posizione del primo giocatore
+  - Casella 10 - Randomic: Ti sposti su di un multiplo di 2 a random (inferiore a 30)
   - Casella 12 - Il Pozzo: Se atterri sulla casella 12, finisci nel pozzo e perdi un turno:
   - Casella 15 - Teletrasporto: spostati alla posizione 23
   - Casella 16 - Cambio abilità: puoi scegliere se cambiare la tua abilità e tenerla fino a fine gioco
