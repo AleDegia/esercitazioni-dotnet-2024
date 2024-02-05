@@ -14,12 +14,14 @@ progetteremo un'applicazione per giocare al gioco dell'oca, da solo o in piu per
 - di default ogni giocatore tira una volta sola ed il turno passa al giocatore successivo, mentre se esce numero doppio dai dadi può tirare un altra volta (questo ogni volta che esce numero doppio)
 - il programma gestisce le funzionalità delle caselle con regole specifiche: 
   - Casella 4  - Raggiungimento: Muoviti una posizione davanti al primo (le abilità della casella non si attivano)
+  - Casella 6 - TiroAnnullato: ritorni alla posizione prima del tiro
   - Casella 8  - Teletrasporto 1: Spostati alla casella 14
   - Casella 10 - Randomic: Ti sposti su di un multiplo di 2 a random (inferiore a 30)
   - Casella 12 - Il Pozzo: Se atterri sulla casella 12, finisci nel pozzo e perdi un turno:
   - Casella 15 - Teletrasporto: spostati alla posizione 23
   - Casella 16 - Cambio abilità: puoi scegliere se cambiare la tua abilità e tenerla fino a fine gioco
   - Casella 17 - Ruba per il prossimo giro l'abilità di un giocatore, quel giocatore la perderà per il prossimo turno e te la avrai in aggiunta alla tua
+  - Casella 18 - TiroAnnullato: ritorni alla posizione prima del tiro
   - Casella 24 - Il Dottore: Se atterri qui, recupera immediatamente un turno perso. 
   - Casella 26 - Disabilitante: Il giocatore che finisce qui perde le sue abilità fino a fine partita
   - Casella 29 - Lo scambio: Scegli un giocatore. Scambiatevi di posizione sulla scacchiera.
