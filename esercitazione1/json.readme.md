@@ -39,3 +39,4 @@ In base a quale utente è loggato, relazionare i dati degli acquisti a quell'ute
 
 - controllare perchè se inserisco dei dati sbagliati non esce dal loop (lo fa solo quando mi registro anche)
 - mettere la map dei prodotti acquistabili come json
+- quando mi registro, se poi esegui il login senza chiudere il programma non funziona
