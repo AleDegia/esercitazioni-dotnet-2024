@@ -18102,19 +18102,11 @@ class Program
     }
 }
 
-//array di array:
 
 /*
-[  
-  ["antonio", "rossi", "23", {"via": "via roma", "numero": 10}, {"nome": "roma", "cap": 16125}],
-  ["mario", "verdi", "30", {"via": "via milano", "citta": "milano"}]
-]
+file.Length - 2: Restituisce l'indice del penultimo carattere nella stringa file. Questo perché stai cercando di rimuovere l'ultimo carattere (l'ultima virgola).
 
-Dopo l'esecuzione del ciclo for, l'array bidimensionale prodotti avrà la seguente struttura:
-
-
-prodotti[0] = ["antonio", "rossi", "23", {"via": "via roma", "numero": 10}, {"nome": "roma", "cap": 16125}]
-prodotti[1] = ["mario", "verdi", "30", {"via": "via milano", "citta": "milano
+1: Specifica che vuoi rimuovere un solo carattere.
 */
 ```
 
