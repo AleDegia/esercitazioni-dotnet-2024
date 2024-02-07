@@ -10,11 +10,13 @@ class Program
         Boolean flag = false;
         string utenteRegistrato = null;
         string passwordUtenteRegistrato = null;
-        // dynamic obj = JsonConvert.DeserializeObject(file2)!;
+
         string pathJsonUtentiEPassword = @"utentiEpassword.json"; //il file deve essere nella stessa cartella del programma
         string json = File.ReadAllText(pathJsonUtentiEPassword); //legge il file
         string file2 = pathJsonUtentiEPassword;
         dynamic obj = JsonConvert.DeserializeObject(json)!;
+        string nomeUtente= null;
+        string password = null;
         string utenteLoggato = null;
         string passwordUtenteLoggato;
 
@@ -27,10 +29,10 @@ class Program
             {
 
                 System.Console.WriteLine("Inserisci il nome utente");
-                string nomeUtente = Console.ReadLine();
+                nomeUtente = Console.ReadLine();
                 nomiUtenti.Add(nomeUtente);
                 System.Console.WriteLine("Inserisci una password");
-                string password = Console.ReadLine();
+                password = Console.ReadLine();
                 passwords.Add(password);
                 System.Console.WriteLine("registrazione avvenuta con successo!");
                 utenteRegistrato = nomeUtente;
@@ -57,16 +59,17 @@ class Program
                 }
 
                 File.AppendAllText(pathJsonUtentiEPassword, "]"); //scrive la riga nel file
+                obj = JsonConvert.DeserializeObject(File.ReadAllText(pathJsonUtentiEPassword))!; //serve a leggere il file aggiornato col record dell'iscritto
 
             }
             else if (scelta == "2")
             {
                 System.Console.WriteLine("Inserisci il nome utente");
-                string nomeUtente = Console.ReadLine();
+                nomeUtente = Console.ReadLine();
 
                 //utenteLoggato=nomeUtente;
                 System.Console.WriteLine("Inserisci la password");
-                string password = Console.ReadLine();
+                password = Console.ReadLine();
 
 
                 //controllo se nella lista di nomi c'è il nome utente inserito, e controllo se è allo stesso indice 
@@ -109,7 +112,16 @@ class Program
         prezziProdotti["gaming mouse"] = 50.99m;
         prezziProdotti["monitor"] = 199.99m;
         prezziProdotti["joypad"] = 29.99m;
-        decimal balance = 30;
+        decimal balance = 100;
+
+        string parteTestoFissa = "acquisti";
+        string nomeFile = $"{parteTestoFissa}_{utenteLoggato}.json";
+        string pathAcquistiUtenteLoggato = @$"{nomeFile}";
+        if (File.Exists(pathAcquistiUtenteLoggato))
+        {
+            obj = JsonConvert.DeserializeObject(File.ReadAllText(pathAcquistiUtenteLoggato))!; 
+        }
+    
 
     Rifacciamo:
         System.Console.Write("Cosa vuoi acquistare tra: ");
@@ -117,7 +129,18 @@ class Program
         {
             System.Console.Write(prodotto + ", ");
         }
-        System.Console.WriteLine("? (1, 2 o 3) (il tuo balance di default è 30)");
+        System.Console.Write("? (1, 2 o 3) ");
+        if(File.Exists(pathAcquistiUtenteLoggato)){
+        foreach (var jsonElement in obj)
+            {
+                balance = balance - Convert.ToDecimal(jsonElement.prezzoDiAcquisto);
+            }   
+            System.Console.WriteLine("il tuo balance è di " + balance + ")"); 
+        }
+        else
+        {
+            System.Console.WriteLine("il tuo balance è di " + balance);
+        }
         string prodottoScelto = Console.ReadLine();
         while (prodottoScelto != "1" && prodottoScelto != "2" && prodottoScelto != "3")
         {
@@ -129,9 +152,7 @@ class Program
         string nomeProdottoScelto = null;
         decimal prezzoDacquisto = 0;
         string file3 = null;
-        string parteTestoFissa = "acquisti";
-        string nomeFile = $"{parteTestoFissa}_{utenteLoggato}.json";
-        string pathAcquistiUtenteLoggato = @$"{nomeFile}";
+        
 
         foreach (KeyValuePair<string, decimal> entry in prezziProdotti)
         {
@@ -141,6 +162,7 @@ class Program
             {
                 System.Console.WriteLine("acquisto avvenuto correttamente");
                 balance = balance - entry.Value;
+                
                 nomeProdottoScelto = entry.Key;
                 prezzoDacquisto = entry.Value;
                 parteTestoFissa = "acquisti";
@@ -152,8 +174,9 @@ class Program
                 {
                     File.Create(nomeFile).Close();
                     File.AppendAllText(nomeFile, "[\n"); //scrive la riga nel file
-                    File.AppendAllText(pathAcquistiUtenteLoggato, JsonConvert.SerializeObject(new { nomeutente = $"{utenteLoggato}", oggettoAcquistato = nomeProdottoScelto, prezzoDiAcquisto = prezzoDacquisto })); //scrive la riga nel file
+                    File.AppendAllText(pathAcquistiUtenteLoggato, JsonConvert.SerializeObject(new { nomeutente = $"{utenteLoggato}", oggettoAcquistato = nomeProdottoScelto, prezzoDiAcquisto = prezzoDacquisto, bilancio = balance })); //scrive la riga nel file
                     File.AppendAllText(nomeFile, "]\n"); //scrive la riga nel file
+                    System.Console.WriteLine("Il tuo bilancio attuale è di " + balance);
                     break;
                 }
                 else
@@ -162,9 +185,14 @@ class Program
                     file3 = file3.Remove(file3.Length - 2, 1); //vai indietro di 1 posizioni e cancella un carettere (la parentesi quadra)
                     File.WriteAllText(pathAcquistiUtenteLoggato, file3);
                     File.AppendAllText(pathAcquistiUtenteLoggato, ",\n"); //scrive la riga nel file
-                    File.AppendAllText(pathAcquistiUtenteLoggato, JsonConvert.SerializeObject(new { nomeutente = $"{utenteLoggato}", oggettoAcquistato = nomeProdottoScelto, prezzoDiAcquisto = prezzoDacquisto })); //scrive la riga nel file
+                    File.AppendAllText(pathAcquistiUtenteLoggato, JsonConvert.SerializeObject(new { nomeutente = $"{utenteLoggato}", oggettoAcquistato = nomeProdottoScelto, prezzoDiAcquisto = prezzoDacquisto, bilancio = balance })); //scrive la riga nel file
                     File.AppendAllText(nomeFile, "]\n"); //riscrive la parentesi quadra di chiusura
-                    break;
+                    obj = JsonConvert.DeserializeObject(File.ReadAllText(pathAcquistiUtenteLoggato))!; //cambiare pathJsonUtentiEpassword
+                    balance = obj[obj.Count-1].bilancio;
+                        
+                    System.Console.WriteLine("Il tuo bilancio attuale è di " + obj[obj.Count-1].bilancio);
+                    // break;
+                    
                 }
             }
             else if (contatore == Int32.Parse(prodottoScelto) && entry.Value > balance)
@@ -181,16 +209,17 @@ class Program
             goto Rifacciamo;
         }
 
-        string prova = File.ReadAllText(pathAcquistiUtenteLoggato);
-        dynamic acquistiObj = JsonConvert.DeserializeObject(prova);
+        // string prova = File.ReadAllText(pathAcquistiUtenteLoggato);
+        //sdynamic acquistiObj = JsonConvert.DeserializeObject(prova);
+        obj = JsonConvert.DeserializeObject(File.ReadAllText(pathAcquistiUtenteLoggato))!; 
         System.Console.WriteLine("Vuoi vedere i tuoi acquisti? (y/n)");
         input = Console.ReadLine();
         if (input == "y")
         {
             //itero nel json
-            foreach (var jsonElement in acquistiObj)
+            foreach (var jsonElement in obj)
             {
-                System.Console.WriteLine("prodotto: " + jsonElement.oggettoAcquistato + " ,prezzo: " + prezzoDacquisto);
+                System.Console.WriteLine("prodotto: " + jsonElement.oggettoAcquistato + " ,prezzo: " + jsonElement.prezzoDiAcquisto);
             }
         }
     }
