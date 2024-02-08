@@ -35,9 +35,11 @@ I successivi json verranno creati dinamicamente in base a quale utente è loggat
     - string nomeFile = Guid.NewGuid().ToString() + ".json";
 
 
-### BETA TESTING
+### BETA TESTING MIO
 
 - controllare perchè se inserisco dei dati sbagliati non esce dal loop (lo fa solo quando mi registro anche) V
 - mettere la map dei prodotti acquistabili come json   V
 - quando mi registro, se poi esegui il login senza chiudere il programma non funziona    V
-- risolvere il problema della registrazione utente che attualmente è permessa anche se è utente è già registrato 
+- risolvere il problema della registrazione utente che attualmente è permessa anche se è utente è già registrato   V
+- se a "cosa vuoi acquistare" invece che 1,2 o 3 premo un altro numero mi dice scelta non valida ma mi cambia il balance   V
+- se acquisto anche se non ho soldi mi dice che non ho soldi ma il balance in realtà mi va sotto zero    V
