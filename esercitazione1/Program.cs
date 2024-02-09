@@ -13,13 +13,17 @@ class Program
 
         // Percorso del file JSON contenente i nomi utenti e le password.
         string pathJsonUtentiEPassword = @"utentiEpassword.json";
-        string json;
+        string pathJsonProdottiEPrezzi = @"prodottiEprezzi.json";
+        string json = null;
         string file2;
+        string file4;
         dynamic obj = null;
+        dynamic obj2 = null;
         string nomeUtente = null;
         string password = null;
         string utenteLoggato = null;
         string passwordUtenteLoggato;
+        bool utenteEsistente = false;
 
         if (File.Exists(pathJsonUtentiEPassword))
         {
@@ -55,6 +59,7 @@ class Program
                         if (jsonElement.nomeutente == nomeUtente)
                         {
                             System.Console.WriteLine("Quest'utente esiste già");
+                            utenteEsistente=true;
                             break;
                         }
                         else
@@ -82,30 +87,40 @@ class Program
                 }
                 else
                 {
-                    file2 = File.ReadAllText(pathJsonUtentiEPassword);
-                    file2 = file2.Remove(file2.Length - 1, 1);
-                    File.WriteAllText(pathJsonUtentiEPassword, file2);
-                    File.AppendAllText(pathJsonUtentiEPassword, ",\n");
+                    if(utenteEsistente==false)
+                    {
+                        file2 = File.ReadAllText(pathJsonUtentiEPassword);
+                        file2 = file2.Remove(file2.Length - 2, 2);
+                        File.WriteAllText(pathJsonUtentiEPassword, file2);
+                        File.AppendAllText(pathJsonUtentiEPassword, ",\n");
+                    }
                 }
 
-                for (int i = 0; i < nomiUtenti.Count; i++)
+                if(utenteEsistente==false)
                 {
-                    File.AppendAllText(pathJsonUtentiEPassword, JsonConvert.SerializeObject(new { nomeutente = nomiUtenti[i], passwordUtente = passwords[i] }));
+                    for (int i = 0; i < nomiUtenti.Count; i++)
+                    {
+                        File.AppendAllText(pathJsonUtentiEPassword, JsonConvert.SerializeObject(new { nomeutente = nomiUtenti[i], passwordUtente = passwords[i] }));
+                    }
+                    File.AppendAllText(pathJsonUtentiEPassword, "]\n");
+                    //obj2 = JsonConvert.DeserializeObject(File.ReadAllText(pathJsonUtentiEPassword))!;
                 }
-
-                File.AppendAllText(pathJsonUtentiEPassword, "]");
-                obj = JsonConvert.DeserializeObject(File.ReadAllText(pathJsonUtentiEPassword))!;
+                else{utenteEsistente=false;}
             }
 
             // Login dell'utente.
             else if (scelta == "2")
             {
                 System.Console.WriteLine("Inserisci il nome utente");
-                nomeUtente = Console.ReadLine();
+                nomeUtente = Console.ReadLine().Trim();
                 System.Console.WriteLine("Inserisci la password");
-                password = Console.ReadLine();
+                password = Console.ReadLine().Trim();
 
-                // Controllo delle credenziali dell'utente.
+                // Controllo delle credenziali dell'utente (se il file esiste)
+                if(File.Exists(pathJsonUtentiEPassword))
+                {
+                string filex = File.ReadAllText(pathJsonUtentiEPassword);
+                obj = JsonConvert.DeserializeObject(filex)!;
                 for (int i = 0; i < obj.Count; i++)
                 {
                     if (obj[i].nomeutente == nomeUtente && obj[i].passwordUtente == password)
@@ -123,6 +138,11 @@ class Program
                     break;
                 }
                 System.Console.WriteLine("\n!!Passord o nome utente errato\n");
+                } else
+                {
+                    System.Console.WriteLine("non sei ancora iscritto, iscriviti!");
+                    continue;
+                }
             }
             else //se inserisco qualcosa di diverso da 1 o 2
             {
@@ -144,6 +164,31 @@ class Program
         prezziProdotti["gaming mouse"] = 50.99m;
         prezziProdotti["monitor"] = 199.99m;
         prezziProdotti["joypad"] = 29.99m;
+
+
+        //aggiungo nel json i prodotti e prezzi del dictionary
+        if (!File.Exists(pathJsonProdottiEPrezzi))
+        {
+            // Crea il file se non esiste.
+            File.Create(pathJsonProdottiEPrezzi).Close();
+            File.AppendAllText(pathJsonProdottiEPrezzi, "[\n");
+        
+            file4 = File.ReadAllText(pathJsonProdottiEPrezzi);
+            file4 = file4.Remove(file4.Length - 1, 1);
+            File.WriteAllText(pathJsonProdottiEPrezzi, file4);
+            //ciclo nel dictionary
+            for (int i = 0; i < prodottiAcquistabili.Count; i++)
+            {
+                File.AppendAllText(pathJsonProdottiEPrezzi, JsonConvert.SerializeObject(new { nomeProdotto = prezziProdotti.Keys.ElementAt(i), prezzoProdotto = prezziProdotti.Values.ElementAt(i) }));
+                if(i+1!=prodottiAcquistabili.Count)
+                {
+                    File.AppendAllText(pathJsonProdottiEPrezzi, ",\n");
+                }
+            }
+            File.AppendAllText(pathJsonProdottiEPrezzi, "]");
+        }
+        
+                
         decimal balance = 100;
         decimal balancePrimaDelCalcolo = 0;
 
@@ -161,33 +206,37 @@ class Program
     Rifacciamo:
         System.Console.Write("Cosa vuoi acquistare tra: ");
         int contator = 1;
-        //itero i prodotti disponibili
-        foreach (string prodotto in prodottiAcquistabili)
+        obj2 = JsonConvert.DeserializeObject(File.ReadAllText(pathJsonProdottiEPrezzi))!;
+        //itero i prodotti disponibili tramite il json
+        foreach (dynamic jsonElement in obj2)
         {
-            System.Console.Write(contator + ") " + prodotto + ": " + prezziProdotti[prodotto] + "$, ");
+            System.Console.Write(contator + ") " + jsonElement.nomeProdotto + ": " + jsonElement.prezzoProdotto + "$, ");
             contator++;
         }
-        //  i=1;
         System.Console.WriteLine("? ");
+        
 
         //prende il balance dal json facendo un operazione di sottrazione
         if (File.Exists(pathAcquistiUtenteLoggato))
         {
+            obj = JsonConvert.DeserializeObject(File.ReadAllText(pathAcquistiUtenteLoggato))!;
             foreach (var jsonElement in obj)
             {
-                if (balance >= 0)
+                if (balance >= 0 && jsonElement==obj[obj.Count-1])
                 {
                     balancePrimaDelCalcolo = balance;
-                    balance = balance - Convert.ToDecimal(jsonElement.prezzoDiAcquisto);
+                    //balance = balance - Convert.ToDecimal(jsonElement.prezzoDiAcquisto);
+                    balance = Convert.ToDecimal(jsonElement.bilancio);                 
                 }
             }
+            
             if (balance >= 0)
             {
                 System.Console.WriteLine("Il tuo balance è di " + balance);
             }
             else
             {
-                balance = balancePrimaDelCalcolo;
+                balance = balancePrimaDelCalcolo;     //per non farlo andare sotto 0
                 System.Console.WriteLine("il tuo balance è di " + balance + ")");
             }
         }
@@ -249,7 +298,7 @@ class Program
                     File.WriteAllText(pathAcquistiUtenteLoggato, file3);
                     File.AppendAllText(pathAcquistiUtenteLoggato, ",\n");
                     File.AppendAllText(pathAcquistiUtenteLoggato, JsonConvert.SerializeObject(new { nomeutente = $"{utenteLoggato}", oggettoAcquistato = nomeProdottoScelto, prezzoDiAcquisto = prezzoDacquisto, bilancio = balance }));
-                    File.AppendAllText(nomeFile, "]\n");
+                    File.AppendAllText(nomeFile, "\n]\n");
                     obj = JsonConvert.DeserializeObject(File.ReadAllText(pathAcquistiUtenteLoggato))!;
                     balance = obj[obj.Count - 1].bilancio;
                     System.Console.WriteLine("Il tuo bilancio attuale è di " + obj[obj.Count - 1].bilancio);
@@ -266,7 +315,7 @@ class Program
         while (true)
         {
             System.Console.WriteLine("Vuoi acquistare altro? (y/n)");
-            input = Console.ReadLine();
+            input = Console.ReadLine().ToLower().Trim();
             if (input == "y")
             {
                 goto Rifacciamo;
@@ -285,7 +334,7 @@ class Program
             while (true)
             {
                 System.Console.WriteLine("Vuoi vedere i tuoi acquisti? (y/n)");
-                input = Console.ReadLine();
+                input = Console.ReadLine().ToLower().Trim();
                 if (input == "y")
                 {
                     //itero nel json
@@ -303,5 +352,58 @@ class Program
             }
         }
     }
+
+    // static void richiestaAcquisto(decimal balance, List<string> prodottiAcquistabili, Dictionary<string, decimal> prezziProdotti, string pathAcquistiUtenteLoggato, dynamic obj, decimal balancePrimaDelCalcolo)
+    // {
+    //     // Richiesta all'utente di scegliere un prodotto.
+    // Rifacciamo:
+    //     System.Console.Write("Cosa vuoi acquistare tra: ");
+    //     int contator = 1;
+    //     //itero i prodotti disponibili
+    //     foreach (string prodotto in prodottiAcquistabili)
+    //     {
+    //         System.Console.Write(contator + ") " + prodotto + ": " + prezziProdotti[prodotto] + "$, ");
+    //         contator++;
+    //     }
+    //     System.Console.WriteLine("? ");
+        
+
+    //     //prende il balance dal json facendo un operazione di sottrazione
+    //     if (File.Exists(pathAcquistiUtenteLoggato))
+    //     {
+    //         obj = JsonConvert.DeserializeObject(File.ReadAllText(pathAcquistiUtenteLoggato))!;
+    //         foreach (var jsonElement in obj)
+    //         {
+    //             if (balance >= 0 && jsonElement==obj[obj.Count-1])
+    //             {
+    //                 balancePrimaDelCalcolo = balance;
+    //                 //balance = balance - Convert.ToDecimal(jsonElement.prezzoDiAcquisto);
+    //                 balance = Convert.ToDecimal(jsonElement.bilancio);                 
+    //             }
+    //         }
+            
+    //         if (balance >= 0)
+    //         {
+    //             System.Console.WriteLine("Il tuo balance è di " + balance);
+    //         }
+    //         else
+    //         {
+    //             balance = balancePrimaDelCalcolo;     //per non farlo andare sotto 0
+    //             System.Console.WriteLine("il tuo balance è di " + balance + ")");
+    //         }
+    //     }
+    //     else
+    //     {
+    //         System.Console.WriteLine("il tuo balance è di " + balance);
+    //     }
+    //     string prodottoScelto = Console.ReadLine();
+    //     while (prodottoScelto != "1" && prodottoScelto != "2" && prodottoScelto != "3")
+    //     {
+    //         System.Console.WriteLine("scelta non valida");
+    //         goto Rifacciamo;
+    //     }
+    // }
+
 }
+
 

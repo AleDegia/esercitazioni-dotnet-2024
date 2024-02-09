@@ -47,7 +47,7 @@ I successivi json verranno creati dinamicamente in base a quale utente è loggat
 ## POST BETA TEST
 
 <details>
-<summary>Raccolta feedback</summary>
+<summary>Raccolta feedback di Giada</summary>
 <details>
 
 <summary> 
@@ -72,59 +72,11 @@ I successivi json verranno creati dinamicamente in base a quale utente è loggat
 
 ## RISOLUZIONE
 
-- veniva fato un readAll del json ma se un utente non acquista non viene generato il json contenete gli acquisti dell' utente, perciò provavo ad accedere al file anche se non esisteva. Ho aggiunto un controllo per verificare se il file esiste in modo da eseguire questa parte di codice solamente se il file effettivamente c'è.
+- veniva fatto un readAll del json ma se un utente non acquista non viene generato il json contenete gli acquisti dell' utente, perciò provavo ad accedere al file anche se non esisteva. Ho aggiunto un controllo per verificare se il file esiste in modo da eseguire questa parte di codice solamente se il file effettivamente c'è.
 - ho aggiunto una stringa che stampi "nome utente o password errato" prima di far ripartire il ciclo 
-- oltre a dire il nome dei vari prodotti mando a schermo il prezzo di quel prodotto con nomeDictionary[nomeProdotto]
-- mi sono accorto che anche io se invece che premere y/n premo un altra cosa mi esegue n, ho fatto percio dei cicli why fancendo un elseif non viene premuto ne y ne n manda a schermo il messaggio "input non valido" e riesegui il ciclo
+- oltre a dire il nome dei vari prodotti mando a schermo il prezzo di quel prodotto con  nomeDictionary[nomeProdotto]
+- mi sono accorto che anche io ,se invece che premere y/n premo un altra cosa, mi esegue n, ho fatto percio dei cicli while fancendo un elseif non viene premuto ne y ne n manda a schermo il messaggio "input non valido" e riesegui il ciclo
 
-
-> ECCEZIONI
-
-- [x] stringhe
-- [ ] numeri maggiori o minori
-
-> BUG
-
-- [ ] bug punteggio
-
-Miglioramenti
-- [x] esplicitare il range di numeri tra i quali indovinare
-- [x] togliere True e False dai messaggi in console
-</details>
-</details>
-
-</details>
-
-## backtest per giada
-
-- a "inserisci l'anno di uscita" assicurati che non si possano scrivere cose che non siano degli int, e anni che non siano superiori all'anno corrente o minori di un certo anno
-(al momento se inserisco una lettera o 3000 ad es, lo prende e va avanti)
-
-- se ad "assegna un voto" inserisco una lettera mi genera:
-     Unhandled exception. System.FormatException: The input string 'g' was not in a correct format.
-   at System.Number.ThrowFormatException[TChar](ReadOnlySpan`1 value)
-   at System.Int32.Parse(String s)
-   at Program.Main(String[] args) in C:\Users\DOTNET\Documents\Corso-Dotnet-2024\CORSO-DOTNET-2024\esercitazioni-dotnet-2024\esercitazione1\Program.cs:line 25
-
-- ad "assegna un voto" sarebbe bene specificare all'utente se da 1 a 10 o cosa, altrimenti potrei anche mettere 90 come voto ad es..
-
-- a "Vuoi inserire un altro videogioco?" se invece che s o n premo un altra lettera la prende come fosse una s e riparte a chiedermi le info per il nuovo videogioco da inserire
-
-- Dopo aver inserito il primo videogioco se premo s mi chiede le info per il secondo videogioco ma poi non mi permette + di inserire una recensione
-(questo però solo se metto info sbagliate, tipo mettendo 2 a ogni domanda. se le info sono giuste invece da nuovamente la possibilita di inserire una recensione) 
-(a volte lo fa anche alla prima se ad esempio inserisco sempre 2 a tutto, si ferma dopo "assegna un voto")
-(penso il problema sia che se esiste già un json con quel nome del videogioco si ferma dopo "assegna un voto")
-
-- Se inserisco come titolo del videogioco un nome che è già presente come file json non viene aggiunta la mia recensione al json (ad es, se il json del gioco con titolo "2" è {"nome":"2","anno":"2","voto":"2"}, ora dando come titolo 2, anno 333 e voto 8, questo record non verrà aggiunto al file json, perciò attualmente se un gioco è gia stato recensito una volta poi le recensioni di altri utenti riguardanti quel gioco non vengono prese.)
-
-- A "Vuoi darci più informazioni riguardo al videogioco" e a "Vuoi aggiungere una recensione personale?" se inserisco qualsiasi cosa che non sia o s o n lo prendo come n (ad es se inserisco un numero..)
-
-- A "Vuoi darci più informazioni riguardo al videogioco" se premo s appaiono le varie opzioni da 1 a 5 e cosi via, ma se inserisco un opzione non valida, tipo 58, la prende comunque per buona e va avanti. Questo accade per tutte e 3 le domande a scelta multipla.
-
-
-## suggerimenti per giada
-
-sarebbe figo vedere anche una classifica dei giochi con le recensioni migliori o dei giochi con maggiori recensioni
 
 
 
@@ -154,13 +106,13 @@ class Program
         string utenteLoggato = null;
         string passwordUtenteLoggato;
 
-        if(File.Exists(pathJsonUtentiEPassword))
+        if (File.Exists(pathJsonUtentiEPassword))
         {
-        json = File.ReadAllText(pathJsonUtentiEPassword);
-        file2 = pathJsonUtentiEPassword;
-        obj = JsonConvert.DeserializeObject(json)!;
+            json = File.ReadAllText(pathJsonUtentiEPassword);
+            file2 = pathJsonUtentiEPassword;
+            obj = JsonConvert.DeserializeObject(json)!;
         }
-        
+
 
         // Ciclo principale del programma.
         while (true)
@@ -180,21 +132,22 @@ class Program
                 password = Console.ReadLine();
                 passwords.Add(password);
 
-                if(File.Exists(pathJsonUtentiEPassword)){
-                // Controllo se l'utente esiste già.
-                foreach (var jsonElement in obj)
+                if (File.Exists(pathJsonUtentiEPassword))
                 {
-                    if (jsonElement.nomeutente == nomeUtente)
+                    // Controllo se l'utente esiste già.
+                    foreach (var jsonElement in obj)
                     {
-                        System.Console.WriteLine("Quest'utente esiste già");
-                        break;
+                        if (jsonElement.nomeutente == nomeUtente)
+                        {
+                            System.Console.WriteLine("Quest'utente esiste già");
+                            break;
+                        }
+                        else
+                        {
+                            System.Console.WriteLine("registrazione avvenuta con successo!");
+                            break;
+                        }
                     }
-                    else
-                    {
-                        System.Console.WriteLine("registrazione avvenuta con successo!");
-                        break;
-                    }
-                }
                 }
                 else
                 {
@@ -254,6 +207,7 @@ class Program
                 {
                     break;
                 }
+                System.Console.WriteLine("\n!!Passord o nome utente errato\n");
             }
             else //se inserisco qualcosa di diverso da 1 o 2
             {
@@ -291,27 +245,30 @@ class Program
     // Richiesta all'utente di scegliere un prodotto.
     Rifacciamo:
         System.Console.Write("Cosa vuoi acquistare tra: ");
+        int contator = 1;
         //itero i prodotti disponibili
         foreach (string prodotto in prodottiAcquistabili)
         {
-            System.Console.Write(prodotto + ", ");
+            System.Console.Write(contator + ") " + prodotto + ": " + prezziProdotti[prodotto] + "$, ");
+            contator++;
         }
-        System.Console.Write("? (1, 2 o 3) ");
-        
+        //  i=1;
+        System.Console.WriteLine("? ");
+
         //prende il balance dal json facendo un operazione di sottrazione
         if (File.Exists(pathAcquistiUtenteLoggato))
         {
             foreach (var jsonElement in obj)
             {
-                if(balance>=0)
+                if (balance >= 0)
                 {
-                balancePrimaDelCalcolo = balance;
-                balance = balance - Convert.ToDecimal(jsonElement.prezzoDiAcquisto);
+                    balancePrimaDelCalcolo = balance;
+                    balance = balance - Convert.ToDecimal(jsonElement.prezzoDiAcquisto);
                 }
             }
-            if(balance >= 0)
+            if (balance >= 0)
             {
-            System.Console.WriteLine("il tuo balance è di " + balance + ")");
+                System.Console.WriteLine("Il tuo balance è di " + balance);
             }
             else
             {
@@ -319,7 +276,7 @@ class Program
                 System.Console.WriteLine("il tuo balance è di " + balance + ")");
             }
         }
-        else 
+        else
         {
             System.Console.WriteLine("il tuo balance è di " + balance);
         }
@@ -390,28 +347,46 @@ class Program
             }
         }
 
-
-        System.Console.WriteLine("Vuoi acquistare altro? (y/n)");
-        string input = Console.ReadLine();
-        if (input == "y")
+        string input = null;
+        while (true)
         {
-            goto Rifacciamo;
+            System.Console.WriteLine("Vuoi acquistare altro? (y/n)");
+            input = Console.ReadLine();
+            if (input == "y")
+            {
+                goto Rifacciamo;
+            }
+            else if (input != "y" && input != "n")
+            {
+                System.Console.WriteLine("input non valido");
+                continue;
+            }
+            break;
         }
 
-        
-        obj = JsonConvert.DeserializeObject(File.ReadAllText(pathAcquistiUtenteLoggato))!;
-        System.Console.WriteLine("Vuoi vedere i tuoi acquisti? (y/n)");
-        input = Console.ReadLine();
-        if (input == "y")
+        if (File.Exists(pathAcquistiUtenteLoggato))
         {
-            //itero nel json
-            foreach (var jsonElement in obj)
+            obj = JsonConvert.DeserializeObject(File.ReadAllText(pathAcquistiUtenteLoggato))!;
+            while (true)
             {
-                System.Console.WriteLine("prodotto: " + jsonElement.oggettoAcquistato + " ,prezzo: " + jsonElement.prezzoDiAcquisto);
+                System.Console.WriteLine("Vuoi vedere i tuoi acquisti? (y/n)");
+                input = Console.ReadLine();
+                if (input == "y")
+                {
+                    //itero nel json
+                    foreach (var jsonElement in obj)
+                    {
+                        System.Console.WriteLine("prodotto: " + jsonElement.oggettoAcquistato + " ,prezzo: " + jsonElement.prezzoDiAcquisto);
+                    }
+                }
+                else if (input != "y" && input != "n")
+                {
+                    System.Console.WriteLine("input non valido");
+                    continue;
+                }
+                break;
             }
         }
     }
 }
 ```
-
-
