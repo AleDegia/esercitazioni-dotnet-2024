@@ -108,3 +108,43 @@ ol{
 ol li{
     padding: 10px;
 }
+
+table{
+    border-collapse: collapse;
+    width: 100%;                                       /*prende la dimensione intera della pagina in larghezza*/
+}
+
+th, td {
+    border: 1px dotted #000;                        /*dotted al posto di solid*/
+    padding: 10px;
+    text-align: left;
+}
+
+form{
+    text-align: center;
+}
+
+input, textarea, select{
+    padding: 10px;
+    margin: 10px;
+    width: 300px;
+    display: block;
+}
+
+button{
+    border-radius: 8px;
+    padding: 10px;
+    margin: 10px;
+    display: block;
+    cursor: pointer;
+}
+
+div {
+    padding: 20px;
+    margin: 20px;
+    border: 1px solid;
+}
+
+.green{
+    background-color: greenyellow;
+}

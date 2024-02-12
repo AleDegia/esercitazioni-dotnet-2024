@@ -54,6 +54,8 @@ class Program
                 if (File.Exists(pathJsonUtentiEPassword))
                 {
                     // Controllo se l'utente esiste già.
+                    string filex = File.ReadAllText(pathJsonUtentiEPassword);
+                    obj = JsonConvert.DeserializeObject(filex)!;
                     foreach (var jsonElement in obj)
                     {
                         if (jsonElement.nomeutente == nomeUtente)
@@ -103,7 +105,6 @@ class Program
                         File.AppendAllText(pathJsonUtentiEPassword, JsonConvert.SerializeObject(new { nomeutente = nomiUtenti[i], passwordUtente = passwords[i] }));
                     }
                     File.AppendAllText(pathJsonUtentiEPassword, "]\n");
-                    //obj2 = JsonConvert.DeserializeObject(File.ReadAllText(pathJsonUtentiEPassword))!;
                 }
                 else { utenteEsistente = false; }
             }
