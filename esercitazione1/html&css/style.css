@@ -18,6 +18,15 @@ header {
     font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;         /*sovrascrivo il font ereditato dal body*/
 }
 
+a{
+    text-decoration: none;
+    color: blue;
+}
+
+a:hover{
+    text-decoration: underline;
+}
+
 nav {
     background-color: #666;
     color: #efff;
@@ -34,4 +43,68 @@ nav a {                                                                 /*sto se
 nav a:hover {
     background-color: #efff;
     color: #000;
+}
+
+section {
+    padding: 20px;                                                      
+}
+
+footer{
+    background-color: #333;
+    color: #666;
+    padding: 20px;
+    text-align: center;
+}
+
+footer p{
+    text-align: center;
+}
+
+footer ul{
+    text-align: center;
+    padding: 20px;
+}
+
+img {
+    display: inline-block;
+    margin: 0 auto;         /*auto mette una distanza equa ai lati o alto e basso. La proprietà margin: 0 auto; funziona solo su elementi block.*/
+}
+
+p {
+    text-align: justify;
+    text-indent: 20px;
+    line-height: 1.5;      /*si imposta l'altezza della riga a 1.5 volte l'altezza del carattere corrente all'interno dell'elemento.*/
+}
+
+h1 {
+    text-align: center;
+}
+
+header h1{
+    text-align: center;
+    line-height: 1.5;
+}
+
+header p{
+    text-align: center;
+    text-indent: 20px;
+    line-height: 1.5;
+}
+
+ul {
+    list-style-type: none;
+    padding: 0px;
+}
+
+ul li{
+    padding: 10px;
+}
+
+ol{
+    list-style-type: upper-alpha;
+    padding: 20px;
+}
+
+ol li{
+    padding: 10px;
 }
