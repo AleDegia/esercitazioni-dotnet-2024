@@ -32,6 +32,9 @@ nav {
     color: #efff;
     padding: 20px;
     text-align: center;
+    /* display: grid;
+    grid-template-columns: 1fr 1fr; 
+    grid-gap: 20px; */
 }
 
 nav a {                                                                 /*sto selezionando gli a dentro il nav*/
@@ -46,7 +49,7 @@ nav a:hover {
 }
 
 section {
-    padding: 20px;                                                      
+    padding: 20px;                                                    
 }
 
 footer{
@@ -147,4 +150,28 @@ div {
 
 .green{
     background-color: greenyellow;
+}
+
+.dopoNav{
+    display: flex;
+    justify-content: center;
+    margin: 15px 20%;
+    border-radius: 8px;
+}
+
+/* .prova{
+    display: flex;
+} */
+
+
+@media(max-width: 768px){
+    header {
+        background-color: #1aff00;
+    }
+}
+
+@media(max-width: 520px){
+    nav {
+        font-size: smaller;
+    }
 }

@@ -1,0 +1,162 @@
+*{
+    margin:0;
+    padding:0;
+    box-sizing: border-box;
+    list-style: none;
+    text-decoration: none;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    background: url(./img/sfondo3.png) no-repeat;
+    background-size: cover;                               /*copre in maniera corretta solo il body*/
+    background-position: center;
+    background-attachment: fixed;
+    height: auto;             /*o 100%*/
+}
+
+header {
+    background-color: #007bff;
+    color: white;
+    padding: 20px;
+    text-align: center;
+    position: fixed;           /* Quando un elemento ha una posizione fissa (fixed), viene rimosso dal flusso normale del documento e posizionato rispetto al viewport del browser anziché rispetto al resto del contenuto della pagina. Ciò potrebbe causare sovrapposizioni con altri elementi, come nel tuo caso con il primo <section>.*/
+    width: 100%;
+    top: 0;                     /* lo mette in cima senza lasciare spazi*/
+    background: rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(20px);       /*per rendere sfocato lo sfondo*/
+}
+
+nav{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;                 /*per centrare verticalemente gli elementi all'interno della navbar, è apposta per la navbar*/
+}
+
+nav ul {
+    /* list-style-type: none; */
+    padding: 0;
+}
+
+nav ul li {
+    display: inline;
+    margin: 0 10px;
+    padding: 0 13px;
+}
+
+nav ul li a {
+    color: white;
+    text-decoration: none;
+    font-size: large;
+}
+
+.logo{
+    font-size: 2rem;
+}
+
+.registrati{
+    padding: 10px 20px;
+    font-size: 20px;
+    color: white;
+}
+
+.registrati a{
+    color: white;
+}
+
+.registrati:hover{
+    background-color: blue;
+    border-radius: 8px;
+}
+
+section {
+    padding: 20px;
+    margin: 20px 0;
+}
+
+footer {
+    background-color: #333;
+    color: white;
+    text-align: center;
+    padding: 10px;
+    /* position: fixed;
+    bottom: 0;
+    width: 100%; */
+}
+
+/* #progetto {
+    
+} */
+
+.sezione-sotto-navbar{
+    margin-top: 100px; /* Imposta il margine superiore a 100px, cosi da non sovrapporsi alla navbar fixed */
+    width: 70%;
+    height: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-left: 15%;
+}
+
+.h1Ep{
+    justify-content: center;
+}
+
+.sezione-sotto-navbar span{
+    font-weight: 700;
+    color: #fca61f;
+}
+
+.bottoni {
+    margin: 2rem;
+    display: flex;
+    justify-content: center;   
+}
+
+.bottoni button{                           /*deve selezionare classe e anche elemento*/
+    width: 160px;
+    margin: 0 10px;
+    border-radius: 20px;
+    background-color: #fca61f;
+    color: white;
+    border: none;
+    transform: 0.2s linear;
+    font-size: 1.1rem;
+    padding: 0.6rem;
+}
+
+.bottoni button:hover{
+    box-shadow: 2px 2px 30px #fca61f;        /*fa una shadow quando passo sopra col mouse*/
+    cursor: pointer;
+}
+
+.sezioni section{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 50%;    
+    text-align: center;
+}
+
+.section{
+    display: flex;
+    justify-content: center;
+    text-align: center;
+}
+
+/* .sezioni h2{
+    display: flex;
+    justify-content: center;
+} */
+
+@media (max-width:768px){
+    .sezione-sotto-navbar{
+        display: flex;
+        width: 100%;
+        flex-direction: column-reverse;
+    }
+}

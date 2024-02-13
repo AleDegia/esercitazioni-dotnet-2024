@@ -56,18 +56,27 @@ class Program
                     // Controllo se l'utente esiste già.
                     string filex = File.ReadAllText(pathJsonUtentiEPassword);
                     obj = JsonConvert.DeserializeObject(filex)!;
+                    int cont = 0;
                     foreach (var jsonElement in obj)
                     {
+                        cont++;  //conto i cicli
                         if (jsonElement.nomeutente == nomeUtente)
                         {
                             System.Console.WriteLine("Quest'utente esiste già");
                             utenteEsistente = true;
+                            AzzeraListe(nomiUtenti, passwords); // Chiamata alla funzione per azzerare le liste, al posto del codice qua sotto
+                            // nomiUtenti=new List<string>();
+                            // passwords=new List<string>();
                             break;
                         }
                         else
                         {
-                            System.Console.WriteLine("registrazione avvenuta con successo!");
-                            break;
+
+                            if (cont == obj.Count)  //se non è stato trovato un utente con quel nome, confermo la registrazione ed esco
+                            {
+                                System.Console.WriteLine("registrazione avvenuta con successo!");
+                                break;
+                            }
                         }
                     }
                 }
@@ -105,6 +114,7 @@ class Program
                         File.AppendAllText(pathJsonUtentiEPassword, JsonConvert.SerializeObject(new { nomeutente = nomiUtenti[i], passwordUtente = passwords[i] }));
                     }
                     File.AppendAllText(pathJsonUtentiEPassword, "]\n");
+                    AzzeraListe(nomiUtenti, passwords); // Chiamata alla funzione per azzerare le liste, al posto del codice qua sotto
                 }
                 else { utenteEsistente = false; }
             }
@@ -353,5 +363,13 @@ class Program
                 break;
             }
         }
+    }
+
+
+    // Funzione per azzerare le liste nomiUtenti e passwords
+    static void AzzeraListe(List<string> lista1, List<string> lista2)
+    {
+        lista1.Clear();
+        lista2.Clear();
     }
 }
