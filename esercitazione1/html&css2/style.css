@@ -52,7 +52,31 @@ nav ul li a {
     color: white;
     text-decoration: none;
     font-size: large;
+    transition: transform 0.2s linear;
+    transform: scaleX(0);
+    position: relative; /* Assicurati che l'elemento sia posizionato in modo relativo */
 }
+
+nav ul li a:before {
+    content: ''; /* Contenuto vuoto necessario per abilitare lo pseudo-elemento */
+    position: absolute; /* Posizione assoluta rispetto all'elemento padre */
+    bottom: 0; /* Posizioniamo il pseudo-elemento sotto il testo */
+    left: 0;
+    width: 100%; /* Estendiamo il pseudo-elemento sull'intera larghezza dell'elemento padre */
+    height: 2px; /* Altezza desiderata della linea di transizione */
+    background-color: white; /* Colore della linea di transizione */
+    transform: scaleX(0); /* Inizialmente nascosto */
+    transition: transform 0.2s linear; /* Transizione simile a quella dell'elemento principale */
+}
+
+/*La proprietà content è ciò che determina cosa sarà visualizzato dall'elemento pseudo. Quando viene impostata su una stringa vuota '', l'elemento pseudo sarà visualizzato come vuoto ma comunque presente nel DOM, consentendo di applicare stili e posizionarlo come desiderato.
+
+In sintesi, senza content: '';, l'elemento pseudo non avrebbe contenuto e quindi non sarebbe visibile.*/
+
+nav ul li a:hover:before {
+    transform: scaleX(1); /* Quando passi il mouse sopra l'elemento, la linea si estende */
+}
+
 
 .logo{
     font-size: 2rem;
@@ -99,22 +123,40 @@ footer {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-left: 15%;
+    margin-left: 20%;
+    margin-top: 10%;
 }
 
 .h1Ep{
     justify-content: center;
+    text-align: center;
+    margin-top: 28px;
+}
+
+.h1Ep h1{
+    font-size: 40px;
+}
+
+.h1Ep p{
+    font-size: medium;
+    font-family:Verdana, Geneva, Tahoma, sans-serif;
+    margin-top: 15px;
+}
+
+.h1Pimg{
+    align-items: center;
 }
 
 .sezione-sotto-navbar span{
-    font-weight: 700;
+    font-weight: 600;
     color: #fca61f;
 }
 
 .bottoni {
     margin: 2rem;
     display: flex;
-    justify-content: center;   
+    justify-content: center; 
+    margin-top: 3rem;  
 }
 
 .bottoni button{                           /*deve selezionare classe e anche elemento*/
@@ -134,18 +176,51 @@ footer {
     cursor: pointer;
 }
 
+.bottone1{
+    background: linear-gradient(#e66465, #9198e5);
+}
+
 .sezioni section{
+    
+    /* justify-content: center; */
+    width: 50%;    
+    /* text-align: center; */
+}
+
+.sezioni {
+    margin-top: 60px;
     display: flex;
     flex-direction: column;
-    justify-content: center;
-    width: 50%;    
+    align-items: center;
     text-align: center;
 }
 
-.section{
-    display: flex;
-    justify-content: center;
-    text-align: center;
+section{
+    border: 1px solid white;
+    border-radius: 8px;
+    box-shadow: -2px 2px 4px rgba(57, 57, 57, 0.3), 2px 2px 4px rgba(57, 57, 57, 0.3), 0 5px 10px rgba(57, 57, 57, 0.3);
+    padding: 50px;
+    background-color: white;
+    color: black;
+    margin: 30px 0;
+}
+
+section#progetto{
+    border-radius: 10% 8px;
+}
+
+section:hover{
+    transform: scale(1.1);
+    /* border-radius: 20% 10%; */
+    transition: 0.5s;
+    cursor: pointer;
+    border-color: #fca61f;
+    background: linear-gradient(180deg, #ffffff, #fca61f);
+    box-shadow: 2px 2px 30px #b837ab; 
+}
+
+section svg{
+    margin-top: -15px;
 }
 
 /* .sezioni h2{
