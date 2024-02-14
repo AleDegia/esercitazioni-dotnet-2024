@@ -23,7 +23,15 @@
                 <li><a href="#team">Il Team</a></li>
                 <li><a href="#contatti">Contatti</a></li>
                 <li><i class="fas fa-solid fa-user" style="color:red"></i></li>
+                
             </ul>
+            <!-- <ul class="tendina" style=" display: flex; flex-direction: column; position: absolute; margin-left: 550px; margin-top:50px;">
+                    <li>prova</li>
+                    <li>prova</li>
+                </ul> -->
+            <div class="menu-toggle">
+                <i class="fas fa-bars"></i>
+            </div>
             <div class="registrati">
                 <a href="">Registrati</a>
             </div>
@@ -79,8 +87,13 @@
             </svg>
             <h2>Benvenuti al nostro progetto Full-Stack in C#</h1>
                 <p>Descrizione generale del progetto, inclusi gli obiettivi e la visione.</p>
+
+                <img src="./img/arrow.webp" alt="" style="height: 50px; margin-top: 30px; color: #ffffff;">
+                    
+                
         </section>
-        <section id="funzionalita">
+        
+        <section id="funzionalita" style="margin-top: 400px;">
             <h2>Funzionalità principali</h2>
             <p>Dettagli sulle funzionalità chiave del progetto.</p>
         </section>
@@ -100,6 +113,34 @@
     <footer>
         <p>&copy; 2024 Nome del Progetto. Tutti i diritti riservati.</p>
     </footer>
+
+    <!--javascript-->
+    <script>
+
+        // Previeni il comportamento predefinito del link
+        
+    document.querySelector('.registrati').addEventListener('click', function() {
+    event.preventDefault();
+    // Seleziona l'elemento della scritta da modificare
+    var titolo = document.querySelector('.logo');
+    
+    // Modifica la scritta
+    titolo.textContent = "Nuovo Titolo";
+
+    });
+
+    document.querySelector('.fas.fa-bars').addEventListener('click', function() {
+        document.querySelector('.logo')
+    }); 
+
+    document.querySelector('.fas.fa-bars').addEventListener('click', function() {
+    var navUl = document.querySelector('nav ul');
+    navUl.classList.toggle('show');
+
+});
+
+    </script>
+    <!-- <link rel="stylesheet" href="script.js"> -->
 </body>
 
 </html>
