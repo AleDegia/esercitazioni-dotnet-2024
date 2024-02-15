@@ -225,10 +225,35 @@ section svg{
     margin-top: -15px;
 }
 
-/* .sezioni h2{
-    display: flex;
-    justify-content: center;
-} */
+.nav-item{
+    font-weight: 500;
+}
+
+.nav-item:hover{
+    transform: scaleY(1.1);
+}
+
+/*prograss bar animation*/
+.progress-bar{
+    height: 35px;
+    border-radius: 30px;
+    box-shadow: 0 3px 3px rgb(36, 3, 42);
+    animation: html 4s ease-in-out forwards;
+    transition: width 0.5s ease; /* transizione fluida */
+}
+
+
+
+@media (min-width: 1261px) {
+    .we.navbar{
+         display: none; 
+        /* visibility: hidden; */
+    
+    }
+    .nav1 ul{
+        margin-bottom: 0;
+    }
+ }
 
 @media (max-width:1200px){
     .sezione-sotto-navbar{
@@ -282,6 +307,27 @@ nav ul.show {
         transform: scale(1.1);
     }
 
+    /*bootstrap*/
+
+    .nav1{
+        display: none;
+    }
+
+    header{
+        padding: 10px;
+    }
+      
+
+    /* .navbar-toggler {
+        display: flex !important;
+      }
+      .navbar-collapse {
+        display: none !important;
+      }
+      .navbar-collapse.show {
+        display: block !important;
+      } */
+
     /* .fas.fa-bars.is-active:before{
         transform: rotate(-45deg) translate(-8px, 6px);
     }
@@ -289,4 +335,8 @@ nav ul.show {
     .fas.fa-bars.is-active:after{
         transform: rotate(-45deg) translate(-7px, -9px);
     } */
+        
 }
+
+
+
