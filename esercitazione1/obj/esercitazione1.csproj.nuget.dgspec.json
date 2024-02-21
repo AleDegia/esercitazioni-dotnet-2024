@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\DOTNET\\Documents\\Corso-Dotnet-2024\\CORSO-DOTNET-2024\\esercitazioni-dotnet-2024\\esercitazione1\\esercitazione1.csproj": {}
+    "c:\\Users\\DOTNET\\Documents\\Corso-Dotnet-2024\\CORSO-DOTNET-2024\\esercitazioni-dotnet-2024\\esercitazione1\\esercitazione1.csproj": {}
   },
   "projects": {
-    "C:\\Users\\DOTNET\\Documents\\Corso-Dotnet-2024\\CORSO-DOTNET-2024\\esercitazioni-dotnet-2024\\esercitazione1\\esercitazione1.csproj": {
+    "c:\\Users\\DOTNET\\Documents\\Corso-Dotnet-2024\\CORSO-DOTNET-2024\\esercitazioni-dotnet-2024\\esercitazione1\\esercitazione1.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\DOTNET\\Documents\\Corso-Dotnet-2024\\CORSO-DOTNET-2024\\esercitazioni-dotnet-2024\\esercitazione1\\esercitazione1.csproj",
+        "projectUniqueName": "c:\\Users\\DOTNET\\Documents\\Corso-Dotnet-2024\\CORSO-DOTNET-2024\\esercitazioni-dotnet-2024\\esercitazione1\\esercitazione1.csproj",
         "projectName": "esercitazione1",
-        "projectPath": "C:\\Users\\DOTNET\\Documents\\Corso-Dotnet-2024\\CORSO-DOTNET-2024\\esercitazioni-dotnet-2024\\esercitazione1\\esercitazione1.csproj",
+        "projectPath": "c:\\Users\\DOTNET\\Documents\\Corso-Dotnet-2024\\CORSO-DOTNET-2024\\esercitazioni-dotnet-2024\\esercitazione1\\esercitazione1.csproj",
         "packagesPath": "C:\\Users\\DOTNET\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\DOTNET\\Documents\\Corso-Dotnet-2024\\CORSO-DOTNET-2024\\esercitazioni-dotnet-2024\\esercitazione1\\obj\\",
+        "outputPath": "c:\\Users\\DOTNET\\Documents\\Corso-Dotnet-2024\\CORSO-DOTNET-2024\\esercitazioni-dotnet-2024\\esercitazione1\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\DOTNET\\AppData\\Roaming\\NuGet\\NuGet.Config"
@@ -41,6 +41,10 @@
             "Newtonsoft.Json": {
               "target": "Package",
               "version": "[13.0.3, )"
+            },
+            "System.Data.SQLite": {
+              "target": "Package",
+              "version": "[1.0.118, )"
             }
           },
           "imports": [
