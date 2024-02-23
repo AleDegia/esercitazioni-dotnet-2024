@@ -1,0 +1,75 @@
+{
+  "format": 1,
+  "restore": {
+    "C:\\Users\\DOTNET\\Documents\\Corso-Dotnet-2024\\CORSO-DOTNET-2024\\esercitazioni-dotnet-2024\\esercitazione1\\tabellaDaTerminale\\tabellaDaTerminale.csproj": {}
+  },
+  "projects": {
+    "C:\\Users\\DOTNET\\Documents\\Corso-Dotnet-2024\\CORSO-DOTNET-2024\\esercitazioni-dotnet-2024\\esercitazione1\\tabellaDaTerminale\\tabellaDaTerminale.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Users\\DOTNET\\Documents\\Corso-Dotnet-2024\\CORSO-DOTNET-2024\\esercitazioni-dotnet-2024\\esercitazione1\\tabellaDaTerminale\\tabellaDaTerminale.csproj",
+        "projectName": "tabellaDaTerminale",
+        "projectPath": "C:\\Users\\DOTNET\\Documents\\Corso-Dotnet-2024\\CORSO-DOTNET-2024\\esercitazioni-dotnet-2024\\esercitazione1\\tabellaDaTerminale\\tabellaDaTerminale.csproj",
+        "packagesPath": "C:\\Users\\DOTNET\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\DOTNET\\Documents\\Corso-Dotnet-2024\\CORSO-DOTNET-2024\\esercitazioni-dotnet-2024\\esercitazione1\\tabellaDaTerminale\\obj\\",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "C:\\Users\\DOTNET\\AppData\\Roaming\\NuGet\\NuGet.Config"
+        ],
+        "originalTargetFrameworks": [
+          "net8.0"
+        ],
+        "sources": {
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net8.0": {
+            "targetAlias": "net8.0",
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net8.0": {
+          "targetAlias": "net8.0",
+          "dependencies": {
+            "ConsoleTables": {
+              "target": "Package",
+              "version": "[2.6.1, )"
+            },
+            "Spectre.Console": {
+              "target": "Package",
+              "version": "[0.48.0, )"
+            },
+            "Spectre.Console.cli": {
+              "target": "Package",
+              "version": "[0.48.0, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.100/PortableRuntimeIdentifierGraph.json"
+        }
+      }
+    }
+  }
+}

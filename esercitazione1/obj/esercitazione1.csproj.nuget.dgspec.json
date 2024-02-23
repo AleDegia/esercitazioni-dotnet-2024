@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "c:\\Users\\DOTNET\\Documents\\Corso-Dotnet-2024\\CORSO-DOTNET-2024\\esercitazioni-dotnet-2024\\esercitazione1\\esercitazione1.csproj": {}
+    "C:\\Users\\DOTNET\\Documents\\Corso-Dotnet-2024\\CORSO-DOTNET-2024\\esercitazioni-dotnet-2024\\esercitazione1\\esercitazione1.csproj": {}
   },
   "projects": {
-    "c:\\Users\\DOTNET\\Documents\\Corso-Dotnet-2024\\CORSO-DOTNET-2024\\esercitazioni-dotnet-2024\\esercitazione1\\esercitazione1.csproj": {
+    "C:\\Users\\DOTNET\\Documents\\Corso-Dotnet-2024\\CORSO-DOTNET-2024\\esercitazioni-dotnet-2024\\esercitazione1\\esercitazione1.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "c:\\Users\\DOTNET\\Documents\\Corso-Dotnet-2024\\CORSO-DOTNET-2024\\esercitazioni-dotnet-2024\\esercitazione1\\esercitazione1.csproj",
+        "projectUniqueName": "C:\\Users\\DOTNET\\Documents\\Corso-Dotnet-2024\\CORSO-DOTNET-2024\\esercitazioni-dotnet-2024\\esercitazione1\\esercitazione1.csproj",
         "projectName": "esercitazione1",
-        "projectPath": "c:\\Users\\DOTNET\\Documents\\Corso-Dotnet-2024\\CORSO-DOTNET-2024\\esercitazioni-dotnet-2024\\esercitazione1\\esercitazione1.csproj",
+        "projectPath": "C:\\Users\\DOTNET\\Documents\\Corso-Dotnet-2024\\CORSO-DOTNET-2024\\esercitazioni-dotnet-2024\\esercitazione1\\esercitazione1.csproj",
         "packagesPath": "C:\\Users\\DOTNET\\.nuget\\packages\\",
-        "outputPath": "c:\\Users\\DOTNET\\Documents\\Corso-Dotnet-2024\\CORSO-DOTNET-2024\\esercitazioni-dotnet-2024\\esercitazione1\\obj\\",
+        "outputPath": "C:\\Users\\DOTNET\\Documents\\Corso-Dotnet-2024\\CORSO-DOTNET-2024\\esercitazioni-dotnet-2024\\esercitazione1\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\DOTNET\\AppData\\Roaming\\NuGet\\NuGet.Config"
@@ -38,9 +38,21 @@
         "net8.0": {
           "targetAlias": "net8.0",
           "dependencies": {
+            "ConsoleTables": {
+              "target": "Package",
+              "version": "[2.6.1, )"
+            },
             "Newtonsoft.Json": {
               "target": "Package",
               "version": "[13.0.3, )"
+            },
+            "Spectre.Console": {
+              "target": "Package",
+              "version": "[0.48.0, )"
+            },
+            "Spectre.Console.cli": {
+              "target": "Package",
+              "version": "[0.48.0, )"
             },
             "System.Data.SQLite": {
               "target": "Package",
