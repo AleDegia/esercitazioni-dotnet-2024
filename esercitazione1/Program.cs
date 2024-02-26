@@ -188,6 +188,11 @@ class Program
         //crea tabella clienti
         CreaTabellaClienti();
 
+        //crea tabella acquisti
+        CreaTabellaAcquisti();
+
+        //inserisco gli acquisti nella tabella acquisti
+        InserisciAcquisti();
 
         //aggiungo nel json i prodotti e prezzi del dictionary
         if (!File.Exists(pathJsonProdottiEPrezzi))
@@ -395,10 +400,10 @@ class Program
             SQLiteConnection connection = new SQLiteConnection($"Data Source = {path}; Version=3;");    //crea la connessione al database(dico quale database usare e la versione di SQLite da usare. )
             connection.Open();   //apre la connessione al database 
             string sql = @$"
-                CREATE TABLE prodotti (id INTEGER PRIMARY KEY AUTOINCREMENT, nome TEXT UNIQUE, prezzo DECIMAL, quantita INTEGER CHECK (quantita >= 0));
-                INSERT INTO prodotti (nome, prezzo, quantita) VALUES ('{prezziProdotti.Keys.ElementAt(0)}', '{prezziProdotti.Values.ElementAt(0)}', 10);
-                INSERT INTO prodotti (nome, prezzo, quantita) VALUES ('{prezziProdotti.Keys.ElementAt(1)}', '{prezziProdotti.Values.ElementAt(1)}', 8);
-                INSERT INTO prodotti (nome, prezzo, quantita) VALUES ('{prezziProdotti.Keys.ElementAt(2)}', '{prezziProdotti.Values.ElementAt(2)}', 22);
+                CREATE TABLE prodotti (id INTEGER PRIMARY KEY AUTOINCREMENT, nome TEXT UNIQUE, prezzo DECIMAL, quantita INTEGER CHECK (quantita >= 0),id_cliente INTEGER REFERENCES clienti(id));
+                INSERT INTO prodotti (nome, prezzo, quantita, id_cliente) VALUES ('{prezziProdotti.Keys.ElementAt(0)}', '{prezziProdotti.Values.ElementAt(0)}', 10, 1);
+                INSERT INTO prodotti (nome, prezzo, quantita, id_cliente) VALUES ('{prezziProdotti.Keys.ElementAt(1)}', '{prezziProdotti.Values.ElementAt(1)}', 8, 2);
+                INSERT INTO prodotti (nome, prezzo, quantita, id_cliente) VALUES ('{prezziProdotti.Keys.ElementAt(2)}', '{prezziProdotti.Values.ElementAt(2)}', 22, 3);
                 ";
             
             //Questo oggetto rappresenta un comando SQL da eseguire sul database SQLite. Gli viene passata una stringa sql, che contiene l'istruzione SQL da eseguire, e un oggetto SQLiteConnection chiamato connection, che rappresenta la connessione al database SQLite su cui verrà eseguito il comando.
@@ -426,7 +431,7 @@ class Program
             SQLiteConnection connection = new SQLiteConnection($"Data Source = {path}; Version=3;");    //crea la connessione al database(dico quale database usare e la versione di SQLite da usare. )
             connection.Open();   //apre la connessione al database 
             string sql = @$"
-                CREATE TABLE IF NOT EXISTS clienti (id INTEGER PRIMARY KEY AUTOINCREMENT, nome TEXT UNIQUE, oggettoAcquistato TEXT, prezzoDiAcquisto TEXT, bilancio TEXT);
+                CREATE TABLE IF NOT EXISTS clienti (id INTEGER PRIMARY KEY AUTOINCREMENT, nome TEXT UNIQUE);
                 ";
             
             //Questo oggetto rappresenta un comando SQL da eseguire sul database SQLite. Gli viene passata una stringa sql, che contiene l'istruzione SQL da eseguire, e un oggetto SQLiteConnection chiamato connection, che rappresenta la connessione al database SQLite su cui verrà eseguito il comando.
@@ -467,7 +472,7 @@ class Program
 
             //query di insert
             string sql = @$"
-                        INSERT INTO clienti (nome) VALUES ('{objj[i].nomeutente});
+                        INSERT INTO clienti (nome) VALUES ('{objj[i].nomeutente}');
                         ";
             
             //Questo oggetto rappresenta un comando SQL da eseguire sul database SQLite. Gli viene passata una stringa sql, che contiene l'istruzione SQL da eseguire, e un oggetto SQLiteConnection chiamato connection, che rappresenta la connessione al database SQLite su cui verrà eseguito il comando.
@@ -482,29 +487,90 @@ class Program
     static void CreaTabellaAcquisti()
     {
         string path = @"database2.db";               //la rotta del file del database
-        if(!File.Exists(path))                      //se il file del database non esiste lo crea
+        if(File.Exists(path))                      //se il file del database non esiste lo crea
         {
 
-            SQLiteConnection.CreateFile(path);      //crea il file del database
+            
             SQLiteConnection connection = new SQLiteConnection($"Data Source = {path}; Version=3;");    //crea la connessione al database(dico quale database usare e la versione di SQLite da usare. )
             connection.Open();   //apre la connessione al database 
             string sql = @$"
-                CREATE TABLE acquisti (id INTEGER PRIMARY KEY AUTOINCREMENT, quantita INTEGER CHECK (quantita >= 0), id_cliente INTEGER, id_prodotto INTEGER);
+                CREATE TABLE acquisti (id INTEGER PRIMARY KEY AUTOINCREMENT, nome_cliente TEXT, prezzo_prodotto REAL, id_cliente INTEGER);
                 ";
 
-            
-            // string sql2 = @$"
-            //     INSERT INTO acquisti (quantita, id_cliente, id_prodotto) VALUES ('{prezziProdotti.Keys.ElementAt(0)}', '{prezziProdotti.Values.ElementAt(0)}', 10);
-            //     INSERT INTO prodotti (nome, prezzo, quantita) VALUES ('{prezziProdotti.Keys.ElementAt(1)}', '{prezziProdotti.Values.ElementAt(1)}', 8);
-            //     INSERT INTO prodotti (nome, prezzo, quantita) VALUES ('{prezziProdotti.Keys.ElementAt(2)}', '{prezziProdotti.Values.ElementAt(2)}', 22);";
             
             //Questo oggetto rappresenta un comando SQL da eseguire sul database SQLite. Gli viene passata una stringa sql, che contiene l'istruzione SQL da eseguire, e un oggetto SQLiteConnection chiamato connection, che rappresenta la connessione al database SQLite su cui verrà eseguito il comando.
             SQLiteCommand command = new SQLiteCommand(sql, connection);         //crea il comando sql per eseguire le query
             command.ExecuteNonQuery();                                          //esegue il comando sql sulla connessione al database
+
+
+            //fare la join
+            string sqlJoin = @$"
+                SELECT prodotti.nome, prodotti.quantita, clienti.nome
+                FROM prodotti
+                JOIN clienti ON prodotti.id_cliente = clienti.id";
+
+            
+            SQLiteCommand command2 = new SQLiteCommand(sqlJoin, connection);
+            command2.ExecuteNonQuery();
             connection.Close();                                                 //chiude la connessione al database
         }
     }
-    static void stampaDatabase(){
+
+    static void InserisciAcquisti()
+    {
+         string path = @"database2.db";               //la rotta del file del database
+        if(File.Exists(path))                      //se il file del database non esiste lo crea
+        {
+
+            
+            SQLiteConnection connection = new SQLiteConnection($"Data Source = {path}; Version=3;");    //crea la connessione al database(dico quale database usare e la versione di SQLite da usare. )
+            connection.Open();
+
+            // Specifica la directory in cui cercare i file
+            string directoryPath = Environment.CurrentDirectory;
+
+            // Ottieni tutti i file nella directory che iniziano con "acquisti"
+            string[] files = Directory.GetFiles(directoryPath, "acquisti*");
+
+
+            // elimino i record del table
+                string deleteRecordsSql = "DELETE FROM acquisti;";
+                SQLiteCommand deleteRecordsCommand = new SQLiteCommand(deleteRecordsSql, connection);
+                deleteRecordsCommand.ExecuteNonQuery();
+
+
+             // Itera su tutti i file json trovati
+            foreach (string filePath in files)
+            {    
+                string fileContent = File.ReadAllText(filePath); // Leggi il contenuto del file
+                dynamic objj = JsonConvert.DeserializeObject(fileContent); // Deserializza il contenuto JSON
+
+                // Itera su ciascun oggetto nell'array JSON
+                foreach(var item in objj)
+                {    
+                    // Controlla l'oggetto acquistato e assegna l'id corrispondente
+                    string id;
+                    if(item.oggettoAcquistato == "gaming mouse") { id = "1"; } 
+                    else if(item.oggettoAcquistato == "monitor") { id = "2"; }
+                    else { id = "3"; }
+
+                    // Esegui l'inserimento nel database per ogni oggetto
+                    string sql = @$"
+                        INSERT INTO acquisti (nome_cliente, prezzo_prodotto, id_cliente) 
+                        VALUES ('{item.nomeutente}', '{item.prezzoDiAcquisto}', '{id}');
+                    ";
+
+                    SQLiteCommand command2 = new SQLiteCommand(sql, connection);
+                    command2.ExecuteNonQuery();
+                }
+            }
+
+            connection.Close(); 
+
+        }
+    }
+    static void stampaDatabase()
+    {
 
     }
     
