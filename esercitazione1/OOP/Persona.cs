@@ -1,8 +1,26 @@
 class Persona
 {
-    public string nome;
-    public string cognome;
-    public int eta;
+    private string nome;            //non puo accederci nessun altra classe se non persona
+    private string cognome;
+    private int eta;
+
+    public string Nome
+    {
+        get{return nome;}
+        set{nome = value;}
+    }
+
+    public string Cognome
+    {
+        get{return cognome;}
+        set{cognome = value;}
+    }
+
+    public int Eta
+    {
+        get{return eta;}
+        set{eta = value;}
+    }
 
     public Persona(string nome, string cognome, int eta) 
     {

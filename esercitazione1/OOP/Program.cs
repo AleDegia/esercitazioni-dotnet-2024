@@ -1,17 +1,38 @@
-﻿class Program
+﻿class Persona
 {
-    static void Main(string[] args)
-    {
-        Persona p = new Persona("Mario", "Cognome", 30);
-        Persona p2 = new Persona("Luca", "Verdi", 24);
-        p.Stampa();
-        p2.Stampa();
+    private string nome;            //non puo accederci nessun altra classe se non persona
+    private string cognome;
+    private int eta;
 
-        //questi cw qui sotto li userei se non avessi il metodo
-        
-        // System.Console.WriteLine("Nome: " + p.nome);
-        // System.Console.WriteLine("Cognome: " + p.cognome);
-        // System.Console.WriteLine("Eta: " + p.eta);
-        // System.Console.WriteLine("Nome persona 2: " + p2.nome);
+    public string Nome
+    {
+        get{return nome;}
+        set{nome = value;}
+    }
+
+    public string Cognome
+    {
+        get{return cognome;}
+        set{cognome = value;}
+    }
+
+    public int Eta
+    {
+        get{return eta;}
+        set{eta = value;}
+    }
+
+    public Persona(string nome, string cognome, int eta) 
+    {
+        this.nome = nome;           //this si riferisce all'oggetto creato col new, con cui chiamo il costruttore
+        this.cognome = cognome;
+        this.eta = eta;
+    }
+
+    public void Stampa()
+    {
+        System.Console.WriteLine("Nome: " + nome);
+        System.Console.WriteLine("Cognome: " + cognome);
+        System.Console.WriteLine("Eta: " + eta);
     }
 }
