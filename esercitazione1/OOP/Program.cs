@@ -1,38 +1,14 @@
-﻿class Persona
+﻿class Program
 {
-    private string nome;            //non puo accederci nessun altra classe se non persona
-    private string cognome;
-    private int eta;
-
-    public string Nome
+    static void Main(string[] args)
     {
-        get{return nome;}
-        set{nome = value;}
-    }
+        Dado d1 = new Dado();
+        Dado d2 = new Dado();
 
-    public string Cognome
-    {
-        get{return cognome;}
-        set{cognome = value;}
-    }
+        int n1 = d1.Lancia();
+        int n2 = d2.Lancia();
 
-    public int Eta
-    {
-        get{return eta;}
-        set{eta = value;}
-    }
-
-    public Persona(string nome, string cognome, int eta) 
-    {
-        this.nome = nome;           //this si riferisce all'oggetto creato col new, con cui chiamo il costruttore
-        this.cognome = cognome;
-        this.eta = eta;
-    }
-
-    public void Stampa()
-    {
-        System.Console.WriteLine("Nome: " + nome);
-        System.Console.WriteLine("Cognome: " + cognome);
-        System.Console.WriteLine("Eta: " + eta);
+        System.Console.WriteLine("Dado 1: " + n1);
+        System.Console.WriteLine("Dado 2: " + n2);
     }
 }
