@@ -1,0 +1,18 @@
+.navbar-brand{
+    font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    font-size: 30px;
+    color: #000000;
+  }
+  
+  .nav-item{
+    font-weight:600;
+    margin-left: 1.5rem;
+  }
+
+  form{
+    margin-top: 50px;
+  }
+
+  .vh-100{
+    background-color: rgb(226, 226, 226);
+  }

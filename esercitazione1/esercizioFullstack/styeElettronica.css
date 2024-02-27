@@ -1,0 +1,31 @@
+body{
+    background-color: rgb(226, 226, 226);
+}
+
+.navar{
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.navbar-brand{
+    font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    font-size: 30px;
+    color: #000000;
+  }
+  
+  .nav-item{
+    font-weight:600;
+    margin-left: 1.5rem;
+  }
+  
+
+h3{
+    color: white;
+    text-align: center;
+    margin-top: 40px;
+}
+
+.card-img-top{
+    padding: 60px;
+    margin-top: -15px;
+}
+
