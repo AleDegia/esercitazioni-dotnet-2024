@@ -1,0 +1,15 @@
+C:\Users\DOTNET\Documents\Corso-Dotnet-2024\CORSO-DOTNET-2024\esercitazioni-dotnet-2024\esercitazione1\roulette_OOP\bin\Debug\net8.0\roulette_OOP.exe
+C:\Users\DOTNET\Documents\Corso-Dotnet-2024\CORSO-DOTNET-2024\esercitazioni-dotnet-2024\esercitazione1\roulette_OOP\bin\Debug\net8.0\roulette_OOP.deps.json
+C:\Users\DOTNET\Documents\Corso-Dotnet-2024\CORSO-DOTNET-2024\esercitazioni-dotnet-2024\esercitazione1\roulette_OOP\bin\Debug\net8.0\roulette_OOP.runtimeconfig.json
+C:\Users\DOTNET\Documents\Corso-Dotnet-2024\CORSO-DOTNET-2024\esercitazioni-dotnet-2024\esercitazione1\roulette_OOP\bin\Debug\net8.0\roulette_OOP.dll
+C:\Users\DOTNET\Documents\Corso-Dotnet-2024\CORSO-DOTNET-2024\esercitazioni-dotnet-2024\esercitazione1\roulette_OOP\bin\Debug\net8.0\roulette_OOP.pdb
+C:\Users\DOTNET\Documents\Corso-Dotnet-2024\CORSO-DOTNET-2024\esercitazioni-dotnet-2024\esercitazione1\roulette_OOP\obj\Debug\net8.0\roulette_OOP.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\DOTNET\Documents\Corso-Dotnet-2024\CORSO-DOTNET-2024\esercitazioni-dotnet-2024\esercitazione1\roulette_OOP\obj\Debug\net8.0\roulette_OOP.AssemblyInfoInputs.cache
+C:\Users\DOTNET\Documents\Corso-Dotnet-2024\CORSO-DOTNET-2024\esercitazioni-dotnet-2024\esercitazione1\roulette_OOP\obj\Debug\net8.0\roulette_OOP.AssemblyInfo.cs
+C:\Users\DOTNET\Documents\Corso-Dotnet-2024\CORSO-DOTNET-2024\esercitazioni-dotnet-2024\esercitazione1\roulette_OOP\obj\Debug\net8.0\roulette_OOP.csproj.CoreCompileInputs.cache
+C:\Users\DOTNET\Documents\Corso-Dotnet-2024\CORSO-DOTNET-2024\esercitazioni-dotnet-2024\esercitazione1\roulette_OOP\obj\Debug\net8.0\roulette_OOP.sourcelink.json
+C:\Users\DOTNET\Documents\Corso-Dotnet-2024\CORSO-DOTNET-2024\esercitazioni-dotnet-2024\esercitazione1\roulette_OOP\obj\Debug\net8.0\roulette_OOP.dll
+C:\Users\DOTNET\Documents\Corso-Dotnet-2024\CORSO-DOTNET-2024\esercitazioni-dotnet-2024\esercitazione1\roulette_OOP\obj\Debug\net8.0\refint\roulette_OOP.dll
+C:\Users\DOTNET\Documents\Corso-Dotnet-2024\CORSO-DOTNET-2024\esercitazioni-dotnet-2024\esercitazione1\roulette_OOP\obj\Debug\net8.0\roulette_OOP.pdb
+C:\Users\DOTNET\Documents\Corso-Dotnet-2024\CORSO-DOTNET-2024\esercitazioni-dotnet-2024\esercitazione1\roulette_OOP\obj\Debug\net8.0\roulette_OOP.genruntimeconfig.cache
+C:\Users\DOTNET\Documents\Corso-Dotnet-2024\CORSO-DOTNET-2024\esercitazioni-dotnet-2024\esercitazione1\roulette_OOP\obj\Debug\net8.0\ref\roulette_OOP.dll
