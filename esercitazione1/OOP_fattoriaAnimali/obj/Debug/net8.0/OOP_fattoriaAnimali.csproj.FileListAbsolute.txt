@@ -1,0 +1,14 @@
+C:\Users\DOTNET\Documents\Corso-Dotnet-2024\OOP_fattoriaAnimali\obj\Debug\net8.0\OOP_fattoriaAnimali.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\DOTNET\Documents\Corso-Dotnet-2024\OOP_fattoriaAnimali\obj\Debug\net8.0\OOP_fattoriaAnimali.AssemblyInfoInputs.cache
+C:\Users\DOTNET\Documents\Corso-Dotnet-2024\OOP_fattoriaAnimali\obj\Debug\net8.0\OOP_fattoriaAnimali.AssemblyInfo.cs
+C:\Users\DOTNET\Documents\Corso-Dotnet-2024\OOP_fattoriaAnimali\obj\Debug\net8.0\OOP_fattoriaAnimali.csproj.CoreCompileInputs.cache
+C:\Users\DOTNET\Documents\Corso-Dotnet-2024\OOP_fattoriaAnimali\bin\Debug\net8.0\OOP_fattoriaAnimali.exe
+C:\Users\DOTNET\Documents\Corso-Dotnet-2024\OOP_fattoriaAnimali\bin\Debug\net8.0\OOP_fattoriaAnimali.deps.json
+C:\Users\DOTNET\Documents\Corso-Dotnet-2024\OOP_fattoriaAnimali\bin\Debug\net8.0\OOP_fattoriaAnimali.runtimeconfig.json
+C:\Users\DOTNET\Documents\Corso-Dotnet-2024\OOP_fattoriaAnimali\bin\Debug\net8.0\OOP_fattoriaAnimali.dll
+C:\Users\DOTNET\Documents\Corso-Dotnet-2024\OOP_fattoriaAnimali\bin\Debug\net8.0\OOP_fattoriaAnimali.pdb
+C:\Users\DOTNET\Documents\Corso-Dotnet-2024\OOP_fattoriaAnimali\obj\Debug\net8.0\OOP_fattoriaAnimali.dll
+C:\Users\DOTNET\Documents\Corso-Dotnet-2024\OOP_fattoriaAnimali\obj\Debug\net8.0\refint\OOP_fattoriaAnimali.dll
+C:\Users\DOTNET\Documents\Corso-Dotnet-2024\OOP_fattoriaAnimali\obj\Debug\net8.0\OOP_fattoriaAnimali.pdb
+C:\Users\DOTNET\Documents\Corso-Dotnet-2024\OOP_fattoriaAnimali\obj\Debug\net8.0\OOP_fattoriaAnimali.genruntimeconfig.cache
+C:\Users\DOTNET\Documents\Corso-Dotnet-2024\OOP_fattoriaAnimali\obj\Debug\net8.0\ref\OOP_fattoriaAnimali.dll
