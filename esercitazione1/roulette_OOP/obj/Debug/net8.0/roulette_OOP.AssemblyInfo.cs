@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("roulette_OOP")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+4e0f8894bf06b9385de7120fb5b2cfcf2a0ae364")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0")]
 [assembly: System.Reflection.AssemblyProductAttribute("roulette_OOP")]
 [assembly: System.Reflection.AssemblyTitleAttribute("roulette_OOP")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

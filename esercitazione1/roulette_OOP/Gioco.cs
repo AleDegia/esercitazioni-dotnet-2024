@@ -10,6 +10,10 @@ public class Gioco
 
     private int quantitaNumeriScelti;
 
+    private int contatore;
+
+    private int numeroDaIndovinare;
+
 
 
     public double ImportoScommessa
@@ -34,6 +38,18 @@ public class Gioco
     {
         get { return quantitaNumeriScelti; }
         set { quantitaNumeriScelti = value; }
+    }
+
+    public int Contatore
+    {
+        get { return contatore; }
+        set { contatore = value; }
+    }
+
+    public int NumeroDaIndovinare
+    {
+        get { return numeroDaIndovinare; }
+        set { numeroDaIndovinare = value; }
     }
 
 

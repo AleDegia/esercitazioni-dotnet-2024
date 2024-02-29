@@ -17,11 +17,9 @@ class Program2
             logicaPartita.VerificaImporto(giocatore1);
             logicaPartita.ScegliTipoScommessa(giocatore1);
             logicaPartita.sceltaNumeriDaScommettere(giocatore1);
-        }
-        
-
-
-        
+            logicaPartita.Sleep();
+            logicaPartita.WinCheck(giocatore1);
+        }        
 
     }
 }

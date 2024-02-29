@@ -15,6 +15,7 @@ public class LogicaPartita
     public void generaNumeroCasuale()
     {
         numeroGenerato = random.Next(1,10);
+        gioco.NumeroDaIndovinare = numeroGenerato;
     }
 
     // Metodo per calcolare la percentuale
@@ -156,7 +157,7 @@ public class LogicaPartita
                     for (int i = 0; i < numeriStringa.Length; i++)
                     {
                         gioco.ArrayNumeriScelti[i] = Int32.Parse(numeriStringa[i]);
-                        //Console.WriteLine(numeriArray[i]);
+                        Console.WriteLine(gioco.ArrayNumeriScelti[i]);
                     }
                     break;
                 }//chisura try
@@ -166,6 +167,51 @@ public class LogicaPartita
 
                 }
 
+            }
+    }
+
+    public void Sleep()
+    {
+        //. . . 
+            System.Console.Write(". ");
+            Thread.Sleep(500);
+            System.Console.Write(". ");
+            Thread.Sleep(500);
+            System.Console.Write(". \n");
+            Thread.Sleep(500);
+    }
+
+    public void WinCheck(Giocatore giocatore1)
+    {
+        //paragono i numeri scelti col numero estratto col random
+            foreach (int numero in gioco.ArrayNumeriScelti)
+            {
+                gioco.Contatore++;
+                if (numero == gioco.NumeroDaIndovinare)
+                {
+                    giocatore1.Vittorie++;
+                    System.Console.WriteLine("è uscito il " + numeroGenerato);
+                    double percentualeGuadagno = 10.0 / gioco.QuantitaNumeriScelti;
+
+                    double guadagno = gioco.ImportoScommessa * percentualeGuadagno;
+                    giocatore1.Balance += guadagno;
+                    System.Console.Write("Hai vinto ");
+                    Console.ForegroundColor = ConsoleColor.Green;
+                    System.Console.WriteLine(guadagno);
+                    Console.ResetColor(); //resetto colore caratteri
+                    gioco.Contatore = 0;
+                    break;
+                }
+                //se per tutti i numeri che ho scelto non è uscito il num da indovinare
+                else if (gioco.QuantitaNumeriScelti == gioco.Contatore)
+                {
+                    giocatore1.Sconfitte++;
+                    System.Console.WriteLine("è uscito il numero " + numeroGenerato);
+                    System.Console.WriteLine("Hai perso :(");
+                    gioco.QuantitaNumeriScelti = 0;
+                    gioco.Contatore = 0; //riporto il contatore a 0 senno poi non entra 
+                    break;
+                }
             }
     }
 }
