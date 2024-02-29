@@ -9,6 +9,21 @@ class Database : DbContext
     {
         optionsBuilder.UseInMemoryDatabase("MyDatabase");
     }
+
+    public void InserisciClienti(List<Cliente> clienti)
+    {
+        Clienti.AddRange(clienti);  //AddRange aggiunge tutti i clienti presenti nella lista clienti al set Clienti del database
+        SaveChanges();
+    }
+
+    public void StampaClienti()
+    {
+        var clienti = Clienti.ToList(); //recupera tutti i clienti del database
+        foreach(var c in clienti)
+        {
+            System.Console.WriteLine($"{c.Id} - {c.Nome} {c.Cognome}");
+        }
+    }
 }
 
 

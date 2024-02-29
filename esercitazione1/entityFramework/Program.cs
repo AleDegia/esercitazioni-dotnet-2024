@@ -4,19 +4,18 @@
     {
         using (var db = new Database()) // Per garantire che il database venga chiuso
         {
-            var cliente = new Cliente { Nome = "Mario", Cognome = "Rossi" }; // Creazione nuovo cliente
-            db.Clienti.Add(cliente); // Aggiunta del cliente al database
-            var cliente2 = new Cliente {Nome = "Luca", Cognome = "Verdi"};
-            db.Clienti.Add(cliente2); // Aggiunta del cliente al database
-            db.SaveChanges(); // Salvataggio delle modifiche
 
-            var clienti = db.Clienti.ToList(); // recupera tutti i record presenti nella tabella Clienti del database e li converte in una lista di oggetti. 
-            foreach (var c in clienti)
+            var clienti2 = new List<Cliente>
             {
-                System.Console.WriteLine($"{c.Id} - {c.Nome} {c.Cognome}"); // Stampa di tutti i clienti
-            }
+                new Cliente {Nome = "Mario", Cognome = "Rossi"},
+                new Cliente {Nome = "Luca", Cognome = "Verdi"},
+                new Cliente {Nome = "Daje", Cognome = "Namo"}
+            };
+
+            db.InserisciClienti(clienti2);
+            db.StampaClienti();
         }
-    }
+    }           
 }
 
 /* usiamo var invece che la sintassi regolare perchè il programma non sa in anticipo che tipo di dati riceverà*/
