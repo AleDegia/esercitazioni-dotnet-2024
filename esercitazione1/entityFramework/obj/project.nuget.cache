@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "ea8SIv5pZa1y6P4YyhkHtGYt5V7sg9KL8Wn4VWzdNRKd6gHhhR2KzaEnopaheMQLfPLWt4/UvUuvNhAkFulg7w==",
+  "dgSpecHash": "ozEpl9+TPv1YcoopcELX4+3IcZVmuupqTN8zYriRij4MWogjogtXe6pA9IHqOPTFTBv+OLoqmK97I3Sfv3mdww==",
   "success": true,
-  "projectFilePath": "C:\\Users\\DOTNET\\Documents\\Corso-Dotnet-2024\\entityFramework\\entityFramework.csproj",
+  "projectFilePath": "C:\\Users\\DOTNET\\Documents\\Corso-Dotnet-2024\\CORSO-DOTNET-2024\\esercitazioni-dotnet-2024\\esercitazione1\\entityFramework\\entityFramework.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\DOTNET\\.nuget\\packages\\microsoft.entityframeworkcore\\8.0.2\\microsoft.entityframeworkcore.8.0.2.nupkg.sha512",
     "C:\\Users\\DOTNET\\.nuget\\packages\\microsoft.entityframeworkcore.abstractions\\8.0.2\\microsoft.entityframeworkcore.abstractions.8.0.2.nupkg.sha512",

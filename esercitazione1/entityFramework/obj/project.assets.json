@@ -594,11 +594,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\DOTNET\\Documents\\Corso-Dotnet-2024\\entityFramework\\entityFramework.csproj",
+      "projectUniqueName": "C:\\Users\\DOTNET\\Documents\\Corso-Dotnet-2024\\CORSO-DOTNET-2024\\esercitazioni-dotnet-2024\\esercitazione1\\entityFramework\\entityFramework.csproj",
       "projectName": "entityFramework",
-      "projectPath": "C:\\Users\\DOTNET\\Documents\\Corso-Dotnet-2024\\entityFramework\\entityFramework.csproj",
+      "projectPath": "C:\\Users\\DOTNET\\Documents\\Corso-Dotnet-2024\\CORSO-DOTNET-2024\\esercitazioni-dotnet-2024\\esercitazione1\\entityFramework\\entityFramework.csproj",
       "packagesPath": "C:\\Users\\DOTNET\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\DOTNET\\Documents\\Corso-Dotnet-2024\\entityFramework\\obj\\",
+      "outputPath": "C:\\Users\\DOTNET\\Documents\\Corso-Dotnet-2024\\CORSO-DOTNET-2024\\esercitazioni-dotnet-2024\\esercitazione1\\entityFramework\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\DOTNET\\AppData\\Roaming\\NuGet\\NuGet.Config"
