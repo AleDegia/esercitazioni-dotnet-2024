@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "Rwqif3kN4tBGl7LzViYhX2o+fc6o4btCesOG0isV3KniAAr3B2RyoIHlSwWPhcpmxKvcsdTwQRfbZ7gL5re8aQ==",
+  "dgSpecHash": "1/WDpxi6SHuetcrfJFML/3gHoUfkiIAb4PCnh4HuSed2fi8H1laguwNoE1BNtvNxJVhJXu2J1OznGFxLoCL8Og==",
   "success": true,
   "projectFilePath": "C:\\Users\\DOTNET\\Documents\\Corso-Dotnet-2024\\cartennaNuova\\cartennaNuova.csproj",
   "expectedPackageFiles": [
@@ -16,6 +16,7 @@
     "C:\\Users\\DOTNET\\.nuget\\packages\\microsoft.entityframeworkcore.abstractions\\8.0.2\\microsoft.entityframeworkcore.abstractions.8.0.2.nupkg.sha512",
     "C:\\Users\\DOTNET\\.nuget\\packages\\microsoft.entityframeworkcore.analyzers\\8.0.2\\microsoft.entityframeworkcore.analyzers.8.0.2.nupkg.sha512",
     "C:\\Users\\DOTNET\\.nuget\\packages\\microsoft.entityframeworkcore.design\\8.0.2\\microsoft.entityframeworkcore.design.8.0.2.nupkg.sha512",
+    "C:\\Users\\DOTNET\\.nuget\\packages\\microsoft.entityframeworkcore.inmemory\\8.0.2\\microsoft.entityframeworkcore.inmemory.8.0.2.nupkg.sha512",
     "C:\\Users\\DOTNET\\.nuget\\packages\\microsoft.entityframeworkcore.relational\\8.0.2\\microsoft.entityframeworkcore.relational.8.0.2.nupkg.sha512",
     "C:\\Users\\DOTNET\\.nuget\\packages\\microsoft.entityframeworkcore.sqlite\\8.0.2\\microsoft.entityframeworkcore.sqlite.8.0.2.nupkg.sha512",
     "C:\\Users\\DOTNET\\.nuget\\packages\\microsoft.entityframeworkcore.sqlite.core\\8.0.2\\microsoft.entityframeworkcore.sqlite.core.8.0.2.nupkg.sha512",

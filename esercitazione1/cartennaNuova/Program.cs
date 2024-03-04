@@ -31,6 +31,19 @@ class Program
             System.Console.WriteLine("prodotti per clienti");
             db.InserisciProdotti(prodotti);
             db.StampProdotti();
+
+            var ordini = new List<Ordine>
+            {
+                new Ordine {ProdottoId = 1},
+                new Ordine {ProdottoId = 2},
+                new Ordine {ProdottoId = 3},
+                new Ordine {ProdottoId = 4},
+                new Ordine {ProdottoId = 5},
+                new Ordine {ProdottoId = 6},
+            };
+            System.Console.WriteLine("ordini");
+            db.InserisciOrdini(ordini);
+            db.StampaOrdini();
         }
     }           
 }

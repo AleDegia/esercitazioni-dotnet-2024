@@ -119,3 +119,4 @@ C:\Users\DOTNET\Documents\Corso-Dotnet-2024\cartennaNuova\obj\Debug\net8.0\refin
 C:\Users\DOTNET\Documents\Corso-Dotnet-2024\cartennaNuova\obj\Debug\net8.0\cartennaNuova.pdb
 C:\Users\DOTNET\Documents\Corso-Dotnet-2024\cartennaNuova\obj\Debug\net8.0\cartennaNuova.genruntimeconfig.cache
 C:\Users\DOTNET\Documents\Corso-Dotnet-2024\cartennaNuova\obj\Debug\net8.0\ref\cartennaNuova.dll
+C:\Users\DOTNET\Documents\Corso-Dotnet-2024\cartennaNuova\bin\Debug\net8.0\Microsoft.EntityFrameworkCore.InMemory.dll
