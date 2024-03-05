@@ -27,11 +27,11 @@ class Controller            //il controller a seconda se è 1 o 2 o 3 esegue la 
             }
             else if (input == "3")
             {
-                // ModifyUser();
+                ModifyUser();
             }
             else if (input == "4")
             {
-                //  DeleteUser();
+                 DeleteUser();
             }
             else if (input == "5")
             {
@@ -53,20 +53,20 @@ class Controller            //il controller a seconda se è 1 o 2 o 3 esegue la 
         _view.ShowUsers(users);     //Visualizzazione degli utenti
     }
 
-    // private void ModifyUser()
-    // {
-    //     System.Console.WriteLine("Enter new user name:"); 
-    //     var newName = _view.GetInput();
-    //     System.Console.WriteLine("Enter old user name:"); 
-    //     var oldName = _view.GetInput();
-    //     _db.ModifyUser(oldName, newName);
-    // }
+    private void ModifyUser()
+    {
+        System.Console.WriteLine("Enter new user name:"); 
+        var newName = _view.GetInput();
+        System.Console.WriteLine("Enter old user name:"); 
+        var oldName = _view.GetInput();
+        _db.ModifyUser(oldName, newName);
+    }
 
-    // private void DeleteUser()
-    // {
-    //     System.Console.WriteLine("Quale user vuoi eliminare?");
-    //     var name = _view.GetInput();
-    //     _db.DeleteUser(name);
-    // }
+    private void DeleteUser()
+    {
+        System.Console.WriteLine("Quale user vuoi eliminare?");
+        var name = _view.GetInput();
+        _db.DeleteUser(name);
+    }
     
 }

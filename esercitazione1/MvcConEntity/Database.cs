@@ -22,25 +22,39 @@ class Database : DbContext
     {     
         var users = Users.ToList();  // recupera gli utenti dal database
         return users;
-        // foreach(var u in users)       //c è un singolo oggetto di tipo cliente nella lista clienti
-        // {
-        //     System.Console.WriteLine($"{u.Id} - {u.Name}");
-        //     // foreach(var p in c.Prodotti)
-        //     // {
-        //     //     System.Console.WriteLine($"{p.Id} - {p.Nome} {p.Prezzo}");
-        //     // }
-        // }
+        
     }
 
-//     public void ModifyUser(string vecchioNome, string nuovoNome)
-//     {
-//         var command = new SQLiteCommand($"UPDATE users SET name = '{nuovoNome}' WHERE name = '{vecchioNome}'", _connection);
-//         command.ExecuteNonQuery();
-//     }
+    public void ModifyUser(string vecchioNome, string nuovoNome)
+    {
+        
+        var users = Users.ToList();
+        foreach(dynamic user in users)
+        {
+            if(user.Name == vecchioNome)               //se viene trovato il nome inserito tra i record del database
+            {
+                user.Name = nuovoNome;         //faccio la modifica del nome del record
+                SaveChanges();
+                System.Console.WriteLine("update avvenuto con successo");
+            }
+            else
+            {
+                System.Console.WriteLine("utente non presente nel database");
+            }
+        }
+    }
 
-//     public void DeleteUser(string nomeUser)
-//     {
-//         var command = new SQLiteCommand($"DELETE FROM users WHERE name = '{nomeUser}'", _connection);
-//         command.ExecuteNonQuery();
-//     }
+    public void DeleteUser(string nomeUser)
+    {
+        using (var context = new Database())
+        {
+        var userToDelete = context.Users.FirstOrDefault(u => u.Name == nomeUser);
+
+            if (userToDelete != null)
+            {
+                context.Users.Remove(userToDelete);
+                context.SaveChanges();
+            }
+        }
+    }
 }
