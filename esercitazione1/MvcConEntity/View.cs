@@ -1,11 +1,15 @@
 class View
 {
     private Database _db;
+    private User _user;
 
-    public View(Database db)
+    public View(Database db, User us)
     {
         _db = db;
+        _user = us;
     }
+
+
 
     public void ShowMainMenu()
     {
@@ -16,11 +20,11 @@ class View
         System.Console.WriteLine("5. Esci");
     }
 
-    public void ShowUsers(List<string> users)
+    public void ShowUsers(List<User> users)
     {
         foreach(var user in users)
         {
-            System.Console.WriteLine(user);    //visualizzazione dei nomi degli utenti
+            System.Console.WriteLine(user.Name);    //visualizzazione dei nomi degli utenti
         }
     }
 

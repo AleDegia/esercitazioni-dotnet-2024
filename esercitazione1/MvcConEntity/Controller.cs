@@ -23,7 +23,7 @@ class Controller            //il controller a seconda se è 1 o 2 o 3 esegue la 
             }
             else if (input == "2")
             {
-                // ShowUsers();    //visualizzazione degli utenti
+                 ShowUsers();    //visualizzazione degli utenti
             }
             else if (input == "3")
             {
@@ -47,11 +47,11 @@ class Controller            //il controller a seconda se è 1 o 2 o 3 esegue la 
         _db.AddUser(name);  //aggiunta dell'utente al database
     }
 
-    // private void ShowUsers()
-    // {
-    //     var users = _db.GetUsers(); //lettura degli utenti dal database
-    //     _view.ShowUsers(users);     //Visualizzazione degli utenti
-    // }
+    private void ShowUsers()
+    {
+        var users = _db.GetUsers(); //lettura degli utenti dal database
+        _view.ShowUsers(users);     //Visualizzazione degli utenti
+    }
 
     // private void ModifyUser()
     // {

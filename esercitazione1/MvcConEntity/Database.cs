@@ -18,18 +18,19 @@ class Database : DbContext
     }
 
 
-//     public List<string> GetUsers()   //metodo per recuperare i nomi degli utenti da una tabella chiamata "users" 
-//     {
-//         var command = new SQLiteCommand("SELECT name FROM users", _connection); //creazione comando x leggere gli utenti
-//         var reader = command.ExecuteReader();   //esecuzione query per leggere i risultati, che restituisce oggetto SQLiteDataReader
-//         var users = new List<string>(); //creazione lista per memorizzare i nomi degli utenti
-
-//         while (reader.Read())
-//         {
-//             users.Add(reader.GetString(0)); //aggiunta nome utente alla lista
-//         }
-//         return users;   //restituzione della lista
-//     }
+    public List<User> GetUsers()   //metodo per recuperare i nomi degli utenti da una tabella chiamata "users" 
+    {     
+        var users = Users.ToList();  // recupera gli utenti dal database
+        return users;
+        // foreach(var u in users)       //c è un singolo oggetto di tipo cliente nella lista clienti
+        // {
+        //     System.Console.WriteLine($"{u.Id} - {u.Name}");
+        //     // foreach(var p in c.Prodotti)
+        //     // {
+        //     //     System.Console.WriteLine($"{p.Id} - {p.Nome} {p.Prezzo}");
+        //     // }
+        // }
+    }
 
 //     public void ModifyUser(string vecchioNome, string nuovoNome)
 //     {
