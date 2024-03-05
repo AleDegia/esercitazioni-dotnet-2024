@@ -12,3 +12,9 @@ class Program
 }
 
 
+/*
+in Controller chiamo i metodi fatti nel database per le query e ci aggiungo la richiesta di input per
+ prendere l'input dall'utente
+
+Qui, in Program, creo reference e oggetto delle classi Database e View e li passo al costruttore di Controller
+*/
