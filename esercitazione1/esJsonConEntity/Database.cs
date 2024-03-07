@@ -3,6 +3,7 @@ using Microsoft.EntityFrameworkCore;
 class Database : DbContext
 {
     public DbSet<User> Users { get; set; }          //creo tabella Players
+    public DbSet<Product> Products { get; set; }
     string pathDbUtentiEPassword = @"utentiEpassword.db";
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
@@ -19,6 +20,26 @@ class Database : DbContext
             using (var context = new Database())
             {}
         }
+    }
+
+    public void AddInitialProducts()
+    {
+        var gamingMouse = new Product
+        {
+            Name = "gaming mouse";
+            Price = 19.99;
+            Quantity = 37;
+        }
+
+        var joypad = new Product
+        {
+            Name = "joypad";
+            Price = 39.99;
+            Quantity = 28;
+        }
+        Products.Add(gamingMouse);
+        Products.Add(joypad);
+
     }
     
     

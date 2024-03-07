@@ -92,7 +92,17 @@ class Controller            //il controller a seconda se è 1 o 2 o 3 esegue la 
             i++;
         }
     }
+    
+    public void RichiestaAcquisto()
+    {
+        _view.MessaggioAcquisto();
+        string scelta = _view.GetInput();
 
+        if(scelta=="1")
+        {
+            
+        }
+    }
 
     public void checkEsistenzaUtente(string name, string password)
     {
