@@ -9,6 +9,6 @@ class View
     public void MessaggioIniziale()
     {       
         // Richiesta all'utente di registrarsi o effettuare il login.
-        System.Console.WriteLine("premi 1 per registrarti o premi 2 per fare il login");        
+        System.Console.WriteLine("premi 1 per registrarti, premi 2 per fare il login, premi 3 per uscire");        
     }
 }

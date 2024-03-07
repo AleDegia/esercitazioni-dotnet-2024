@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\DOTNET\\Documents\\Corso-Dotnet-2024\\esJsonConEntity\\esJsonConEntity.csproj": {}
+    "C:\\Users\\DOTNET\\Documents\\Corso-Dotnet-2024\\CORSO-DOTNET-2024\\esercitazioni-dotnet-2024\\esercitazione1\\esJsonConEntity\\esJsonConEntity.csproj": {}
   },
   "projects": {
-    "C:\\Users\\DOTNET\\Documents\\Corso-Dotnet-2024\\esJsonConEntity\\esJsonConEntity.csproj": {
+    "C:\\Users\\DOTNET\\Documents\\Corso-Dotnet-2024\\CORSO-DOTNET-2024\\esercitazioni-dotnet-2024\\esercitazione1\\esJsonConEntity\\esJsonConEntity.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\DOTNET\\Documents\\Corso-Dotnet-2024\\esJsonConEntity\\esJsonConEntity.csproj",
+        "projectUniqueName": "C:\\Users\\DOTNET\\Documents\\Corso-Dotnet-2024\\CORSO-DOTNET-2024\\esercitazioni-dotnet-2024\\esercitazione1\\esJsonConEntity\\esJsonConEntity.csproj",
         "projectName": "esJsonConEntity",
-        "projectPath": "C:\\Users\\DOTNET\\Documents\\Corso-Dotnet-2024\\esJsonConEntity\\esJsonConEntity.csproj",
+        "projectPath": "C:\\Users\\DOTNET\\Documents\\Corso-Dotnet-2024\\CORSO-DOTNET-2024\\esercitazioni-dotnet-2024\\esercitazione1\\esJsonConEntity\\esJsonConEntity.csproj",
         "packagesPath": "C:\\Users\\DOTNET\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\DOTNET\\Documents\\Corso-Dotnet-2024\\esJsonConEntity\\obj\\",
+        "outputPath": "C:\\Users\\DOTNET\\Documents\\Corso-Dotnet-2024\\CORSO-DOTNET-2024\\esercitazioni-dotnet-2024\\esercitazione1\\esJsonConEntity\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\DOTNET\\AppData\\Roaming\\NuGet\\NuGet.Config"

@@ -20,63 +20,120 @@ class Controller            //il controller a seconda se è 1 o 2 o 3 esegue la 
     // _userModel.Passwords = new List<string>();
     
     public void MainMenu()
-{
-    while(true)
     {
-        _view.MessaggioIniziale();   //visualizzazione del menu principale grazie al metodo della classe View
-        var input = _view.GetInput();   //lettura dell'input dell'utente
-        if(input == "1")
+        while(true)
         {
-            Registrazione();  
+            _view.MessaggioIniziale();   //visualizzazione del menu principale grazie al metodo della classe View
+            var input = _view.GetInput();   //lettura dell'input dell'utente
+            if(input == "1")
+            {
+                UtenteRegistrazione();  
+            }
+            else if (input == "2")
+            {
+                UtenteLogin();
+            }
+            
+            else if (input == "3")
+            {
+                break;
+            }
         }
-        else if (input == "2")
-        {
-            break; 
-        }
-        
-        Rinizio();
     }
-}
 
-public void Registrazione()
-{
-    //string scelta = _view.GetInput();
+    public void UtenteRegistrazione()
+    {
+        //string scelta = _view.GetInput();
 
-    // Registrazione dell'utente.
-    
+        // Registrazione dell'utente.
+        
         // Inserimento del nome utente e della password.
         System.Console.WriteLine("Inserisci il nome utente");
-        _user.Name = _view.GetInput();
+        string name = _view.GetInput();
+        // _user.Name = name;
         _userModel.NomiUtenti.Add(_user.Name);
         System.Console.WriteLine("Inserisci una password");
-        _user.Password = _view.GetInput();
+        string password = _view.GetInput();
+        // _user.Password = password;
         _userModel.Passwords.Add(_user.Password);
 
-        checkEsistenzaUtente();
-    
-}
+        checkEsistenzaUtente(name, password);     // da mettere prima dell'inserimento password   
 
-public void checkEsistenzaUtente()
-{
-    var users = _db.GetUsers(); //lettura degli utenti dal database
-    foreach(User user in users)
+        // AddUser(name, password);
+    }
+
+    public void UtenteLogin()
     {
-        if(user.Name == _user.Name)
+        System.Console.WriteLine("Inserisci il nome utente");
+        string name = _view.GetInput(); 
+        System.Console.WriteLine("Inserisci la password");
+        string password = _view.GetInput();
+
+        int i = 1;
+        int numberOfRows = _db.Users.Count();
+        var users = _db.GetUsers(); //lettura degli utenti dal database
+        if(numberOfRows==0)
         {
-            System.Console.WriteLine("Utente esistente, inserisci un nome utente diverso");
-            Rinizio();
+            System.Console.WriteLine("non sei ancora registrato");
         }
-        else
+        foreach(User user in users)
         {
-            System.Console.WriteLine("utente registrato correttamente");
-            break;
+            
+            // System.Console.WriteLine(user.Name);
+            if(user.Name == name && user.Password == password)
+            {
+                System.Console.WriteLine("Login avvenuto correttamente");
+                break;
+            }
+            else if(i == numberOfRows)
+            {
+                System.Console.WriteLine("nome utente errato o non esistente");
+            }
+            i++;
         }
     }
-}
 
-public void Rinizio()
-{
-    // Qui gestisci il codice per riprendere dall'inizio del loop nel menu principale.
-}
+
+    public void checkEsistenzaUtente(string name, string password)
+    {
+        var users = _db.GetUsers(); //lettura degli utenti dal database
+        
+        int numberOfRows = _db.Users.Count();
+        // System.Console.WriteLine(numberOfRows);
+        int i = 1;
+        if(numberOfRows==0)
+        {
+            System.Console.WriteLine("utente registrato correttamente");
+            AddUser(name, password);
+        }
+        foreach(User user in users)
+        {
+            // System.Console.WriteLine(user.Name);
+            if(user.Name == name)
+            {
+                System.Console.WriteLine("Utente esistente, inserisci un nome utente diverso");
+                // Rinizio();
+                // return; // Esci dal metodo dopo aver chiamato Rinizio()
+            }
+            else if(i == numberOfRows)
+            {
+                System.Console.WriteLine("utente registrato correttamente");
+                AddUser(name, password);
+                break;
+            }    
+            i++;
+        }
+    }
+
+    public void Rinizio()
+    {
+        UtenteRegistrazione();
+    }
+
+    private void AddUser(string name, string password )
+    {
+        
+        _db.AddUser(name, password);  //aggiunta dell'utente al database
+    }
 
 }

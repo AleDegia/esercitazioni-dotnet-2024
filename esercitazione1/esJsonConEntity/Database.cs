@@ -27,5 +27,12 @@ class Database : DbContext
             var users = Users.ToList();  // recupera gli utenti dal database
             return users;                   
         }
+
+        public void AddUser(string username, string password)       //gli oggetti sono records di una tabella, gli attributi degli oggetti sono le colonne nel database
+        {
+            var user = new User {Name = username, Password = password};    //stai istanziando un nuovo oggetto User e impostando il suo nome con il valore passato come parametro alla funzione AddUser 
+            Users.Add(user);      //serve a aggiungere l'oggetto alla tabella users (perciò come record)
+            SaveChanges();      
+        }
     
 }
