@@ -34,6 +34,7 @@ class Program
         Controller controller = new Controller(db, view, userModel, user);
 
         db.CheckDbExistance();
+        db.AddInitialProducts();
         controller.MainMenu();
 
 

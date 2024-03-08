@@ -1,4 +1,5 @@
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Infrastructure;
 // using System.Data.SQLite;
 class Database : DbContext
 {
@@ -24,23 +25,38 @@ class Database : DbContext
 
     public void AddInitialProducts()
     {
-        var gamingMouse = new Product
-        {
-            Name = "gaming mouse";
-            Price = 19.99;
-            Quantity = 37;
-        }
+        
+        var gamingMouse = new Product {Name = "gaming mouse", Price = 19.99, Quantity = 27};
+        // var gamingMouse = new Product("gaming mouse", 19.99, 37);
+        var joypad = new Product {Name = "joypad", Price = 39.99, Quantity = 17};
+        // var joypad = new Product("joypad",39.99,28);
+        var monitor = new Product {Name = "monitor", Price = 99.99, Quantity = 10};
+        // var monitor = new Product("monitor",99.99,128);
 
-        var joypad = new Product
+        using (var context = new Database())
         {
-            Name = "joypad";
-            Price = 39.99;
-            Quantity = 28;
-        }
-        Products.Add(gamingMouse);
-        Products.Add(joypad);
+        
+        //prima di fare l'add verifico se il record monitor è gia stato aggiunto ed in tal caso non faccio l'add
+        bool exists = context.Products.Any(r => r.Name == "monitor");
 
+        if (exists)
+        {
+            
+        }
+        else        //aggiungo i 3 prodotti in products
+        {
+            Products.Add(gamingMouse);
+            SaveChanges();
+            Products.Add(joypad);
+            SaveChanges();
+            Products.Add(monitor);
+            SaveChanges();
+        }
+        }
+                
+        
     }
+     
     
     
         public List<User> GetUsers()   //metodo per recuperare i nomi degli utenti da una tabella chiamata "users" 

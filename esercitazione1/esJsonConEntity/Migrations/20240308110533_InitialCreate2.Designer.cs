@@ -9,14 +9,35 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace esJsonConEntity.Migrations
 {
     [DbContext(typeof(Database))]
-    [Migration("20240307104137_InitialCreate")]
-    partial class InitialCreate
+    [Migration("20240308110533_InitialCreate2")]
+    partial class InitialCreate2
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder.HasAnnotation("ProductVersion", "8.0.2");
+
+            modelBuilder.Entity("Product", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.Property<double>("Price")
+                        .HasColumnType("REAL");
+
+                    b.Property<int>("Quantity")
+                        .HasColumnType("INTEGER");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Products");
+                });
 
             modelBuilder.Entity("User", b =>
                 {

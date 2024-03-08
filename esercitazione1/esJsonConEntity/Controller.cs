@@ -142,8 +142,12 @@ class Controller            //il controller a seconda se è 1 o 2 o 3 esegue la 
 
     private void AddUser(string name, string password )
     {
-        
         _db.AddUser(name, password);  //aggiunta dell'utente al database
+    }
+
+    private void AddPurchaseToDb(Product product)
+    {
+        
     }
 
 }
