@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "LZYL1V/aNcREDnBlzDj4xMx9oYqBQOghgetLEDLvqYwzkQ5Pz1K3PbuwK7tu+Z5kQFFALu+V8FW3aIUum9Je0A==",
+  "dgSpecHash": "jyrfgwunhOU4SESQHbBQj2DhMf21fuwg+gu/CItRozZ2x5zo32R8xvffpXf2LfGq3Ahus1IqUZOt66JRGx9fzQ==",
   "success": true,
-  "projectFilePath": "C:\\Users\\DOTNET\\Documents\\Corso-Dotnet-2024\\MvcConEntity\\MvcConEntity.csproj",
+  "projectFilePath": "C:\\Users\\DOTNET\\Documents\\Corso-Dotnet-2024\\CORSO-DOTNET-2024\\esercitazioni-dotnet-2024\\esercitazione1\\MvcConEntity\\MvcConEntity.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\DOTNET\\.nuget\\packages\\entityframework\\6.4.4\\entityframework.6.4.4.nupkg.sha512",
     "C:\\Users\\DOTNET\\.nuget\\packages\\humanizer.core\\2.14.1\\humanizer.core.2.14.1.nupkg.sha512",

@@ -36,11 +36,34 @@ namespace esJsonConEntity.Migrations
                     b.ToTable("Products");
                 });
 
+            modelBuilder.Entity("Purchase", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int>("IdProdotto")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int>("IdUtente")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<double>("Prezzo")
+                        .HasColumnType("REAL");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Purchases");
+                });
+
             modelBuilder.Entity("User", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
+
+                    b.Property<double>("Balance")
+                        .HasColumnType("REAL");
 
                     b.Property<string>("Name")
                         .IsRequired()

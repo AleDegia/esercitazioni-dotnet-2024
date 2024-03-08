@@ -23,8 +23,9 @@ class Controller            //il controller a seconda se è 1 o 2 o 3 esegue la 
     {
         while(true)
         {
-            _view.MessaggioIniziale();   //visualizzazione del menu principale grazie al metodo della classe View
+            _view.MessaggioIniziale();      //visualizzazione del menu principale grazie al metodo della classe View
             var input = _view.GetInput();   //lettura dell'input dell'utente
+
             if(input == "1")
             {
                 UtenteRegistrazione();  
@@ -36,8 +37,11 @@ class Controller            //il controller a seconda se è 1 o 2 o 3 esegue la 
             
             else if (input == "3")
             {
-                break;
+                 Environment.Exit(0);
+                // break;
             }
+
+            RichiestaAcquisto(_user);
         }
     }
 
@@ -59,15 +63,20 @@ class Controller            //il controller a seconda se è 1 o 2 o 3 esegue la 
 
         checkEsistenzaUtente(name, password);     // da mettere prima dell'inserimento password   
 
-        // AddUser(name, password);
+        // AddUser(name, password);     ->   l'ho messo dentro checkEsistenteUtente cosi prende i parametri
+
+        MainMenu();
     }
 
     public void UtenteLogin()
     {
+        Ripartiamo:
         System.Console.WriteLine("Inserisci il nome utente");
         string name = _view.GetInput(); 
+        _user.Name = name;
         System.Console.WriteLine("Inserisci la password");
         string password = _view.GetInput();
+        _user.Password = password;
 
         int i = 1;
         int numberOfRows = _db.Users.Count();
@@ -75,6 +84,8 @@ class Controller            //il controller a seconda se è 1 o 2 o 3 esegue la 
         if(numberOfRows==0)
         {
             System.Console.WriteLine("non sei ancora registrato");
+            Rinizio();
+            MainMenu();
         }
         foreach(User user in users)
         {
@@ -86,21 +97,35 @@ class Controller            //il controller a seconda se è 1 o 2 o 3 esegue la 
                 break;
             }
             else if(i == numberOfRows)
-            {
+            {               
                 System.Console.WriteLine("nome utente errato o non esistente");
+                goto Ripartiamo;
             }
             i++;
         }
     }
     
-    public void RichiestaAcquisto()
+    public void RichiestaAcquisto(User user)
     {
         _view.MessaggioAcquisto();
         string scelta = _view.GetInput();
 
         if(scelta=="1")
         {
-            
+            AddPurchaseToDb(scelta, user);
+        }
+        else if(scelta=="2")
+        {
+            AddPurchaseToDb(scelta, user);
+        }
+        else if(scelta=="3")
+        {
+            AddPurchaseToDb(scelta, user);
+        }
+        else
+        {
+            System.Console.WriteLine("scelta non valida");
+            RichiestaAcquisto(user);
         }
     }
 
@@ -113,25 +138,30 @@ class Controller            //il controller a seconda se è 1 o 2 o 3 esegue la 
         int i = 1;
         if(numberOfRows==0)
         {
+            double balance = 100;
             System.Console.WriteLine("utente registrato correttamente");
-            AddUser(name, password);
+            AddUser(name, password, balance);
         }
+        if(numberOfRows>0)
+        {
         foreach(User user in users)
         {
             // System.Console.WriteLine(user.Name);
             if(user.Name == name)
             {
                 System.Console.WriteLine("Utente esistente, inserisci un nome utente diverso");
-                // Rinizio();
+                Rinizio();
                 // return; // Esci dal metodo dopo aver chiamato Rinizio()
             }
             else if(i == numberOfRows)
             {
+                double balance = 100;
                 System.Console.WriteLine("utente registrato correttamente");
-                AddUser(name, password);
+                AddUser(name, password, balance);
                 break;
             }    
             i++;
+        }
         }
     }
 
@@ -140,14 +170,14 @@ class Controller            //il controller a seconda se è 1 o 2 o 3 esegue la 
         UtenteRegistrazione();
     }
 
-    private void AddUser(string name, string password )
+    private void AddUser(string name, string password, double balance )
     {
-        _db.AddUser(name, password);  //aggiunta dell'utente al database
+        _db.AddUser(name, password, balance);  //aggiunta dell'utente al database
     }
 
-    private void AddPurchaseToDb(Product product)
+    private void AddPurchaseToDb(string scelta, User user)
     {
-        
+        _db.AddPurchase(scelta, user);
     }
 
 }

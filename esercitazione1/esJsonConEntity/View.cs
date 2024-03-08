@@ -15,6 +15,6 @@ class View
     public void MessaggioAcquisto()
     {
         System.Console.Write("Cosa vuoi acquistare tra: ");
-        System.Console.WriteLine("1) Gaming mouse, 2) Monitor, 3)Joypad");
+        System.Console.WriteLine("1) Gaming mouse, 2) Joypad, 3)Monitor");
     }
 }

@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "HOVLI8GEhjuFK/Rm91gF0cXA0jRLzZ0nVAgzNCwmLqeodA4a9lMmhE+jzdZnlKcDKhqHsLmuN0GDpQrRwYRRQQ==",
+  "dgSpecHash": "FmQBOLAJ1jQu61o58K0tw33jk8XK6BIsBmbdK2J7e4AmuWwrEzSHpkb6z6GJCF11rplVHleV1ueIKZlF2GzPTw==",
   "success": true,
-  "projectFilePath": "C:\\Users\\DOTNET\\Documents\\Corso-Dotnet-2024\\Mvc\\acaso.csproj",
+  "projectFilePath": "C:\\Users\\DOTNET\\Documents\\Corso-Dotnet-2024\\CORSO-DOTNET-2024\\esercitazioni-dotnet-2024\\esercitazione1\\Mvc\\acaso.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\DOTNET\\.nuget\\packages\\entityframework\\6.4.4\\entityframework.6.4.4.nupkg.sha512",
     "C:\\Users\\DOTNET\\.nuget\\packages\\microsoft.csharp\\4.7.0\\microsoft.csharp.4.7.0.nupkg.sha512",

@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "6AYF85s6SfgJ0okm8pfGOppmoioUvS5GUwuemDf9R5GFpNjdNaufs0+oipnz/3ZAzgNJIFvb9WlFdWfGB5+5Ng==",
+  "dgSpecHash": "nUaeXJ/kkKcjIR5llqS/xcBuTVJp6VbiHvgnR/I7zcD6po58Z0mc+IeWeCkuBwqRCywtde8NRve9JPUV4HZ0Qw==",
   "success": true,
-  "projectFilePath": "C:\\Users\\DOTNET\\Documents\\Corso-Dotnet-2024\\esJsonConEntity\\esJsonConEntity.csproj",
+  "projectFilePath": "C:\\Users\\DOTNET\\Documents\\Corso-Dotnet-2024\\CORSO-DOTNET-2024\\esercitazioni-dotnet-2024\\esercitazione1\\esJsonConEntity\\esJsonConEntity.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\DOTNET\\.nuget\\packages\\humanizer.core\\2.14.1\\humanizer.core.2.14.1.nupkg.sha512",
     "C:\\Users\\DOTNET\\.nuget\\packages\\microsoft.bcl.asyncinterfaces\\6.0.0\\microsoft.bcl.asyncinterfaces.6.0.0.nupkg.sha512",

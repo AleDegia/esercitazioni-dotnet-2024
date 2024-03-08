@@ -5,6 +5,7 @@ class Database : DbContext
 {
     public DbSet<User> Users { get; set; }          //creo tabella Players
     public DbSet<Product> Products { get; set; }
+    public DbSet<Purchase> Purchases { get; set; }
     string pathDbUtentiEPassword = @"utentiEpassword.db";
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
@@ -38,12 +39,9 @@ class Database : DbContext
         
         //prima di fare l'add verifico se il record monitor è gia stato aggiunto ed in tal caso non faccio l'add
         bool exists = context.Products.Any(r => r.Name == "monitor");
-
-        if (exists)
-        {
-            
-        }
-        else        //aggiungo i 3 prodotti in products
+    
+        
+        if(!exists)        //aggiungo i 3 prodotti in products
         {
             Products.Add(gamingMouse);
             SaveChanges();
@@ -65,11 +63,46 @@ class Database : DbContext
             return users;                   
         }
 
-        public void AddUser(string username, string password)       //gli oggetti sono records di una tabella, gli attributi degli oggetti sono le colonne nel database
+        public void AddUser(string username, string password, double balance)       //gli oggetti sono records di una tabella, gli attributi degli oggetti sono le colonne nel database
         {
-            var user = new User {Name = username, Password = password};    //stai istanziando un nuovo oggetto User e impostando il suo nome con il valore passato come parametro alla funzione AddUser 
+            var user = new User {Name = username, Password = password, Balance = balance};    //stai istanziando un nuovo oggetto User e impostando il suo nome con il valore passato come parametro alla funzione AddUser 
             Users.Add(user);      //serve a aggiungere l'oggetto alla tabella users (perciò come record)
             SaveChanges();      
+        }
+
+        public void AddPurchase(string scelta, User user)
+        {
+            
+            if(scelta == "1")
+            {
+                //
+                using (var context = new Database())
+                {
+                    var userr = context.Users.FirstOrDefault(p => p.Name == user.Name);
+                    int idUtente = userr.Id;
+                    System.Console.WriteLine(idUtente);
+                    var purchase = new Purchase {IdUtente = idUtente, IdProdotto = 1, Prezzo = 19.99};
+                    Purchases.Add(purchase);
+                    SaveChanges();
+                }
+                //
+
+                
+            }
+            else if(scelta == "2")
+            {
+                int idUtente = user.Id;
+                var purchase = new Purchase {IdUtente = idUtente, IdProdotto = 2, Prezzo = 39.99};
+                Purchases.Add(purchase);
+                SaveChanges();
+            }
+            else if(scelta == "3")
+            {
+                int idUtente = user.Id;
+                var purchase = new Purchase {IdUtente = idUtente, IdProdotto = 3, Prezzo = 99.99};
+                Purchases.Add(purchase);
+                SaveChanges();
+            }
         }
     
 }
