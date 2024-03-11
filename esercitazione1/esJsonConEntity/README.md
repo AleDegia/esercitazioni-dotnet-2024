@@ -106,3 +106,7 @@ graph TD
 - se un utente non è registrato, si logga, esce la scritta "non sei ancora registrato" ma va avanti con l'acquisto
 
 - fare un opzione per il titolare che consenta di modificare i prodotti, inserirne di nuovi, eliminarli, ecc
+
+- fare che si aggiorna il database quando compro un prodotto
+
+- fare si che gli acquisti vengano fatti in base al balance

@@ -1,5 +1,6 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using System.Globalization;
 // using System.Data.SQLite;
 class Database : DbContext
 {
@@ -84,7 +85,16 @@ class Database : DbContext
                     System.Console.WriteLine(idUtente);
                     var purchase = new Purchase {IdUtente = idUtente, IdProdotto = 1, Prezzo = 19.99};
                     Purchases.Add(purchase);
-                    SaveChanges();
+                    
+                    //sottraggo il costo del prodotto dal balance dell'utente
+                    var prod = context.Products.FirstOrDefault(p => p.Id == Int32.Parse(scelta));
+                    userr.Balance = userr.Balance-prod.Price;
+
+                    //sottraggo la quantità
+                    prod.Quantity -= 1;
+
+                    context.SaveChanges();          //se uso context usarlo anche col SaveChanges
+                    System.Console.WriteLine(userr.Balance);
                 }
                 //
 
@@ -94,24 +104,52 @@ class Database : DbContext
             {
                 using (var context = new Database())
                 {
+                    //cerco un utente il cui nome (Name) corrisponde al nome dell utente fornito (user.Name)
                     var userr = context.Users.FirstOrDefault(p => p.Name == user.Name); 
                     int idUtente = userr.Id;
-                    System.Console.WriteLine(idUtente);
+                    
+                    // Ottengo il prodotto per ottenerne il prezzo
+                    var prod = context.Products.FirstOrDefault(p => p.Id == Int32.Parse(scelta));
+
+                    // Sottraggo il costo del prodotto dal balance dell'utente
+                    double balance = userr.Balance;
+                    userr.Balance = balance - prod.Price;
+
+                    //sottraggo la quantità
+                    prod.Quantity -= 1;
+                    
+                    // Creo un nuovo acquisto e lo aggiungo al database
                     var purchase = new Purchase {IdUtente = idUtente, IdProdotto = 2, Prezzo = 39.99};
-                    Purchases.Add(purchase);
-                    SaveChanges();
+                    context.Purchases.Add(purchase);
+
+                    // Salvare le modifiche sia per l'acquisto che per l'utente
+                    context.SaveChanges();
+                    
+                    // Stampa il prezzo del prodotto
+                    System.Console.WriteLine(prod.Price);
                 }
+
             }
             else if(scelta == "3")
             {
                 using (var context = new Database())
                 {
+                    //cerco un utente il cui nome (Name) corrisponde al nome dell utente fornito (user.Name)
                     var userr = context.Users.FirstOrDefault(p => p.Name == user.Name); 
                     int idUtente = userr.Id;
                     System.Console.WriteLine(idUtente);
-                    var purchase = new Purchase {IdUtente = idUtente, IdProdotto = 3, Prezzo = 99.99};
+                    var purchase = new Purchase {IdUtente = idUtente, IdProdotto = 3, Prezzo = 69.99};
                     Purchases.Add(purchase);
-                    SaveChanges();  
+                    
+                    //sottraggo il costo del prodotto dal balance dell'utente
+                    var prod = context.Products.FirstOrDefault(p => p.Id == Int32.Parse(scelta));
+                    userr.Balance = userr.Balance-prod.Price;
+
+                    //sottraggo la quantità
+                    prod.Quantity -= 1;
+                    
+                    context.SaveChanges();          //se uso context usarlo anche col SaveChanges
+                    System.Console.WriteLine(userr.Balance);
                 }
             }
         }
@@ -134,5 +172,65 @@ class Database : DbContext
                 }
             }
         }
-    
+        
+        
+        public void AdminCreate(string newProductName, string newProductPrice, string newProductQuantity)
+        {
+
+                double newProductPriceConverted = Double.Parse(newProductPrice, CultureInfo.InvariantCulture);
+                int newProductQuantityConverted = Int32.Parse(newProductQuantity);
+                //aggiungi un nuovo prodotto
+                var newProduct = new Product {Name = newProductName, Price = newProductPriceConverted, Quantity = newProductQuantityConverted };
+                Products.Add(newProduct);
+                SaveChanges();
+                     
+        }   
+
+        public void AdminRead()
+        {
+            System.Console.WriteLine("Ecco i prodotti in vendita:");
+            var allProducts = Products.ToList();
+            Console.WriteLine("\nAll Products:");
+            foreach (var product in allProducts)
+            {
+                Console.WriteLine($"ProductId: {product.Id}, Name: {product.Name}, Price: {product.Price}, Quantity: {product.Quantity}");
+            }
+        }
+
+        public void AdminUpdate(string sceltaProdotto, string sceltaCampo, string modifica)
+        {
+            var product = Products.FirstOrDefault(p => p.Id == Int32.Parse(sceltaProdotto));
+            if(sceltaCampo=="1")
+            {
+                //int sceltaCampoInt = Int32.Parse(sceltaCampo);
+                product.Name = modifica;
+                SaveChanges();
+            }           
+            else if (sceltaCampo =="2")
+            {
+                product.Price = Double.Parse(modifica);
+                SaveChanges();
+            }
+            else if (sceltaCampo =="3")
+            {
+                product.Quantity = Int32.Parse(modifica);
+                SaveChanges();
+            }
+        }
+
+        public void AdminRemove(string productToRemove)
+        {
+            var product = Products.FirstOrDefault(p => p.Id == Int32.Parse(productToRemove));
+
+            if (product != null)
+            {
+                Products.Remove(product);
+                SaveChanges();
+            }
+            else
+            {
+                Console.WriteLine("Elemento non trovato.");
+                // Oppure lanciare un'eccezione, a seconda delle tue esigenze
+            }
+        }
 }

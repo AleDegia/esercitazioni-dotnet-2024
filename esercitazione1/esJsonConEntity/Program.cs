@@ -30,8 +30,9 @@ class Program
         View view = new View();
         UserModel userModel = new UserModel();
         User user = new User();
+        Product product = new Product();
 
-        Controller controller = new Controller(db, view, userModel, user);
+        Controller controller = new Controller(db, view, userModel, user, product);
 
         db.CheckDbExistance();
         db.AddInitialProducts();
