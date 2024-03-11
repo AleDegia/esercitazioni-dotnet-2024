@@ -17,4 +17,9 @@ class View
         System.Console.Write("Cosa vuoi acquistare tra: ");
         System.Console.WriteLine("1) Gaming mouse, 2) Joypad, 3)Monitor");
     }
+
+    public void MessaggioVisualizzaOrdini()
+    {
+        System.Console.WriteLine("Vuoi visualizzare i tuoi ordini fatti fino ad ora? (y/n)");
+    }
 }

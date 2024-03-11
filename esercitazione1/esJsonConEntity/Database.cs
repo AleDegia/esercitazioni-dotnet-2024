@@ -78,7 +78,8 @@ class Database : DbContext
                 //
                 using (var context = new Database())
                 {
-                    var userr = context.Users.FirstOrDefault(p => p.Name == user.Name);
+                    //cerco un utente il cui nome (Name) corrisponde al nome dell utente fornito (user.Name)
+                    var userr = context.Users.FirstOrDefault(p => p.Name == user.Name); 
                     int idUtente = userr.Id;
                     System.Console.WriteLine(idUtente);
                     var purchase = new Purchase {IdUtente = idUtente, IdProdotto = 1, Prezzo = 19.99};
@@ -91,17 +92,46 @@ class Database : DbContext
             }
             else if(scelta == "2")
             {
-                int idUtente = user.Id;
-                var purchase = new Purchase {IdUtente = idUtente, IdProdotto = 2, Prezzo = 39.99};
-                Purchases.Add(purchase);
-                SaveChanges();
+                using (var context = new Database())
+                {
+                    var userr = context.Users.FirstOrDefault(p => p.Name == user.Name); 
+                    int idUtente = userr.Id;
+                    System.Console.WriteLine(idUtente);
+                    var purchase = new Purchase {IdUtente = idUtente, IdProdotto = 2, Prezzo = 39.99};
+                    Purchases.Add(purchase);
+                    SaveChanges();
+                }
             }
             else if(scelta == "3")
             {
-                int idUtente = user.Id;
-                var purchase = new Purchase {IdUtente = idUtente, IdProdotto = 3, Prezzo = 99.99};
-                Purchases.Add(purchase);
-                SaveChanges();
+                using (var context = new Database())
+                {
+                    var userr = context.Users.FirstOrDefault(p => p.Name == user.Name); 
+                    int idUtente = userr.Id;
+                    System.Console.WriteLine(idUtente);
+                    var purchase = new Purchase {IdUtente = idUtente, IdProdotto = 3, Prezzo = 99.99};
+                    Purchases.Add(purchase);
+                    SaveChanges();  
+                }
+            }
+        }
+
+        public void ViewPurchases(User user)
+        {
+            using (var context = new Database())
+            { 
+                // Eseguire una query per recuperare l 'utente con nome "x"
+                var userr = context.Users.FirstOrDefault(p => p.Name == user.Name);
+                //query per recuperare la lista di tutti gli acquisti
+                var purchases = context.Purchases.ToList();
+
+                foreach (var purchase in purchases)
+                {
+                    if(userr.Id == purchase.IdUtente)
+                    {
+                        Console.WriteLine($"Purchase Id: {purchase.Id}, Id utente: {purchase.IdUtente}, Id prodotto: {purchase.IdProdotto}, Prezzo: {purchase.Prezzo}");
+                    }
+                }
             }
         }
     
