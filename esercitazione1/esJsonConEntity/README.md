@@ -110,3 +110,5 @@ graph TD
 - fare che si aggiorna il database quando compro un prodotto
 
 - fare si che gli acquisti vengano fatti in base al balance
+
+- da far vedere il balance dell'utente e il prezzo dei prodotti prima che avvenga l'acquisto

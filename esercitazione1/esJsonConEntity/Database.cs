@@ -51,9 +51,7 @@ class Database : DbContext
             Products.Add(monitor);
             SaveChanges();
         }
-        }
-                
-        
+        }  
     }
      
     
@@ -71,7 +69,7 @@ class Database : DbContext
             SaveChanges();      
         }
 
-        public void AddPurchase(string scelta, User user)
+        public void AddPurchase(string scelta, User user, Controller controller)
         {
             
             if(scelta == "1")
@@ -79,26 +77,30 @@ class Database : DbContext
                 //
                 using (var context = new Database())
                 {
+                    
+
                     //cerco un utente il cui nome (Name) corrisponde al nome dell utente fornito (user.Name)
                     var userr = context.Users.FirstOrDefault(p => p.Name == user.Name); 
-                    int idUtente = userr.Id;
-                    System.Console.WriteLine(idUtente);
-                    var purchase = new Purchase {IdUtente = idUtente, IdProdotto = 1, Prezzo = 19.99};
-                    Purchases.Add(purchase);
-                    
-                    //sottraggo il costo del prodotto dal balance dell'utente
                     var prod = context.Products.FirstOrDefault(p => p.Id == Int32.Parse(scelta));
-                    userr.Balance = userr.Balance-prod.Price;
-
-                    //sottraggo la quantità
-                    prod.Quantity -= 1;
-
-                    context.SaveChanges();          //se uso context usarlo anche col SaveChanges
-                    System.Console.WriteLine(userr.Balance);
+                    int idUtente = userr.Id;
+                   
+                    if(userr.Balance-prod.Price>=0)
+                    {
+                        var purchase = new Purchase {IdUtente = idUtente, IdProdotto = 1, Prezzo = 19.99};
+                        Purchases.Add(purchase);
+                        //sottraggo il costo del prodotto dal balance dell'utente
+                        userr.Balance = userr.Balance-prod.Price;
+                        //sottraggo la quantità
+                        prod.Quantity -= 1;
+                        context.SaveChanges();          //se uso context usarlo anche col SaveChanges
+                        System.Console.WriteLine("Il tuo balance ora è di " + userr.Balance);
+                    }
+                    else
+                    {
+                        System.Console.WriteLine("non hai abbastanza soldi!");
+                        controller.RichiestaAcquisto(user);
+                    }                    
                 }
-                //
-
-                
             }
             else if(scelta == "2")
             {
@@ -108,27 +110,31 @@ class Database : DbContext
                     var userr = context.Users.FirstOrDefault(p => p.Name == user.Name); 
                     int idUtente = userr.Id;
                     
+                    
                     // Ottengo il prodotto per ottenerne il prezzo
                     var prod = context.Products.FirstOrDefault(p => p.Id == Int32.Parse(scelta));
-
-                    // Sottraggo il costo del prodotto dal balance dell'utente
-                    double balance = userr.Balance;
-                    userr.Balance = balance - prod.Price;
-
-                    //sottraggo la quantità
-                    prod.Quantity -= 1;
-                    
+                 
                     // Creo un nuovo acquisto e lo aggiungo al database
-                    var purchase = new Purchase {IdUtente = idUtente, IdProdotto = 2, Prezzo = 39.99};
-                    context.Purchases.Add(purchase);
+                    if(userr.Balance-prod.Price>=0)
+                    {
+                        var purchase = new Purchase {IdUtente = idUtente, IdProdotto = 2, Prezzo = 39.99};
+                        context.Purchases.Add(purchase);
+                        // Sottraggo il costo del prodotto dal balance dell'utente
+                        double balance = userr.Balance;
+                        userr.Balance = balance - prod.Price;
+                        //sottraggo la quantità
+                        prod.Quantity -= 1;
+                        context.SaveChanges();
+                        System.Console.WriteLine("Il tuo balance ora è di " + userr.Balance);  
+                    }
+                    else
+                    {
+                        System.Console.WriteLine("non hai abbastanza soldi!");
+                        controller.RichiestaAcquisto(user);
+                    }
 
-                    // Salvare le modifiche sia per l'acquisto che per l'utente
-                    context.SaveChanges();
-                    
-                    // Stampa il prezzo del prodotto
-                    System.Console.WriteLine(prod.Price);
+                    // Salvare le modifiche sia per l'acquisto che per l'utente                                   
                 }
-
             }
             else if(scelta == "3")
             {
@@ -136,20 +142,25 @@ class Database : DbContext
                 {
                     //cerco un utente il cui nome (Name) corrisponde al nome dell utente fornito (user.Name)
                     var userr = context.Users.FirstOrDefault(p => p.Name == user.Name); 
-                    int idUtente = userr.Id;
-                    System.Console.WriteLine(idUtente);
-                    var purchase = new Purchase {IdUtente = idUtente, IdProdotto = 3, Prezzo = 69.99};
-                    Purchases.Add(purchase);
-                    
-                    //sottraggo il costo del prodotto dal balance dell'utente
                     var prod = context.Products.FirstOrDefault(p => p.Id == Int32.Parse(scelta));
+                    int idUtente = userr.Id;
+                    
+                    if(userr.Balance-prod.Price>=0)
+                    {
+                    var purchase = new Purchase {IdUtente = idUtente, IdProdotto = 3, Prezzo = 99.99};
+                    Purchases.Add(purchase);
+                    //sottraggo il costo del prodotto dal balance dell'utente                   
                     userr.Balance = userr.Balance-prod.Price;
-
                     //sottraggo la quantità
                     prod.Quantity -= 1;
-                    
                     context.SaveChanges();          //se uso context usarlo anche col SaveChanges
-                    System.Console.WriteLine(userr.Balance);
+                    System.Console.WriteLine("Il tuo balance ora è di " + userr.Balance);
+                    }
+                    else
+                    {
+                        System.Console.WriteLine("non hai abbastanza soldi!");
+                        controller.RichiestaAcquisto(user);
+                    }                                    
                 }
             }
         }
@@ -170,6 +181,7 @@ class Database : DbContext
                         Console.WriteLine($"Purchase Id: {purchase.Id}, Id utente: {purchase.IdUtente}, Id prodotto: {purchase.IdProdotto}, Prezzo: {purchase.Prezzo}");
                     }
                 }
+                context.SaveChanges();
             }
         }
         
@@ -226,6 +238,7 @@ class Database : DbContext
             {
                 Products.Remove(product);
                 SaveChanges();
+                System.Console.WriteLine("Eliminazione avvenuta con successo");
             }
             else
             {

@@ -1,3 +1,5 @@
+using System.Runtime.InteropServices;
+
 class Controller            //il controller a seconda se è 1 o 2 o 3 esegue la logica
 {
     private Database _db;   //riferimento al modello
@@ -8,6 +10,8 @@ class Controller            //il controller a seconda se è 1 o 2 o 3 esegue la 
     private Product _product;
 
     string pathDbUtentiEPassword = @"utentiEpassword.db";
+
+    // public Controller(){}
 
     public Controller(Database db, View view, UserModel userModel, User user, Product product)
     {
@@ -39,13 +43,16 @@ class Controller            //il controller a seconda se è 1 o 2 o 3 esegue la 
 
             else if (input == "3")
             {
-                    AdminLogin(); 
+                AdminLogin(); 
             }
             
             else if (input == "4")
             {
                  Environment.Exit(0);
                 // break;
+            } else{
+                System.Console.WriteLine("Input non valido, digita un input valido");
+                continue;
             }
 
             RichiestaAcquisto(_user);
@@ -113,29 +120,25 @@ class Controller            //il controller a seconda se è 1 o 2 o 3 esegue la 
     
     public void RichiestaAcquisto(User user)
     {
+        using (var context = new Database())
+        {
+            var userr = context.Users.FirstOrDefault(p => p.Name == user.Name);
+            System.Console.WriteLine("Il tuo balance è di: " + userr.Balance);
+        }
         _view.MessaggioAcquisto();
         string scelta = _view.GetInput();
 
-        if(user.Balance>=_product.Price)
-        {
-            if(scelta=="1")
+            if(scelta=="1"||scelta=="2"||scelta=="3")
             {
-                AddPurchaseToDb(scelta, user);
+                AddPurchaseToDb(scelta, user, this);
+                
             }
-            else if(scelta=="2")
-            {
-                AddPurchaseToDb(scelta, user);
-            }
-            else if(scelta=="3")
-            {
-                AddPurchaseToDb(scelta, user);
-            }
+            
             else
             {
                 System.Console.WriteLine("scelta non valida");
                 RichiestaAcquisto(user);
             }
-        }
     }
 
     public void VisualizzaOrdini(User user)
@@ -206,6 +209,10 @@ class Controller            //il controller a seconda se è 1 o 2 o 3 esegue la 
             {
                 Environment.Exit(0);
             }
+            else{
+                System.Console.WriteLine("Input non valido, digita un input valido");
+                goto Rinizia;
+            }
         }
     } 
 
@@ -255,9 +262,9 @@ class Controller            //il controller a seconda se è 1 o 2 o 3 esegue la 
         _db.AddUser(name, password, balance);  //aggiunta dell'utente al database
     }
 
-    private void AddPurchaseToDb(string scelta, User user)
+    private void AddPurchaseToDb(string scelta, User user, Controller controller)
     {
-        _db.AddPurchase(scelta, user);
+        _db.AddPurchase(scelta, user, controller);
     }
     
 }

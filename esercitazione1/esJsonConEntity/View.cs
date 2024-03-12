@@ -15,7 +15,7 @@ class View
     public void MessaggioAcquisto()
     {
         System.Console.Write("Cosa vuoi acquistare tra: ");
-        System.Console.WriteLine("1) Gaming mouse, 2) Joypad, 3)Monitor");
+        System.Console.WriteLine("1) Gaming mouse - 19.99$, 2) Joypad - 39.99$, 3)Monitor - 99.99$");
     }
 
     public void MessaggioVisualizzaOrdini()
