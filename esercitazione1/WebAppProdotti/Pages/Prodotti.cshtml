@@ -82,11 +82,78 @@
             <tr>
                 <td>@prodotto.Nome</td>
                 <td>@prodotto.Prezzo</td>
+                <td><a asp-page="ProdottoDettaglio" asp-route-nome="@prodotto.Nome" asp-route-prezzo="@prodotto.Prezzo" asp-route-dettaglio = "@prodotto.Dettaglio">@prodotto.Dettaglio</a></td>
             </tr>
         }
-        <!-- Aggiungi altre righe se necessario -->
+     
       </tbody>
     </table>
   </div>
+
+    <tbody>
+  <thead>
+      @foreach(var item in Model.Prodotti)
+      {
+        <tr>
+          <td>
+            <a asp-page="ProdottoDettaglio" asp-route-nome="@item.Nome" asp-route-prezzo="@item.Prezzo" 
+            asp-route-Dettaglio="@item.Dettaglio">@Html.DisplayFor(modelItem => item.Nome)</a>
+          </td>
+        </tr>
+      }
+  </thead>
+    </tbody>
+  
+  <div class="row">
+    @foreach (var item in Model.Prodotti)
+    {
+      <div class="col-md-4">
+        <div class="card">
+          <div class="card-body">
+            <h5 class="card-title">@item.Nome</h5>
+            @{
+              if(item.Prezzo < 101)
+              {
+                <p class="card-text text-success">@item.Prezzo</p>
+                <a asp-page="ProdottoDettaglio" asp-route-nome="@item.Nome" asp-route-prezzo="@item.Prezzo" asp-route-Dettaglio="@item.Dettaglio" class="btn btn-danger">Details</a>
+              }
+              else if(item.Prezzo < 202)
+              {
+                <p class="card-text text-success">@item.Prezzo</p>
+                <a asp-page="ProdottoDettaglio" asp-route-nome="@item.Nome" asp-route-prezzo="@item.Prezzo" asp-route-Dettaglio="@item.Dettaglio" class="btn btn-success">Details</a>
+              }
+              else
+              {
+                <p class="card-text text-danger">@item.Prezzo</p>
+                <a asp-page="ProdottoDettaglio" asp-route-nome="@item.Nome" asp-route-prezzo="@item.Prezzo" asp-route-Dettaglio="@item.Dettaglio" class="btn btn-warning">Details</a>
+              }
+            }
+          </div>
+        </div>
+      </div>
+    }
 </div>
 
+  <form method="get">
+    <div class="form-group">
+      <label for="minPrezzo">Min Prezzo</label>
+      <input type="text" class="form-control" name="minPrezzo"/>
+    </div>
+    <div class="form-group">
+      <label for="maxPrezzo">Max Prezzo</label>
+      <input type="text" class="form-control" name="maxPrezzo">
+    </div>
+
+    <br>
+    <button type="submit" class="btn btn-prmary">Filtra</button>
+  </form>
+</div>
+
+
+<form method="get">
+  <input type="hidden" name ="minPrezzo" value="@Request.Query["minPrezzo"]"/>
+  <input type="hidden" name ="maxPrezzo" value="@Request.Query["maxPrezzo"]"/>
+  <input type="submit" class="btn btn-primary" name="page-index"value="1">1</button>
+  <input type="submit" class="btn btn-primary" name="page-index"value="1">2</button>
+  <input type="submit" class="btn btn-primary" name="page-index"value="1">3</button>
+</form>
