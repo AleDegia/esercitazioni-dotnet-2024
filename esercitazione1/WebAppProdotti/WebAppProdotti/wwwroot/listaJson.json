@@ -1,0 +1,52 @@
+[
+  {
+    "Nome": "Prodotto 2",
+    "Prezzo": 900.0,
+    "Dettaglio": "ciao 2"
+  },
+  {
+    "Nome": "Prodotto 3",
+    "Prezzo": 300.0,
+    "Dettaglio": "ciao 3"
+  },
+  {
+    "Nome": "Prodotto 4",
+    "Prezzo": 100.0,
+    "Dettaglio": "ciao 4"
+  },
+  {
+    "Nome": "Prodotto 5",
+    "Prezzo": 200.0,
+    "Dettaglio": "ciao 5"
+  },
+  {
+    "Nome": "Prodotto 6",
+    "Prezzo": 300.0,
+    "Dettaglio": "ciao 6"
+  },
+  {
+    "Nome": "Prodotto 7",
+    "Prezzo": 100.0,
+    "Dettaglio": "ciao 7"
+  },
+  {
+    "Nome": "Prodotto 8",
+    "Prezzo": 200.0,
+    "Dettaglio": "ciao 8"
+  },
+  {
+    "Nome": "Prodotto 9",
+    "Prezzo": 300.0,
+    "Dettaglio": "ciao 9"
+  },
+  {
+    "Nome": "Prodotto 10",
+    "Prezzo": 100.0,
+    "Dettaglio": "ciao 10"
+  },
+  {
+    "Nome": "WAD",
+    "Prezzo": 3.0,
+    "Dettaglio": "WF"
+  }
+]
