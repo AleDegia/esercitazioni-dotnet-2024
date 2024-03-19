@@ -1,0 +1,60 @@
+@page
+@model ProdottoModel2
+@{
+    ViewData["Title"] = "Prodotti";
+}
+
+<h1>@ViewData["Title"]</h1>
+
+<form method="get">
+    <div class="form-group">
+        <label for="minPrezzo">Min Prezzo</label>
+        <input type="text" class="form-control" name="minPrezzo" />         <!--l'attributo name è quello che verrà utilizzato per passare i valori al metodo OnGet-->
+    </div>
+    <div class="form-group">
+        <label for="maxPrezzo">Max Prezzo</label>
+        <input type="text" class="form-control" name="maxPrezzo" />
+    </div>
+    
+    <br>
+    <button type="submit" class="btn btn-primary">Filtra</button>
+</form>
+<br>
+
+<div class="row">
+    @foreach (var item in Model.Prodotti)   //accedo alla proprietà Prodotti della classe a cui ci riferiamo con @model, e per ogni oggetto dell lista faccio una card
+    {
+        <div class="col-md-4">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">@item.Nome</h5>
+                    @{
+                        if (item.Prezzo < 300)                  //se il prezzo dell'oggetto item è < di 300
+                        {
+                            <p class="card-text text-success">@item.Prezzo</p>  //viene visualizzato un p col prezzo dell'item
+                            <a asp-page="Prodotto2" asp-route-nome="@item.Nome" asp-route-prezzo="@item.Prezzo" asp-route-Dettaglio="@item.Dettaglio" class="btn btn-primary">Dettaglio</a>
+                        }   //quando l'utnete clicca sul link, asp-route-nome serve a passare il valore Nome dell'item come parametro includendolo nella richiesta. 
+                        else
+                        {
+                            <p class="card-text text-danger">@item.Prezzo</p>
+                            <a asp-page="Prodotto2" asp-route-nome="@item.Nome" asp-route-prezzo="@item.Prezzo" asp-route-Dettaglio="@item.Dettaglio" class="btn btn-danger">Dettaglio</a>
+                        }
+                    }
+                </div>
+            </div>
+            <br>
+
+        </div>
+    }
+</div>
+
+<br>
+<div style="height: 100px;">
+<form method="get">
+    <input type="hidden" name="minPrezzo" value="@Request.Query["minPrezzo"]" />
+    <input type="hidden" name="maxPrezzo" value="@Request.Query["maxPrezzo"]" />
+    <button type="submit" class="btn btn-primary" name="pageIndex" value="1">1</button>
+    <button type="submit" class="btn btn-primary" name="pageIndex" value="2">2</button>
+    <button type="submit" class="btn btn-primary" name="pageIndex" value="3">3</button>
+</form>
+</div>

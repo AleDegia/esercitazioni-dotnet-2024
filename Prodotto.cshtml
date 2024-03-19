@@ -1,0 +1,26 @@
+@page
+@model ProdottoModel
+@{
+    ViewData["Title"] = "Prodotti";
+}
+
+<h1>@ViewData["Title"]</h1>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Nome</th>
+            <th>Prezzo</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var prodotto in Model.Prodotti)   //accedo alla proprietà Prodotti della classe a cui ci riferiamo con @model
+
+        {
+            <tr>
+                <td>@prodotto.Nome</td>
+                <td>@prodotto.Prezzo</td>
+            </tr>
+        }
+    </tbody>
+    </table>
