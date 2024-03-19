@@ -1,0 +1,41 @@
+@page
+@model DettaglioPersonaModel
+@{
+    ViewData["Title"] = "Prodotto Dettaglio";
+}
+
+<h1>@ViewData["Title"]</h1>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                <!--restituisce il nome delle variabili dell'oggetto Persona e le usa come intestazione della tabella-->
+                @Html.DisplayNameFor(model => model.Persona.Id)  
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Persona.Nome)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Persona.Cognome)
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>
+                <!--restituisce il valore della variabile Id dell'oggetto Persona dentro model-->
+                @Html.DisplayFor(model => model.Persona.Id)
+            </td>
+            <td>
+                @Model.Persona.Nome           <!--altro modo per prendere il valore di un campo dell'oggetto Persona(accedo alla pagine model collegata, a persona e al campo)-->
+            </td>
+            <td>
+                @Html.DisplayFor(model => model.Persona.Cognome)
+            </td>
+        </tr>
+        <a asp-page ="Persona">Torna a persone</a>
+
+        
+    </tbody>
+</table>

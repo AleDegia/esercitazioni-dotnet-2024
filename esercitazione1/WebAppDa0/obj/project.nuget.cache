@@ -1,0 +1,10 @@
+{
+  "version": 2,
+  "dgSpecHash": "rJdlmRI+y2T4xAy149JuURZ26orblX5aT9ZkIe7HcBgXVrE5Dmw9iOjTJQapFWjLMO/MX+rT4gSzowSz1zmuTQ==",
+  "success": true,
+  "projectFilePath": "C:\\Users\\DOTNET\\Documents\\Corso-Dotnet-2024\\WebAppDa0\\WebAppDa0.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\DOTNET\\.nuget\\packages\\newtonsoft.json\\13.0.3\\newtonsoft.json.13.0.3.nupkg.sha512"
+  ],
+  "logs": []
+}

@@ -1,0 +1,22 @@
+@page
+@model PersonaModel                             // mi riferisco alla classe PersonaModel (in Persona.cshtml.cs)
+@{
+    ViewData["Title"] = "Elenco Persone";
+}
+
+<h1>@ViewData["Title"]</h1>     <!-- mostro il value della chiave Title come h1 (cioè "Elenco Persone")-->
+
+<!--asp-page è tipo un href, solo che specifica il nome della pagina Razor a cui si desidera collegarsi*-->
+<!--asp-route-nome è un attributo specifico di ASP.NET Core Razor Pages che viene utilizzato per passare dati da una pagina a un'altra attraverso l'URL. ASP.NET Core Razor Pages genererà automaticamente un URL con i parametri specificati.  -->
+<!--Questo attributo viene utilizzato per passare il valore della proprietà Nome di un oggetto persona dalla pagina corrente (DettaglioPersona) alla pagina di destinazione specificata nel asp-page (presumibilmente DettaglioPersona).-->
+@foreach (var persona in Model.Persone)     //itero sull'enumerable/lista di oggetti Persona
+{
+    <ul>
+        <li>
+            @*con asp-route-nome passo dico di passare il valore per il parametro 'nome'*@
+            <a asp-page ="DettaglioPersona" asp-route-nome="@persona.Nome">@persona.Nome</a>   
+            @persona.Cognome @persona.Id
+        </li>
+    </ul>
+}
+
