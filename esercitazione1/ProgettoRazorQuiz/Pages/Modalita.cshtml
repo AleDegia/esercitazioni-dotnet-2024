@@ -1,0 +1,15 @@
+@page
+@model ModalitaModel
+@{
+    ViewData["Title"] = "Home page";
+}
+
+<h1>Welcome, @Model.Username!</h1>
+
+<!--i parametri degli a vanno gestiti con Onget-->
+<div>
+<a asp-page="Partita" class="btn btn-danger" asp-route-modalita="facile" asp-route-username=@Model.Username>Facile</a>
+<a asp-page="Partita" class="btn btn-danger" asp-route-modalita="media" asp-route-username=@Model.Username>Media</a>
+<a asp-page="Partita" class="btn btn-danger" asp-route-modalita="difficile" asp-route-username=@Model.Username>Difficile</a>
+</div>
+

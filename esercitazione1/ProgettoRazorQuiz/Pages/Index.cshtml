@@ -1,0 +1,18 @@
+﻿@page
+@model IndexModel
+@{
+    ViewData["Title"] = "Home page";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Welcome</h1>
+    <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+</div>
+
+<!--asp-page serve a definire la pagina a cui verrà reindirizzato l'utente quando viene fatto clic sul link-->
+<!--i parametri degli a vanno gestiti con Onget-->
+
+<div>
+<a asp-page="Registrazione" class="btn btn-danger">Registrzione</a>
+<a asp-page="Login" class="btn btn-danger">Login</a>
+</div>
