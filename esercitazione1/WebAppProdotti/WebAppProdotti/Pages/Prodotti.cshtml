@@ -1,0 +1,205 @@
+@page
+@model ProdottiModel
+@{
+    ViewData["Title"] = "Prodotti";
+
+}
+<h1>@ViewData["Title"]</h1>
+
+<p>Descrizione prodotti</p>
+<table class = "table">
+    <thead>
+        <tr>
+            <th>Nome</th>
+            <th>Prezzo</th>
+            <th>Dettaglio</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var prodotto in Model.Prodotti)       /*accedo alla proprietà Prodotti del modello ProdottoModel*/
+        {
+            <tr>
+                <td>@prodotto.Nome</td>
+                <td>@prodotto.Prezzo</td>
+                <td>@prodotto.Dettaglio</td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+
+<!-- Con bootstrap-->
+
+<div class="row">
+  <div class="col-md-6">
+    <div class="card" style="width: 18rem;">
+      <div class="card-header">
+        Con solo bootstrap
+      </div>
+      @foreach (var prodotto in Model.Prodotti)       /*accedo alla proprietà Prodotti del modello ProdottoModel*/
+        {
+            <ul class="list-group list-group-flush d-flex flex-row ">
+            
+            <li class="list-group-item">@prodotto.Nome</li>
+            <li class="list-group-item">@prodotto.Prezzo</li>
+            <li class="list-group-item">@prodotto.Dettaglio</li>               
+            
+            </ul>
+        }
+    </div>
+  </div>
+  @* <div class="col-md-6">
+    <div class="card" style="width: 18rem;">
+      <div class="card-header">
+        Featured
+      </div>
+      <ul class="list-group list-group-flush">
+        <li class="list-group-item">An item</li>
+        <li class="list-group-item">A second item</li>
+        <li class="list-group-item">A third item</li>
+      </ul>
+    </div>
+  </div> *@
+</div>
+
+
+
+
+  
+  <div class="col-md-6">
+    <!-- Inserisci qui la tua tabella -->
+    <table class="table">
+      <thead>
+        <tr>
+          <th scope="col">Intestazione 1</th>
+          <th scope="col">Intestazione 2</th>
+          <th scope="col">Intestazione 3</th>
+        </tr>
+      </thead>
+      <tbody>
+        @foreach (var prodotto in Model.Prodotti)       /*accedo alla proprietà Prodotti del modello ProdottoModel*/
+        {
+            <tr>
+                <td>@prodotto.Nome</td>
+                <td>@prodotto.Prezzo</td>
+                <td><a asp-page="ProdottoDettaglio" asp-route-nome="@prodotto.Nome" asp-route-prezzo="@prodotto.Prezzo" asp-route-dettaglio = "@prodotto.Dettaglio">@prodotto.Dettaglio</a></td>
+            </tr>
+        }
+     
+      </tbody>
+    </table>
+  </div>
+
+    <tbody>
+  <thead>
+      @foreach(var item in Model.Prodotti)
+      {
+        <tr>
+          <td>
+            <a asp-page="ProdottoDettaglio" asp-route-nome="@item.Nome" asp-route-prezzo="@item.Prezzo" 
+            asp-route-Dettaglio="@item.Dettaglio">@Html.DisplayFor(modelItem => item.Nome)</a>
+          </td>
+        </tr>
+      }
+  </thead>
+    </tbody>
+  
+  <div class="row">
+    @foreach (var item in Model.Prodotti)
+    {
+      <div class="col-md-4">
+        <div class="card">
+          <div class="card-body">
+            <h5 class="card-title">@item.Nome</h5>
+            @{
+              if(item.Prezzo < 101)
+              {
+                <p class="card-text text-success">@item.Prezzo</p>
+                <a asp-page="ProdottoDettaglio" asp-route-nome="@item.Nome" asp-route-prezzo="@item.Prezzo" asp-route-Dettaglio="@item.Dettaglio" class="btn btn-danger">Details</a>
+              }
+              else if(item.Prezzo < 202)
+              {
+                <p class="card-text text-success">@item.Prezzo</p>
+                <a asp-page="ProdottoDettaglio" asp-route-nome="@item.Nome" asp-route-prezzo="@item.Prezzo" asp-route-Dettaglio="@item.Dettaglio" class="btn btn-success">Details</a>
+              }
+              else
+              {
+                <p class="card-text text-danger">@item.Prezzo</p>
+                <a asp-page="ProdottoDettaglio" asp-route-nome="@item.Nome" asp-route-prezzo="@item.Prezzo" asp-route-Dettaglio="@item.Dettaglio" class="btn btn-warning">Details</a>
+              }
+            }
+          </div>
+        </div>
+      </div>
+    }
+</div>
+
+  <form method="get">
+    <div class="form-group">
+      <label for="minPrezzo">Min Prezzo</label>
+      <input type="text" class="form-control" name="minPrezzo"/>
+    </div>
+    <div class="form-group">
+      <label for="maxPrezzo">Max Prezzo</label>
+      <input type="text" class="form-control" name="maxPrezzo">
+    </div>
+
+    <br>
+    <button type="submit" class="btn btn-prmary">Filtra</button>
+  </form>
+</div>
+
+
+<form method="get">
+  <input type="hidden" name ="minPrezzo" value="@Request.Query["minPrezzo"]"/>
+  <input type="hidden" name ="maxPrezzo" value="@Request.Query["maxPrezzo"]"/>
+  @for(int i = 1; i<= Model.NumeroPagine; i++)
+  {
+    <button type="submit" class="btn btn-primary" name="pageIndex" value="@i">@i</button>
+  }
+</form>
+
+
+
+<div class="row">
+  <div class="col-md-6">
+    <div class="card" style="width: 18rem;">
+      <div class="card-header">
+        Con solo bootstrap
+      </div>
+      @foreach (var prodotto in Model.Prodotti)       /*accedo alla proprietà Prodotti del modello ProdottoModel*/
+        {
+            <ul class="list-group list-group-flush d-flex flex-row ">
+            
+            <li class="list-group-item">@prodotto.Nome</li>
+            <li class="list-group-item">@prodotto.Prezzo</li>
+            <li class="list-group-item">@prodotto.Dettaglio</li>               
+            <a asp-page="CancellaProdotti" asp-route-nome="@prodotto.Nome" class="btn btn-dark">cancella</a>
+            <a asp-page="ModificaPrezzo" asp-route-nome="@prodotto.Nome" class="btn btn-success">modifica</a>
+            </ul>
+        }
+    </div>
+  </div>
+
+
+  
+
+
+
+  <h1>Visualizzazione dropdown link</h1>
+
+<p>esempio con link nome i dati di dettaglio prodotto vengono presi da files json</p>
+
+<div class="dropdown">
+    <button class="btn btn-dark dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+        Elenco Prodotti
+    </button>
+    <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+        @foreach (var prodotto in Model.Prodotti)
+        {
+            <li><a asp-page="ProdottoDettaglio" asp-route-nome="@prodotto.Nome">
+                    @prodotto.Nome
+                </a></li>
+        }
+    </ul>
+</div>
