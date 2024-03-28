@@ -43,7 +43,7 @@
         <hr />
     }
 
-
+  <input type="hidden" name="mod" value="@Model.mod"/>
     <button type="submit">Submit</button>
 </form>
 }
@@ -84,6 +84,7 @@ else if(Model.mod =="media")
       </div>
     </div>
     <button type="submit" class="btn btn-primary">Invia</button>
+    <input type="hidden" name="mod" value="@Model.mod"/>
   </form>
   }
 </div>
@@ -104,6 +105,7 @@ else if(Model.mod =="difficile")
     <textarea class="form-control" id="exampleFormControlTextarea1" name="Risposte[@i]" ></textarea>
   </div>
   }
+  <input type="hidden" name="mod" value="@Model.mod"/>
   <button type="submit" class="btn btn-primary" >Submit</button>
 </form>
 }

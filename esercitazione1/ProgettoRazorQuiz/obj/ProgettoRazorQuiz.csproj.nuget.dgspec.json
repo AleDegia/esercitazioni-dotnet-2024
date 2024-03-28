@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "c:\\Users\\degia\\OneDrive\\Documenti\\clone\\C#\\ProgettoRazorQuiz\\ProgettoRazorQuiz.csproj": {}
+    "c:\\Users\\degia\\OneDrive\\Documenti\\clone\\C#\\folderClone\\esercitazioni-dotnet-2024\\esercitazione1\\ProgettoRazorQuiz\\ProgettoRazorQuiz.csproj": {}
   },
   "projects": {
-    "c:\\Users\\degia\\OneDrive\\Documenti\\clone\\C#\\ProgettoRazorQuiz\\ProgettoRazorQuiz.csproj": {
+    "c:\\Users\\degia\\OneDrive\\Documenti\\clone\\C#\\folderClone\\esercitazioni-dotnet-2024\\esercitazione1\\ProgettoRazorQuiz\\ProgettoRazorQuiz.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "c:\\Users\\degia\\OneDrive\\Documenti\\clone\\C#\\ProgettoRazorQuiz\\ProgettoRazorQuiz.csproj",
+        "projectUniqueName": "c:\\Users\\degia\\OneDrive\\Documenti\\clone\\C#\\folderClone\\esercitazioni-dotnet-2024\\esercitazione1\\ProgettoRazorQuiz\\ProgettoRazorQuiz.csproj",
         "projectName": "ProgettoRazorQuiz",
-        "projectPath": "c:\\Users\\degia\\OneDrive\\Documenti\\clone\\C#\\ProgettoRazorQuiz\\ProgettoRazorQuiz.csproj",
+        "projectPath": "c:\\Users\\degia\\OneDrive\\Documenti\\clone\\C#\\folderClone\\esercitazioni-dotnet-2024\\esercitazione1\\ProgettoRazorQuiz\\ProgettoRazorQuiz.csproj",
         "packagesPath": "C:\\Users\\degia\\.nuget\\packages\\",
-        "outputPath": "c:\\Users\\degia\\OneDrive\\Documenti\\clone\\C#\\ProgettoRazorQuiz\\obj\\",
+        "outputPath": "c:\\Users\\degia\\OneDrive\\Documenti\\clone\\C#\\folderClone\\esercitazioni-dotnet-2024\\esercitazione1\\ProgettoRazorQuiz\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"

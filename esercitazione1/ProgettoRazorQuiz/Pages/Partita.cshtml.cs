@@ -47,10 +47,17 @@ namespace ProgettoRazorQuiz.Pages
         }
 
         
+
+        
         public IActionResult OnPost( List<string> Risposte, string username)
         {
-            
-            return RedirectToPage("/Punteggio", new { risposte = Risposte , username = username});
+            string mod = Request.Form["mod"];  //recupero mod manualmente
+
+            if(mod=="facile")
+            {
+                 return RedirectToPage("/Punteggio", new { risposte = Risposte , username = username, modalita = mod});
+            }
+            return RedirectToPage("/Punteggio", new { risposte = Risposte , username = username, modalita = mod});
         }
     }
 }

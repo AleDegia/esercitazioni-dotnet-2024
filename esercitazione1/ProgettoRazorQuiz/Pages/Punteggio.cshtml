@@ -4,6 +4,8 @@
     
 }
 
+@if(Model.Mod=="difficile")
+{
 <h1>Welcome, @Model.Username!</h1>
 
 <h3> Il tuo Record è: @Model.HighScore </h3> 
@@ -59,13 +61,24 @@
     <p>@risp</p>
 }
 
- 
+
+ <p>Modalita: @Model.Mod</p>
 
  @* @foreach(var punteggio in Model.punteggiUsers)
  {
     <p>@punteggio.nome</p>
     <p>@punteggio.punteggio</p>
  } *@
+}
+else if(Model.Mod=="facile")
+{
+<h1>Welcome, @Model.Username!</h1>
 
+@* <h3> Il tuo Record è: @Model.HighScore </h3> 
+
+<p>Il tuo punteggio è: @Model.Score</p>
+
+<p>I tuoi ultimi 5 punteggi:</p> *@
+}
 
 
