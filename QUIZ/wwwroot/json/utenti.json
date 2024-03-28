@@ -1,0 +1,75 @@
+[
+  {
+    "Nome": "Ale",
+    "Password": "124",
+    "Record": 6,
+    "Punteggi": [
+      0,
+      6,
+      2,
+      3,
+      -2,
+      1,
+      1,
+      3,
+      1,
+      1,
+      -1,
+      -1,
+      1,
+      -1,
+      1,
+      -1,
+      3,
+      1,
+      1,
+      1,
+      1
+    ]
+  },
+  {
+    "Nome": "Carlo",
+    "Password": "124",
+    "Record": 9,
+    "Punteggi": [
+      0,
+      9
+    ]
+  },
+  {
+    "Nome": "carlo",
+    "Password": "11",
+    "Record": 10,
+    "Punteggi": [
+      0,
+      10,
+      0
+    ]
+  },
+  {
+    "Nome": "Giada",
+    "Password": "a",
+    "Record": 0,
+    "Punteggi": [
+      0
+    ]
+  },
+  {
+    "Nome": "Simone",
+    "Password": "1",
+    "Record": 4,
+    "Punteggi": [
+      0,
+      4
+    ]
+  },
+  {
+    "Nome": "m",
+    "Password": "4",
+    "Record": 7,
+    "Punteggi": [
+      0,
+      7
+    ]
+  }
+]
