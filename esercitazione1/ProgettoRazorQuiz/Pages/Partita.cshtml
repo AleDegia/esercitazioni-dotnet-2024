@@ -1,0 +1,133 @@
+@page
+@model PartitaModel
+@{
+    ViewData["Title"] = "Partita";
+}
+
+<h1>Welcome, @Model.Username!</h1>
+
+@if(Model.mod =="facile")
+{
+<form method="post">
+    @for (int i = 0; i < Model.Domande.Count; i++)
+    {
+        <div>
+            <h3>Domanda @Model.Domande[i].Id:</h3>
+            <p>@Model.Domande[i].Domand</p>
+            
+            <label>
+                <input type="radio" name="risposta_@Model.Domande[i].Id" value="opzioneA">
+                @Model.Domande[i].OpzioneA
+            </label>
+            <br />
+            
+            <label>
+                <input type="radio" name="risposta_@Model.Domande[i].Id" value="opzioneB">
+                @Model.Domande[i].OpzioneB
+            </label>
+            <br />
+            
+            <label>
+                <input type="radio" name="risposta_@Model.Domande[i].Id" value="opzioneC">
+                @Model.Domande[i].OpzioneC
+            </label>
+            <br />
+            
+            <label>
+                <input type="radio" name="risposta_@Model.Domande[i].Id" value="opzioneD">
+
+                @Model.Domande[i].OpzioneD
+            </label>
+            <br />
+        </div>
+        <hr />
+    }
+
+  <input type="hidden" name="mod" value="@Model.mod"/>
+    <button type="submit">Submit</button>
+</form>
+}
+else if(Model.mod =="media")
+{
+    
+    <div class="container">
+  <h2>Seleziona al massimo due opzioni:</h2>
+  @for (int i = 0; i < Model.Domande.Count; i++)
+    {
+        <h3>Domanda @Model.Domande[i].Id:</h3>
+        <p>@Model.Domande[i].Domand</p>
+  <form method="post" id="form_0">
+    <div class="form-group">
+      <div class="form-check">
+        <input class="form-check-input" type="checkbox" id="option1" name="option1">
+        <label class="form-check-label" for="option1">
+          Opzione 1
+        </label>
+      </div>
+      <div class="form-check">
+        <input class="form-check-input" type="checkbox" id="option2" name="option2">
+        <label class="form-check-label" for="option2">
+          Opzione 2
+        </label>
+      </div>
+      <div class="form-check">
+        <input class="form-check-input" type="checkbox" id="option3" name="option3">
+        <label class="form-check-label" for="option3">
+          Opzione 3
+        </label>
+      </div>
+      <div class="form-check">
+        <input class="form-check-input" type="checkbox" id="option4" name="option4">
+        <label class="form-check-label" for="option4">
+          Opzione 4
+        </label>
+      </div>
+    </div>
+    <button type="submit" class="btn btn-primary">Invia</button>
+    <input type="hidden" name="mod" value="@Model.mod"/>
+  </form>
+  }
+</div>
+}
+
+else if(Model.mod =="difficile")
+{
+    <form method="post">
+    @for (int i = 0; i < Model.Domande.Count; i++)
+    {
+    
+  <div class="mb-3">
+    <h3>Domanda @Model.Domande[i].Id:</h3>
+    <p>@Model.Domande[i].Domand</p>
+  </div>
+  <div class="mb-3">
+    @* <label for="exampleFormControlTextarea1" class="form-label"></label> *@
+    <textarea class="form-control" id="exampleFormControlTextarea1" name="Risposte[@i]" ></textarea>
+  </div>
+  }
+  <input type="hidden" name="mod" value="@Model.mod"/>
+  <button type="submit" class="btn btn-primary" >Submit</button>
+</form>
+}
+
+
+<script>
+        document.addEventListener('DOMContentLoaded', function () {
+            var checkboxes = document.querySelectorAll('#form_0 input[type="checkbox"]');
+            var checkedCount = 0;
+
+            checkboxes.forEach(function (checkbox) {
+                checkbox.addEventListener('change', function () {
+                    if (this.checked) {
+                        checkedCount++;
+                        if (checkedCount > 2) {
+                            this.checked = false;
+                            checkedCount--;
+                        }
+                    } else {
+                        checkedCount--;
+                    }
+                });
+            });
+        });
+    </script>

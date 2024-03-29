@@ -1,0 +1,92 @@
+[
+    {
+      "id": 1,
+      "domand": "Qual è la capitale dell'Italia?",
+      "opzioneA": "Milano",
+      "opzioneB": "Roma",
+      "opzioneC": "Napoli",
+      "opzioneD": "Firenze",
+      "risposta": "1opzioneB"
+    },
+    {
+      "id": 2,
+      "domand": "Quale pianeta del sistema solare è più vicino al Sole?",
+      "opzioneA": "Venere",
+      "opzioneB": "Marte",
+      "opzioneC": "Giove",
+      "opzioneD": "Mercurio",
+      "risposta": "2opzioneD"
+    },
+    {
+      "id": 3,
+      "domand": "Quale animale è noto per la sua striscia bianca e nera?",
+      "opzioneA": "Leopardo",
+      "opzioneB": "Zebra",
+      "opzioneC": "Tigre",
+      "opzioneD": "Giraffa",
+      "risposta": "3opzioneB"
+    },
+    {
+      "id": 4,
+      "domand": "Quale lingua si parla in Giappone?",
+      "opzioneA": "Cinese",
+      "opzioneB": "Giapponese",
+      "opzioneC": "Coreano",
+      "opzioneD": "Russo",
+      "risposta": "4opzioneB"
+    },
+    {
+      "id": 5,
+      "domand": "Quale numero viene dopo 9?",
+      "opzioneA": "10",
+      "opzioneB": "8",
+      "opzioneC": "11",
+      "opzioneD": "7",
+      "risposta": "5opzioneA"
+    },
+    {
+      "id": 6,
+      "domand": "Quale colore si ottiene mescolando il rosso e il giallo?",
+      "opzioneA": "Verde",
+      "opzioneB": "Arancione",
+      "opzioneC": "Viola",
+      "opzioneD": "Marrone",
+      "risposta": "6opzioneB"
+    },
+    {
+      "id": 7,
+      "domand": "Quale famoso scienziato formulò la teoria della relatività?",
+      "opzioneA": "Isaac Newton",
+      "opzioneB": "Albert Einstein",
+      "opzioneC": "Galileo Galilei",
+      "opzioneD": "Marie Curie",
+      "risposta": "7opzioneB"
+    },
+    {
+      "id": 8,
+      "domand": "Quale strumento musicale ha le corde?",
+      "opzioneA": "Pianoforte",
+      "opzioneB": "Flauto",
+      "opzioneC": "Violino",
+      "opzioneD": "Tromba",
+      "risposta": "8opzioneC"
+    },
+    {
+      "id": 9,
+      "domand": "Quale stagione segue l'estate?",
+      "opzioneA": "Autunno",
+      "opzioneB": "Inverno",
+      "opzioneC": "Primavera",
+      "opzioneD": "Estate (di nuovo)",
+      "risposta": "9opzioneA"
+    },
+    {
+      "id": 10,
+      "domand": "Quale lettera è la quinta dell'alfabeto?",
+      "opzioneA": "E",
+      "opzioneB": "B",
+      "opzioneC": "D",
+      "opzioneD": "F",
+      "risposta": "10opzioneA"
+    }
+  ]

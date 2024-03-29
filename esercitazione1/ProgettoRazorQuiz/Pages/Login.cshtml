@@ -1,0 +1,35 @@
+@page
+@model LoginModel
+@{
+    ViewData["Title"] = "Home page";
+}
+
+
+<form method="post">
+  <div class="form-group">
+    <label for="exampleInputEmail1">Username</label>
+    <input type="text" class="form-control @Model.ClasseBordo" id="exampleInputEmail1" placeholder="Enter username" name="username">
+    @if (Model.NomeEsistente==false && Model.NomeEsistente!=null)
+        {
+            <div id="nomeErrore" class="form-text text-danger">Utente non esistente</div>
+        }
+        else
+        {
+            <div id="nomeHelp" class="form-text">Inserisci il tuo username</div>
+        }
+  </div>
+  <div class="form-group">
+    <label for="exampleInputPassword1">Password</label>
+    <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password" name="password">
+  </div>
+  @if (Model.PasswordGiusta==false && Model.PasswordGiusta!=null)
+        {
+            <div id="passwordErrore" class="form-text text-danger">Password errata</div>
+        }
+        else
+        {
+            <div id="passwordHelp" class="form-text">Inserisci la password</div>
+        }
+  <button type="submit" class="btn btn-primary">Submit</button>
+</form>
+
