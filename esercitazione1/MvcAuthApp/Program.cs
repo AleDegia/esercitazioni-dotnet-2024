@@ -52,6 +52,14 @@ else
     app.UseHsts();
 }
 
+using(var scope = app.Services.CreateScope())
+{
+    var services = scope.ServiceProvider;
+    var userManager = services.GetRequiredService<UserManager<IdentityUser>>();
+    var roleManager = services.GetRequiredService<RoleManager<IdentityRole>>();
+    await SeedAdminUser(userManager, roleManager);  //chiamo la funzione 
+}
+
 app.UseHttpsRedirection();
 app.UseStaticFiles();
 
@@ -65,6 +73,33 @@ app.MapControllerRoute(
 app.MapRazorPages();
 
 app.Run();
+
+
+async Task SeedAdminUser(UserManager<IdentityUser> userManager, RoleManager<IdentityRole> roleManager)
+{
+    //assicurati che il ruolo admin esista
+    if(!await roleManager.RoleExistsAsync("Admin"))
+    {
+        await roleManager.CreateAsync(new IdentityRole("Admin"));
+    }
+
+    //Crea l'utente admin se non esiste
+    if(await userManager.FindByNameAsync("info2@admin.com")==null)
+    {
+        var user = new IdentityUser
+        {
+            UserName = "info2@admin.com",
+            Email = "info2@admin.com",
+            EmailConfirmed = true,
+        };
+
+        var result = await userManager.CreateAsync(user, "Admin123!");
+        if (result.Succeeded)
+        {
+            await userManager.AddToRoleAsync(user, "Admin");
+        }
+    }
+}
 
 
 public static class ApplicationDbInitializer
@@ -81,3 +116,4 @@ public static class ApplicationDbInitializer
         }
     }
 }
+
