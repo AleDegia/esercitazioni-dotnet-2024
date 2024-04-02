@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "ExrZFdyKbAdeScDe7B2LjyAcp5DshOfEXHWLQFR8gHPp58nEaBLPOtYU20zKtd61sds+8MHP5bEAKgx1LpxvqA==",
+  "dgSpecHash": "5LAoxksCOzbBm+jZ1aXAh/EYZOkK+d/pJiRyxoI+KydWIZcusfe6sr+9ZrVjatVWfkdfykc7PQuRKA8d6C+sIA==",
   "success": true,
-  "projectFilePath": "C:\\Users\\DOTNET\\Documents\\Corso-Dotnet-2024\\WebAppProdotti\\WebAppProdotti.csproj",
+  "projectFilePath": "C:\\Users\\DOTNET\\Documents\\Corso-Dotnet-2024\\CORSO-DOTNET-2024\\esercitazioni-dotnet-2024\\esercitazione1\\WebAppProdotti\\WebAppProdotti\\WebAppProdotti.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\DOTNET\\.nuget\\packages\\newtonsoft.json\\13.0.3\\newtonsoft.json.13.0.3.nupkg.sha512"
   ],

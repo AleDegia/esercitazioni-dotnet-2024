@@ -15,19 +15,22 @@ builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.Requ
     .AddEntityFrameworkStores<ApplicationDbContext>();
 builder.Services.AddControllersWithViews();
 
+//Crea un'istanza dell'applicazione
 var app = builder.Build();
 
-//aggiunto io
-using (var scope = app.Services.CreateScope())
+//aggiunto io (creo nuovo ambito di servizio tramite il metodo CreateScope())
+using (var scope = app.Services.CreateScope())  
 {
+    //Viene ottenuto il provider di servizi all'interno dell'ambito di servizio appena creato e viene assegnato alla variabile services. Questo fornisce accesso ai servizi registrati all'interno di quell'ambito di servizio.
     var services = scope.ServiceProvider;
 
     try
     {
-        //Risolvi il RoleManager dal provider di servizi
+        // Risolvi il RoleManager dal provider di servizi. iene richiesto al provider di servizi di restituire un'istanza del servizio RoleManager<IdentityRole>. 
+	    // RoleManager<IdentityRole> è una classe fornita da ASP.NET Identity che gestisce i ruoli degli utenti nell'applicazione.
         var roleManager = services.GetRequiredService<RoleManager<IdentityRole>>();
 
-        //Chiamata al metodo per assicurare che i ruoli esistano
+        //Chiamata al metodo per assicurare che i ruoli esistano NEL DATABASE
         await ApplicationDbInitializer.EnsureRolesAsync(roleManager);
     }
     catch(Exception ex)

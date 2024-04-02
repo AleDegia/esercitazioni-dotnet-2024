@@ -60,11 +60,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\DOTNET\\Documents\\Corso-Dotnet-2024\\WebAppProdotti\\WebAppProdotti.csproj",
+      "projectUniqueName": "C:\\Users\\DOTNET\\Documents\\Corso-Dotnet-2024\\CORSO-DOTNET-2024\\esercitazioni-dotnet-2024\\esercitazione1\\WebAppProdotti\\WebAppProdotti\\WebAppProdotti.csproj",
       "projectName": "WebAppProdotti",
-      "projectPath": "C:\\Users\\DOTNET\\Documents\\Corso-Dotnet-2024\\WebAppProdotti\\WebAppProdotti.csproj",
+      "projectPath": "C:\\Users\\DOTNET\\Documents\\Corso-Dotnet-2024\\CORSO-DOTNET-2024\\esercitazioni-dotnet-2024\\esercitazione1\\WebAppProdotti\\WebAppProdotti\\WebAppProdotti.csproj",
       "packagesPath": "C:\\Users\\DOTNET\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\DOTNET\\Documents\\Corso-Dotnet-2024\\WebAppProdotti\\obj\\",
+      "outputPath": "C:\\Users\\DOTNET\\Documents\\Corso-Dotnet-2024\\CORSO-DOTNET-2024\\esercitazioni-dotnet-2024\\esercitazione1\\WebAppProdotti\\WebAppProdotti\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\DOTNET\\AppData\\Roaming\\NuGet\\NuGet.Config"

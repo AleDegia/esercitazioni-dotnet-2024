@@ -30,8 +30,25 @@
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Reserved" asp-action="Index">Pagina riservata</a>
                         </li>
+                        // cercherà un file che abbia il nome "AccountController", e andrà al metodo AddToRoleAdmmin dentro quel file
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Account" asp-action="AddToRole">Aggiungi a ruolo Admin</a>
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Account" asp-action="AddToRoleAdmin">Aggiungi a ruolo Admin</a>
+                        </li>                                              
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Account" asp-action="GetRole">Ruolo</a>
+                        </li>
+                        //cosi mando da admin a user
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Account" asp-action="RemoveFromRoleAdmin">Rimuovi da ruolo Admin</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Account" asp-action="AddToRoleUser">Aggiungi a ruolo User</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Account" asp-action="RemoveFromRoleUser">Rimuovi da ruolo User</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Reserved" asp-action="User">Pagina Riservata User</a>
                         </li>
                         }
                     </ul>
