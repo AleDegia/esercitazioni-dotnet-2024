@@ -1,0 +1,20 @@
+[
+  {
+    "Id": 1,
+    "TestoDomanda": "Quali dei seguenti nomi sono verdure?",
+    "Opzioni": ["Mela","Bietole","Spinaci"],
+    "Risposte": ["Bietole", "Spinaci"]
+  },
+  {
+    "Id": 2,
+    "TestoDomanda": "Quali dei seguenti nomi sono verdure?",
+    "Opzioni": ["Mela","Bietole","Spinaci"],
+    "Risposte": ["Bietole", "Spinaci"]
+  },
+  {
+    "Id": 3,
+    "TestoDomanda": "Quali dei seguenti nomi sono verdure?",
+    "Opzioni": ["Mela","Bietole","Spinaci"],
+    "Risposte": ["Bietole", "Spinaci"]
+  }
+]

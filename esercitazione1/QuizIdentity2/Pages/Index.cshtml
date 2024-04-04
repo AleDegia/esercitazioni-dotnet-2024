@@ -1,0 +1,27 @@
+﻿@page
+@model IndexModel
+@{
+    ViewData["Title"] = "Home page";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Benvenuto</h1>
+    @* <h3>Hai già un account o devi registrarti?</h3>
+
+<div style="display:flex; justify-content:center">
+    <a asp-page="Login" class="btn btn-primary">Log In</a>
+    <a asp-page="Registrazione" class="btn btn-primary mx-3" >Registrati</a> 
+</div> *@
+
+@if (User.Identity.IsAuthenticated)
+{
+    <h1>Hello, @User.Identity.Name!</h1>
+    <a asp-page="Gioca" class="btn btn-primary">Gioca</a>
+}
+else
+{
+    <h1>Hello, guest!</h1>
+}
+
+
+</div>

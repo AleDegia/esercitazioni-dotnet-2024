@@ -1,0 +1,56 @@
+@page
+@model ClassificaModel
+@{
+  ViewData["Title"] = "Classifica";
+  int counter = 1;
+  string classe = "";
+}
+
+<h1>@ViewData["Title"]</h1>
+
+
+
+<div class="container my-5 ">
+  <div class="row p-2" style="border-bottom: 2px solid">
+    <div class="col-md-2">
+      <b>
+        Posizione
+      </b>
+    </div>
+    <div class="col-md-2">
+      <b>
+        Nome
+      </b>
+    </div>
+    <div class="col-md-2">
+      <b>
+        Record
+      </b>
+    </div>
+    
+  </div>
+
+@foreach (var Utente in Model.Utenti)
+
+  {
+    
+
+
+
+    @if (counter == 1)
+    {
+      classe = "border-bottom: 3px solid green !important";
+    }
+    else
+    {
+      classe = "border-bottom-color: black !important";
+    }
+    <div class="row border-bottom p-2" style="@classe">
+      <div class="col-md-2">@counter . </div>
+      <div class="col-md-2">@Utente.Nome</div>
+      <div class="col-md-2">@Utente.Record</div>
+    </div>
+    counter++;
+  }
+
+</div>
