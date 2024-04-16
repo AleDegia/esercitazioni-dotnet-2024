@@ -1,0 +1,55 @@
+@page
+@model PartitaDoppiaModel
+@{
+  ViewData["Title"] = "Partita";
+  int numerodomanda = 1;
+  int limit = 2;
+  string a = "a";
+  string b = "b";
+  string c = "c";
+  int n = 1;
+}
+
+<h1>@ViewData["Title"]</h1>
+
+<h3>Benvenuto @User.Identity.Name</h3>
+
+
+
+<form method="post">
+  @foreach (var domanda in Model.DomandeDoppie)
+  {
+    a = numerodomanda + "opzioneA";
+    b = numerodomanda + "opzioneB";
+    c = numerodomanda + "opzioneC";
+    n = numerodomanda -1;
+   
+    <div>
+      <p>@domanda.Id</p>
+      <p>@domanda.TestoDomanda</p>
+
+      <div class="form-check">
+        <input class="form-check-input" type="checkbox" value=@a name=@a id=@a>
+        <label class="form-check-label" for=@a>
+          @domanda.Opzioni[0]
+        </label>
+      </div>
+      <div class="form-check">
+        <input class="form-check-input" type="checkbox" value=@b name=@b id=@b>
+        <label class="form-check-label" for=@b>
+          @domanda.Opzioni[1]
+        </label>
+      </div>
+      <div class="form-check">
+        <input class="form-check-input" type="checkbox" value=@c name=@c id=@c>
+        <label class="form-check-label" for=@c>
+          @domanda.Opzioni[2]
+        </label>
+      </div>
+    </div>
+
+    numerodomanda++;
+  }
+  <button type="submit" class="btn btn-primary mt-3">Submit</button>
+</form>
+

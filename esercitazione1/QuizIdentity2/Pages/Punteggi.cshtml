@@ -1,0 +1,52 @@
+@page
+@model PunteggiModel
+@{
+  ViewData["Title"] = "Punteggi";
+  int counter = 1;
+}
+
+<h1>@ViewData["Title"]</h1>
+
+<h3>di @Model.Utente.Nome</h3>
+
+
+<div class="container my-5 ">
+  <div class="row p-2" style="border-bottom: 2px solid">
+    <div class="col-md-2">
+      <b>
+        Numero
+      </b>
+    </div>
+    <div class="col-md-2">
+      <b>
+        Punteggio
+      </b>
+    </div>
+    
+  </div>
+
+@foreach (var punteggio in Model.Utente.Punteggi)
+
+  {
+    <div class="row border-bottom p-2">
+      <div class="col-md-2">@counter . </div>
+
+      @if (punteggio == Model.Utente.Record )
+      {
+        <div class="col-md-2 bg-success">@punteggio</div>
+      }
+      else
+      {
+        <div class="col-md-2 bg-danger">@punteggio</div>
+      }
+
+    </div>
+    counter++;
+  }
+
+</div>
+
+
+  <div class="row p-2" style="border: 2px solid green">
+    <h3> Record @Model.Utente.Record</h3>
+  </div>

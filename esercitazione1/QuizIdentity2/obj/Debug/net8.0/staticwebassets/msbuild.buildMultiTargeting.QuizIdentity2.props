@@ -1,0 +1,3 @@
+﻿<Project>
+  <Import Project="..\build\QuizIdentity2.props" />
+</Project>
