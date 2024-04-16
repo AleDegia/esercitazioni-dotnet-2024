@@ -180,14 +180,19 @@ public class PunteggioModel : PageModel
                 System.Console.WriteLine(domanda.Risposta);
             }
 
-            //prendo le risposte dell'utente
+            // prendo le risposte dell'utente
             for(int i=0; i<domande.Count; i++)
             {
-                if(rispCorretteList[i]==risposte[i])
+                if(rispCorretteList[i]==Risposte[i])
                 {
                      Score = Score + 1;
                 }
             }
+
+            //Leggo contenuto del file json punteggio
+            var punteggioUsersjson = System.IO.File.ReadAllText("wwwroot/punteggiUsers.json");
+
+            punteggiUsers = JsonConvert.DeserializeObject<List<Punteggio>>(punteggioUsersjson);
 
             //per ogni oggetto Punteggio con nomeUtente e punteggio relativo,
             foreach (var punteggioUserLoggato in punteggiUsers)
@@ -205,7 +210,69 @@ public class PunteggioModel : PageModel
                     }
                 }
             }
-            
+
+            //creo i json dinamici per avere i singoli punteggi dell'utente per ogni giocata
+            var jsonObject = new Punteggio
+            {
+                nome = Username,
+                punteggio = Score
+            };
+
+
+            // Converto l'oggetto JSON in una stringa json
+            string json = JsonConvert.SerializeObject(jsonObject);
+
+            string directoryPath = "wwwroot/punteggiSingoliUtenti";
+            string nomeFile = $"{Username}_punteggiSingoli.json";
+            string filePath = Path.Combine(directoryPath, nomeFile);
+
+            if (!System.IO.File.Exists(filePath))
+            {
+                // Crea il file
+                try
+                {
+                    // Puoi inizializzare il file con dei dati predefiniti, ad esempio un oggetto JSON vuoto
+                    string defaultJsonData = "[]";
+
+                    // Crea il file con i dati predefiniti
+                    System.IO.File.WriteAllText(filePath, defaultJsonData);
+
+                    Console.WriteLine("File creato con successo.");
+                }
+                catch (Exception e)
+                {
+                    System.Console.WriteLine("errore file");
+                }
+            }
+
+            //leggo il file
+            var punteggiSingoloUtenteJson = System.IO.File.ReadAllText($"wwwroot/punteggiSingoliutenti/{Username}_punteggiSingoli.json");
+
+            // Scrivo la stringa json su un file
+            var punteggiUserSingolo = JsonConvert.DeserializeObject<List<Punteggio>>(punteggiSingoloUtenteJson);
+            punteggiUserSingolo.Add(jsonObject); //aggiungo il punteggio appena fatto
+
+
+
+            // Serializza la lista aggiornata in formato JSON
+            string updatedJsonData = JsonConvert.SerializeObject(punteggiUserSingolo);
+
+            // Scrivi i dati serializzati nel file
+            System.IO.File.WriteAllText(filePath, updatedJsonData);
+
+            ultimi5ScoreUtente = new List<int>();
+
+            if (punteggiUserSingolo != null)
+            {
+                //per ogni punteggio dell'utente prendo gli ultimi 5 per mostrarli nella view
+                for (int i = 0; i < punteggiUserSingolo.Count; i++)
+                {
+                    if (i >= (punteggiUserSingolo.Count - 5))
+                    {
+                        ultimi5ScoreUtente.Add(punteggiUserSingolo[i].punteggio);
+                    }
+                }
+            }
         }
     }
 }

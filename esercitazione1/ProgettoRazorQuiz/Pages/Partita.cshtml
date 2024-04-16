@@ -16,25 +16,25 @@
             <p>@Model.Domande[i].Domand</p>
             
             <label>
-                <input type="radio" name="risposta_@Model.Domande[i].Id" value="opzioneA">
+                <input type="radio" name="Risposte[@i]" value="@((i+1) + "opzioneA")">
                 @Model.Domande[i].OpzioneA
             </label>
             <br />
             
             <label>
-                <input type="radio" name="risposta_@Model.Domande[i].Id" value="opzioneB">
+                <input type="radio" name="Risposte[@i]" value="@((i+1) + "opzioneB")">
                 @Model.Domande[i].OpzioneB
             </label>
             <br />
             
             <label>
-                <input type="radio" name="risposta_@Model.Domande[i].Id" value="opzioneC">
+                <input type="radio" name="Risposte[@i]" value="@((i+1) + "opzioneC")">
                 @Model.Domande[i].OpzioneC
             </label>
             <br />
             
             <label>
-                <input type="radio" name="risposta_@Model.Domande[i].Id" value="opzioneD">
+                <input type="radio" name="Risposte[@i]" value="@((i+1) + "opzioneD")">
 
                 @Model.Domande[i].OpzioneD
             </label>
@@ -111,7 +111,7 @@ else if(Model.mod =="difficile")
 }
 
 
-<script>
+@* <script>
         document.addEventListener('DOMContentLoaded', function () {
             var checkboxes = document.querySelectorAll('#form_0 input[type="checkbox"]');
             var checkedCount = 0;
@@ -130,4 +130,4 @@ else if(Model.mod =="difficile")
                 });
             });
         });
-    </script>
+    </script> *@

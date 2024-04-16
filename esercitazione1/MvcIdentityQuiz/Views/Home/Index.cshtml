@@ -1,0 +1,52 @@
+﻿@using MvcIdentityQuiz.Models;
+@using Newtonsoft.Json;
+@using Microsoft.AspNetCore.Authorization;
+
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Welcome</h1>
+    <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+</div>
+@{
+    // Stampa il nome utente
+    var userName = User.Identity.Name;
+
+    // Verifica se l'utente è autenticato
+    var isAuthenticated = User.Identity.IsAuthenticated;
+   
+    // Verifica se l'utente ha il ruolo "User"
+    var isInRole = User.IsInRole("User");
+  
+}
+
+@* <p>@userName </p>
+<p>@isAuthenticated </p>
+<p>@isInRole </p> *@
+
+@if (User != null && User.IsInRole("User"))
+{
+<a 
+class="btn btn-danger m-5 p-5" 
+asp-controller="Home" asp-action="PartitaMultipla"
+ asp-route-nome="@User.Identity.Name"  
+
+>
+Gioca modalità a risposta multipla
+</a>
+
+<a 
+class="btn btn-danger m-5 p-5" 
+asp-route-nome="@User.Identity.Name"  
+asp-route-difficolta="facile" 
+a asp-controller="Home" asp-action="Partita"
+>
+Gioca modalità a scelta esclusiva
+</a>
+}
+else
+{
+<div class="col-md-2"></div>
+}  
