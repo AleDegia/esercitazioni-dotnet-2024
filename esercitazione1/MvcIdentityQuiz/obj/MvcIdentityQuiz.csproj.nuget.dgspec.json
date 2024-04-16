@@ -1,6 +1,7 @@
 {
   "format": 1,
   "restore": {
+<<<<<<< HEAD
     "C:\\Users\\DOTNET\\Documents\\Corso-Dotnet-2024\\MvcIdentityQuiz\\MvcIdentityQuiz.csproj": {}
   },
   "projects": {
@@ -15,11 +16,37 @@
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\DOTNET\\AppData\\Roaming\\NuGet\\NuGet.Config"
+=======
+    "c:\\Users\\degia\\OneDrive\\Documenti\\clone\\C#\\MvcIdentityQuiz\\MvcIdentityQuiz.csproj": {}
+  },
+  "projects": {
+    "c:\\Users\\degia\\OneDrive\\Documenti\\clone\\C#\\MvcIdentityQuiz\\MvcIdentityQuiz.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "c:\\Users\\degia\\OneDrive\\Documenti\\clone\\C#\\MvcIdentityQuiz\\MvcIdentityQuiz.csproj",
+        "projectName": "MvcIdentityQuiz",
+        "projectPath": "c:\\Users\\degia\\OneDrive\\Documenti\\clone\\C#\\MvcIdentityQuiz\\MvcIdentityQuiz.csproj",
+        "packagesPath": "C:\\Users\\degia\\.nuget\\packages\\",
+        "outputPath": "c:\\Users\\degia\\OneDrive\\Documenti\\clone\\C#\\MvcIdentityQuiz\\obj\\",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        ],
+        "configFilePaths": [
+          "C:\\Users\\degia\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+>>>>>>> 3a604f090cf949c1c534cad82e633700f2fac7d0
         ],
         "originalTargetFrameworks": [
           "net8.0"
         ],
         "sources": {
+<<<<<<< HEAD
+=======
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "C:\\Program Files\\dotnet\\library-packs": {},
+>>>>>>> 3a604f090cf949c1c534cad82e633700f2fac7d0
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {

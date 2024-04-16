@@ -1,0 +1,10 @@
+{
+  "version": 2,
+  "dgSpecHash": "dEqa5vYuotgNSrOkJzrECOhwkh+kkMYYWbQuJYtKTKWooI4ZW+oStGqZzJYpZGoGbnUAsFQm5E31YF1KOCLHew==",
+  "success": true,
+  "projectFilePath": "c:\\Users\\degia\\OneDrive\\Documenti\\clone\\C#\\QUIZ\\QUIZ.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\degia\\.nuget\\packages\\newtonsoft.json\\13.0.3\\newtonsoft.json.13.0.3.nupkg.sha512"
+  ],
+  "logs": []
+}

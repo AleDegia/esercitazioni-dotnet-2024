@@ -27,20 +27,6 @@
 </div>
 
 
-@* <div class="container">
-    <div class="row">
-        <div class="col">
-            <strong>Punteggio</strong>
-        </div>
-    </div>
-    @foreach(var x in Model.ultimi5ScoreUtente)
-    {
-        <div class="row">
-            <div class="col">@x</div>
-        </div>
-    }
-</div> *@
-
 
  @* @foreach(var x in Model.ultimi5ScoreUtente)
  {
@@ -64,21 +50,30 @@
 
  <p>Modalita: @Model.Mod</p>
 
- @* @foreach(var punteggio in Model.punteggiUsers)
- {
-    <p>@punteggio.nome</p>
-    <p>@punteggio.punteggio</p>
- } *@
+ 
 }
 else if(Model.Mod=="facile")
 {
-<h1>Welcome, @Model.Username!</h1>
+  <h1>Welcome, @Model.Username!</h1>
 
-@* <h3> Il tuo Record è: @Model.HighScore </h3> 
+  <p>@Model.Username hai fatto @Model.Score punti!</p>
 
-<p>Il tuo punteggio è: @Model.Score</p>
+  
+  <br>
+  
+   <h1>risp corrette</h1>
 
-<p>I tuoi ultimi 5 punteggi:</p> *@
+  foreach(var risp in Model.rispCorretteList)
+  {
+  <p>@risp</p>
+  }
+
+  foreach(var risp in Model.Risposte)
+  {
+  <p>@risp</p>
+  }
+
+  <p>@Model.Score</p>
 }
 
 

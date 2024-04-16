@@ -1,0 +1,62 @@
+@page
+@model PunteggiModel
+@{
+  ViewData["Title"] = "Punteggi";
+  int counter = 1;
+}
+
+<html>
+<head>
+    <title>@ViewData["Title"]</title>
+    <link rel="stylesheet" type="text/css" href="path/al/tuo/file/punteggi.css">
+</head>
+<body>
+<h1>@ViewData["Title"]</h1>
+
+
+
+<h3>di @Model.Utente.Nome</h3>
+
+@* @foreach (var punteggio in Model.Utente.Punteggi)
+{
+  <div>@counter .   @punteggio</div>
+  counter++;
+} *@
+
+<h3> Record @Model.Utente.Record</h3>
+
+
+ @* <style>
+  body {
+   background-color: white;
+  }
+</style>  *@
+
+
+
+
+
+<div class="d-flex justify-content-center align-items-center vh-100" style="background: white; ">
+<ul class="list-group shadow-sm border-0 rounded " style="width: 50%; margin-top:100px; box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);">
+<li class="list-group-item text-center text-white border-0" style="background: black;" >
+<h3 class="fw-normal">Scores </h3>
+</li>
+<li class="list-group-item d-flex justify-content-between text-white border-0" style="background: grey;" >
+<span>Partita</span>
+  <span>Score</span>
+  <span>Record</span>
+</li>
+
+@foreach(var punteggio in Model.Utente.Punteggi)
+{
+<li class="list-group-item d-flex justify-content-between text-white border-0" style="background:green;">
+  <span class=px-3>@counter</span>
+  <span>@punteggio</span>
+  <span class="px-3">@Model.Utente.Record</span>
+</li>
+counter++;
+}
+</ul>
+</div>
+
+</body>
