@@ -1,0 +1,26 @@
+[
+  {
+    "Id": 1,
+    "TestoDomanda": "Qual è la capitale dell'Italia?",
+    "Opzioni": ["Milano", "Roma", "Napoli", "Firenze"] ,
+    "Risposte": ["Roma", "Milano"]
+  },
+  {
+    "Id": 2,
+    "TestoDomanda": "Quale pianeta del sistema solare è più vicino al Sole?",
+    "Opzioni": ["Venere", "Marte", "Giove", "Mercurio"],
+    "Risposte": ["Mercurio"]
+  },
+  {
+    "Id": 3,
+    "TestoDomanda": "Quale animale è noto per la sua striscia bianca e nera?",
+    "Opzioni": ["Leopardo", "Zebra", "Tigre", "Giraffa"],
+    "Risposte": ["Zebra"]
+  },
+  {
+    "Id": 4,
+    "TestoDomanda": "Quale lingua si parla in Giappone?",
+    "Opzioni": ["Cinese", "Giapponese", "Coreano", "Russo"],
+    "Risposte": ["Giapponese"]
+  }
+]

@@ -1,0 +1,32 @@
+[
+  {
+    "Id": 1,
+    "TestoDomanda": "Quali dei seguenti nomi sono verdure?",
+    "Opzioni": ["Mela","Bietole","Spinaci"],
+    "Risposte": ["Bietole", "Spinaci"]
+  },
+  {
+    "Id": 2,
+    "TestoDomanda": "Quali dei seguenti nomi sono verdure?",
+    "Opzioni": ["Mela","Bietole","Spinaci"],
+    "Risposte": ["Bietole", "Spinaci"]
+  },
+  {
+    "Id": 3,
+    "TestoDomanda": "Quali dei seguenti nomi sono verdure?",
+    "Opzioni": ["Mela","Bietole","Spinaci", "Cotone", "Spaventapasseri", "Coso"],
+    "Risposte": ["Bietole", "Spinaci", "Mela"]
+  },
+  {
+    "Id": 4,
+    "TestoDomanda": "Quali dei seguenti nomi sono verdure?",
+    "Opzioni": ["Mela","Bietole","Spinaci", "Cotone", "Spaventapasseri", "Coso"],
+    "Risposte": ["Cotone", "Spaventapasseri", "Coso"]
+  },
+  {
+    "Id": 5,
+    "TestoDomanda": "Quali dei seguenti nomi sono verdure?",
+    "Opzioni": ["Mela","Bietole","Spinaci", "Cotone", "Spaventapasseri", "Coso"],
+    "Risposte": ["Bietole", "Spinaci", "Mela", "Cotone", "Spaventapasseri", "Coso"]
+  }
+]

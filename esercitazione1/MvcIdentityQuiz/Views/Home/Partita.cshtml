@@ -1,0 +1,70 @@
+@using MvcIdentityQuiz.Models;
+@using Newtonsoft.Json;
+@using Microsoft.AspNetCore.Authorization;
+@{
+  <h1>Partita</h1>
+  int numerodomanda = 1;
+  int limit = 2;
+  int n = 0;
+  string a = "a";
+  string b = "b";
+  string c = "c";
+  string d = "d";
+  string name = "risposta";
+  string risposta = "rispostaGiusta";
+}
+
+@* <h1>@ViewData["Title"]</h1> *@
+
+<h3>Benvenuto @User.Identity.Name</h3>
+
+  <form method="post"  action="@Url.Action("Punteggi", "Home")">
+    @foreach (var domanda in Model.Domande)
+    {
+      n = numerodomanda - 1;
+      a = numerodomanda + "opzioneA";
+      b = numerodomanda + "opzioneB";
+      c = numerodomanda + "opzioneC";
+      d = numerodomanda + "opzioneD";
+      risposta = numerodomanda + "rispostaGiusta";
+
+
+      <div>
+        <p>@domanda.Id @domanda.TestoDomanda</p>
+
+        <div class="form-check">
+          <input class="form-check-input" type="radio" value=@domanda.Opzioni[0] required name="ScelteUtente[@n]" id=@a>
+          <label class="form-check-label" for=@a>
+            @domanda.Opzioni[0]
+          </label>
+        </div>
+        <div class="form-check">
+          <input class="form-check-input" type="radio" value=@domanda.Opzioni[1] required name="ScelteUtente[@n]" id=@b>
+          <label class="form-check-label" for=@b>
+            @domanda.Opzioni[1]
+          </label>
+        </div>
+        <div class="form-check">
+          <input class="form-check-input" type="radio" value=@domanda.Opzioni[2] required name="ScelteUtente[@n]" id=@c>
+          <label class="form-check-label" for=@c>
+            @domanda.Opzioni[2]
+          </label>
+        </div>
+
+        @if (domanda.Opzioni.Length > 3)
+        {
+        <div class="form-check">
+          <input class="form-check-input" type="radio" value=@domanda.Opzioni[3] required name="ScelteUtente[@n]" id=@d>
+          <label class="form-check-label" for=@d>
+            @domanda.Opzioni[3]
+          </label>
+        </div>
+        }
+
+      </div>
+
+      numerodomanda++;
+    }
+    <button type="submit" class="btn btn-primary mt-3">Submit</button>
+  </form>
+

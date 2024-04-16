@@ -1,0 +1,34 @@
+@page
+@model GiocaModel
+@{
+  ViewData["Title"] = "Gioca";
+}
+
+<h1>@ViewData["Title"]</h1>
+
+<h3>Benvenuto @Model.Utente.Nome</h3>
+
+@if (User.IsInRole("User"))
+{
+
+<a 
+class="btn btn-danger m-5 p-5" 
+asp-route-nome="@Model.Utente.Nome" 
+asp-page="PartitaMultipla"
+>
+Gioca modalità a risposta multipla
+</a>
+
+<a 
+class="btn btn-danger m-5 p-5" 
+asp-route-nome="@Model.Utente.Nome" 
+asp-route-difficolta="facile" 
+asp-page="Partita"
+>
+Gioca modalità a scelta esclusiva
+</a>
+}
+else
+{
+<div class="col-md-2"></div>
+}  

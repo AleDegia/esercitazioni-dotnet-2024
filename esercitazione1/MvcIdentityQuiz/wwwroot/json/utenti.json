@@ -1,0 +1,80 @@
+[
+  {
+    "Nome": "Ale",
+    "Password": "124",
+    "Record": 5,
+    "Punteggi": [
+      3,
+      1,
+      5,
+      3
+    ]
+  },
+  {
+    "Nome": "Carlo",
+    "Password": "124",
+    "Record": 3,
+    "Punteggi": [
+      0,
+      3,
+      3
+    ]
+  },
+  {
+    "Nome": "Giada",
+    "Password": "a",
+    "Record": 8,
+    "Punteggi": [
+      -1,
+      3,
+      0,
+      1,
+      8,
+      6,
+      2
+    ]
+  },
+  {
+    "Nome": "Simone",
+    "Password": "1",
+    "Record": 8,
+    "Punteggi": [
+      3,
+      2,
+      0,
+      4,
+      8,
+      0,
+      2,
+      1,
+      -1,
+      3
+    ]
+  },
+  {
+    "Nome": "Pasqualino",
+    "Password": "q",
+    "Record": 1,
+    "Punteggi": [
+      1
+    ]
+  },
+  {
+    "Nome": "ale1",
+    "Password": "Dajenamo97!",
+    "Record": 0,
+    "Punteggi": []
+  },
+  {
+    "Nome": "ale2",
+    "Password": "Dajenamo97!",
+    "Record": 0,
+    "Punteggi": []
+  },
+  {
+    "Nome": "ale",
+    "Password": "Dajenamo97!",
+    "Record": 0,
+    "Punteggi": []
+  }
+]
